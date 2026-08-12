@@ -99,3 +99,21 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   .card-head, .card-brief { padding-right: 0; }
   .hint { position: static; display: block; margin-top: 6px; }
 }
+
+/* ===== Print (A4 세로, PDF 제출용) ===== */
+@page { size: A4 portrait; margin: 18mm 16mm; }
+@media print {
+  body { font-size: 11.5px; line-height: 1.55; }
+  .page { max-width: none; padding: 0; }
+  .hint { display: none; }
+  .card { break-inside: avoid; border-color: #bbb; }
+  .card summary { cursor: default; }
+  .card summary:hover { background: none; }
+  .section { margin-top: 22px; }
+  .badge-wip, .badge-pub, .badge-live { background: none; border-color: #999; color: #333; }
+  .tags span { border-color: #999; color: #333; }
+  /* 프로젝트·논문 링크는 URL 병기 */
+  .links a::after, .pubs a::after { content: " (" attr(href) ")"; font-weight: 400; font-size: 10px; color: #555; }
+  .links a, .pubs a, .contacts a { color: var(--ink); }
+  .foot p:first-child { display: none; }
+}
