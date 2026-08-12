@@ -106,9 +106,15 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   body { font-size: 11.5px; line-height: 1.55; }
   .page { max-width: none; padding: 0; }
   .hint { display: none; }
-  .card { break-inside: avoid; border-color: #bbb; }
-  .card summary { cursor: default; }
+  /* 닫힌 카드도 인쇄 시 내용 노출 (DOM 변이 없이 CSS로 — 미리보기 재생성에도 안전) */
+  details.card::details-content { content-visibility: visible !important; display: block !important; }
+  .card { border-color: #bbb; }
+  /* 카드 전체 break-inside: avoid 금지 — 페이지보다 큰 카드가 생기면 클리핑/공백 유발.
+     대신 요약부와 소제목 단위로만 분할을 막는다 */
+  .card summary { cursor: default; break-inside: avoid; break-after: avoid; }
   .card summary:hover { background: none; }
+  .card-body dt { break-after: avoid; }
+  .card-body dd, .tags, .links { break-inside: avoid; }
   .section { margin-top: 22px; }
   .badge-wip, .badge-pub, .badge-live { background: none; border-color: #999; color: #333; }
   .tags span { border-color: #999; color: #333; }
