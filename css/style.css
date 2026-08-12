@@ -1,0 +1,101 @@
+/* ===== Tokens ===== */
+:root {
+  --ink: #1c1c1e;
+  --muted: #666;
+  --faint: #999;
+  --accent: #345995;
+  --line: #e3e3e6;
+  --line-soft: #f0f0f2;
+  --bg-soft: #f7f8fa;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  line-height: 1.65;
+  font-size: 15px;
+}
+.page { max-width: 760px; margin: 0 auto; padding: 48px 24px 64px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.muted { color: var(--muted); }
+code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+
+/* ===== Header ===== */
+.hero h1 { font-size: 30px; margin: 0; letter-spacing: -0.5px; }
+.hero .latin { font-size: 15px; font-weight: 400; color: var(--faint); margin-left: 4px; }
+.tagline { font-size: 15.5px; color: var(--muted); margin: 6px 0 12px; }
+.contacts { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; }
+.hero { border-bottom: 2px solid var(--ink); padding-bottom: 20px; }
+
+/* ===== Sections ===== */
+.section { margin-top: 36px; }
+.section h2 {
+  font-size: 13px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--accent); margin: 0 0 14px;
+}
+
+/* ===== Project cards ===== */
+.card { border: 1px solid var(--line); border-radius: 8px; margin-bottom: 10px; background: #fff; }
+.card summary {
+  cursor: pointer; padding: 14px 16px; list-style: none; position: relative;
+  border-radius: 8px; transition: background 0.15s;
+}
+.card summary::-webkit-details-marker { display: none; }
+.card summary:hover { background: var(--bg-soft); }
+.card[open] summary { border-bottom: 1px solid var(--line-soft); border-radius: 8px 8px 0 0; }
+.card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; padding-right: 84px; }
+.card-title { font-size: 15.5px; font-weight: 650; }
+.card-title .repo { font-size: 12px; font-weight: 500; color: var(--faint); font-family: Consolas, monospace; margin-left: 2px; }
+.card-brief { font-size: 13px; color: var(--muted); margin: 4px 0 0; padding-right: 84px; }
+.badge { font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 10px; white-space: nowrap; }
+.badge-wip  { background: #fff7e6; color: #915907; border: 1px solid #f5dfb2; }
+.badge-pub  { background: #eef2fb; color: var(--accent); border: 1px solid #d4ddf0; }
+.badge-live { background: #e9f7ef; color: #1e7a45; border: 1px solid #c4e8d2; }
+
+/* 확장 affordance: 화살표 + 텍스트 힌트 */
+.hint { position: absolute; right: 16px; top: 15px; font-size: 11.5px; color: var(--accent); }
+.hint::before { content: "자세히 "; }
+.hint::after { content: "▾"; display: inline-block; transition: transform 0.2s; }
+.card[open] .hint::before { content: "접기 "; }
+.card[open] .hint::after { transform: rotate(180deg); }
+
+.card-body { padding: 4px 16px 14px; }
+.card-body dl { margin: 8px 0; }
+.card-body dt { font-size: 12px; font-weight: 700; color: var(--accent); margin-top: 10px; }
+.card-body dd { margin: 3px 0 0; font-size: 13.5px; color: #333; }
+.tags { margin: 12px 0 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font-size: 11px; border: 1px solid #d8dce4; color: var(--accent); padding: 1px 9px; border-radius: 10px; }
+.links { margin: 6px 0 0; font-size: 13px; }
+.links a { margin-right: 12px; font-weight: 600; }
+
+/* ===== Publications ===== */
+.pubs { padding-left: 20px; margin: 0; }
+.pubs li { font-size: 13.5px; margin-bottom: 12px; color: #333; }
+.pubs .pub-note { display: inline-block; font-size: 12px; color: var(--muted); margin: 0 8px 0 4px; }
+.pubs sup { font-size: 10px; }
+
+/* ===== Skills ===== */
+.skills { display: grid; grid-template-columns: 130px 1fr; gap: 8px 16px; margin: 0; }
+.skills dt { font-size: 13px; font-weight: 700; }
+.skills dd { margin: 0; font-size: 13.5px; color: #333; }
+
+/* ===== Education ===== */
+.edu { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+.edu li { margin-bottom: 6px; }
+
+/* ===== Footer ===== */
+.foot { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 16px; font-size: 12px; }
+
+/* ===== Mobile ===== */
+@media (max-width: 560px) {
+  .page { padding: 32px 16px 48px; }
+  .skills { grid-template-columns: 1fr; gap: 2px 0; }
+  .skills dd { margin-bottom: 8px; }
+  .card-head, .card-brief { padding-right: 0; }
+  .hint { position: static; display: block; margin-top: 6px; }
+}
