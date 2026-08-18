@@ -13,7 +13,7 @@
   <!-- ===== Header ===== -->
   <header class="hero">
     <h1>강신성 <span class="latin">Shinsung Kang</span></h1>
-    <p class="tagline">통계적 엄밀함으로 LLM을 다루는 데이터 사이언티스트</p>
+    <p class="tagline">LLM 파인튜닝·선호도 최적화(RLHF/RLAIF), 시계열 자료분석, 통계분석 및 시각화 수행 가능</p>
     <ul class="contacts">
       <li><a href="mailto:hcssk2800@gmail.com">hcssk2800@gmail.com</a></li>
       <li><a href="https://github.com/HollyRiver" target="_blank" rel="noopener">github.com/HollyRiver</a></li>
@@ -25,10 +25,10 @@
   <!-- ===== About ===== -->
   <section class="section" id="about">
     <h2>About</h2>
-    <p>전북대학교 통계학 학사 졸업 예정(2027.02). 학부 과정에서 LLM 관련 연구로 등재지 논문 1편을 공동 1저자로 게재하고,
-    IEEE Access 논문의 베이스라인 실험을 담당했다. 16K 토큰 규모 의료 텍스트에 대한 LLM 파인튜닝과
-    선호도 최적화(RLHF/RLAIF) 파이프라인을 단독 구축하는 등, 통계적 검증과 대규모 실험 엔지니어링을 함께 다룬다.
-    Python·R·SQL 기반의 데이터 분석부터 PyTorch·vLLM 기반의 모델 학습·추론까지 폭넓게 수행한다.</p>
+    <p>전북대학교 통계학 학사 졸업 예정(2027.02). 학부 과정 중 LLM 사후학습 및 생성 텍스트 판별, 
+    시계열 전이학습 관련 연구에 참여하여 실험 및 논문 작성을 수행해왔습니다. 실험에 필요한 Ubuntu 기반 Docker 컨테이너 구축, 
+    패키지 종속성 관리에 능숙합니다.
+    R을 이용한 고전적인 데이터 분석부터, PyTorch·vLLM 기반의 모델 학습·서빙까지 폭넓게 처리할 수 있습니다.</p>
   </section>
 
   <!-- ===== Featured Projects ===== -->
@@ -39,29 +39,29 @@
       <summary>
         <div class="card-head">
           <span class="card-title">MIMIC-IV 임상 텍스트 LLM 정렬 파이프라인 <span class="repo">SurvLLM</span></span>
-          <span class="badge badge-wip">진행중 연구</span>
+          <span class="badge badge-wip">연구 진행중</span>
         </div>
-        <p class="card-brief">퇴원요약지에서 생존분석용 임상 변수를 추출하는 Llama-3.1-8B 파인튜닝·선호도 최적화 파이프라인 단독 구축</p>
+        <p class="card-brief">퇴원요약지에서 생존분석용 임상 변수를 추출하는 Llama-3.1-8B 사후 학습 파이프라인 단독 구축</p>
         <span class="hint" aria-hidden="true"></span>
       </summary>
       <div class="card-body">
         <dl>
           <dt>문제</dt>
-          <dd>생존분석의 핵심 입력(활력징후, 입원 검사 수치)이 최대 16,384 토큰의 비정형 퇴원요약지에 묻혀 있는 상황.
-          마스킹된 환자 나이를 지어내는 등의 환각 없이, 고정된 포맷으로 임상 변수를 추출하는 신뢰 가능한 LLM이 필요.</dd>
+          <dd>생존분석의 핵심 입력(활력징후, 입원 검사 수치)이 최대 16,384 토큰의 비정형 퇴원요약지에 묻혀 있는 상황에서 
+          할루시네이션 없이 약속된 포맷으로 임상 변수를 추출하는 신뢰 가능한 자동화 프로세스가 필요.</dd>
           <dt>접근</dt>
           <dd>MIMIC-IV(Hosp/Patients·Admissions, Note/Discharge) 기반으로 Llama-3.1-8B-Instruct를 QLoRA(4-bit)로
-          SFT한 뒤, 후보 응답 5개 생성 → 선호도 라벨링 → DPO와 RM+PPO 두 정렬 경로를 모두 구현.
-          인간 라벨(200건 중 130건 직접 라벨링)과 Qwen3-30B-A3B 심판 라벨(RLAIF)을 동일 조건에서 통제 비교하며,
-          실험 설정 45종을 체계적으로 버전 관리.</dd>
+          SFT한 뒤, 후보 응답 5개 생성 → 선호도 레이블링 → DPO와 RM+PPO 두 가지 Alignment 경로를 모두 구현.
+          인간 레이블(200건 중 130건 직접 레이블링)과 Qwen3-30B-A3B 기반 레이블을 동일 조건에서 통제 비교.</dd>
           <dt>엔지니어링</dt>
-          <dd>4-bit 모델에 LoRA를 병합하면 SFT 가중치가 왜곡되는 문제를 규명하고, 어댑터를 병합하지 않은 채
-          policy/reference로 이중 로드하고 vLLM 런타임 LoRA 장착으로 해결. FSDP-QLoRA 멀티 GPU 학습,
-          RLAIF용 6단계 평가 루브릭과 JSON 순위 검증·재시도 로직을 설계.</dd>
+          <dd>H200 단일 GPU 환경에서 긴 컨텍스트를 가지는 데이터셋으로 사후 학습을 수행하기 위해 4-bit QLoRA 세팅을 적용.
+          4-bit 모델에 LoRA를 병합하면 SFT 가중치가 왜곡되는 문제를 규명하고, DPO 프로세스에서 어댑터 병합 없이 policy/reference 
+          어댑터를 이중 로드하는 방식으로 해결. FSDP-QLoRA 멀티 GPU 학습, RLAIF 전용 시스템/유저 프롬프트 구조, 
+          생성 텍스트 평가를 위한 6단계 규칙과 JSON 순위 검증·재시도 로직을 설계.</dd>
           <dt>역할 · 현황</dt>
           <dd>Two-Track(LLM 추출 + SurvLIFT 생존모형) 연구 중 LLM 트랙 전체를 담당
-          (시스템 프롬프트·SFT 레이블 포맷은 공동 연구원 작업). 추출 결과를 15개 임상 공변량으로 파싱해
-          생존모형 트랙에 연결하며, 현재 성능 평가(c-index) 단계 진행 중.</dd>
+          (시스템 프롬프트·SFT 레이블 포맷은 공동 연구원 작업). 추출 결과를 15개 임상 공변량으로 파싱하여 생존모형 트랙에 전달. 
+          현재 성능 평가(c-index) 단계 진행 중.</dd>
         </dl>
         <p class="tags"><span>PyTorch</span><span>Transformers</span><span>TRL</span><span>PEFT · QLoRA</span><span>vLLM</span><span>DPO · PPO</span><span>FSDP</span><span>Docker</span><span>wandb</span></p>
         <p class="links"><a href="https://github.com/HollyRiver/SurvLLM" target="_blank" rel="noopener">GitHub</a></p>
