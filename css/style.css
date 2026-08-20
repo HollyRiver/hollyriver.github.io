@@ -106,11 +106,15 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   body { font-size: 11.5px; line-height: 1.55; }
   .page { max-width: none; padding: 0; }
   .hint { display: none; }
+  /* 인쇄에서 무의미한 웹 전용 링크(Scholar·velog·source)는 숨김 — 메일·GitHub만 유지 */
+  .web-only { display: none; }
   /* 닫힌 카드도 인쇄 시 내용 노출 (DOM 변이 없이 CSS로 — 미리보기 재생성에도 안전) */
   details.card::details-content { content-visibility: visible !important; display: block !important; }
   .card { border-color: #bbb; }
-  /* 카드 전체 break-inside: avoid 금지 — 페이지보다 큰 카드가 생기면 클리핑/공백 유발.
-     대신 요약부와 소제목 단위로만 분할을 막는다 */
+  /* 첫 카드(SurvLLM)는 한 페이지를 넘겨 분할을 허용하고, 나머지 카드는 통째로 유지.
+     단, 페이지보다 큰 카드에 avoid를 걸면 클리핑/공백이 생기므로 첫 카드에는 걸지 않는다 */
+  #projects .card { break-inside: avoid; }
+  #projects .card:first-of-type { break-inside: auto; }
   .card summary { cursor: default; break-inside: avoid; break-after: avoid; }
   .card summary:hover { background: none; }
   .card-body dt { break-after: avoid; }
