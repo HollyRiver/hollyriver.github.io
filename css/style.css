@@ -125,5 +125,12 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   /* 프로젝트·논문 링크는 URL 병기 */
   .links a::after, .pubs a::after { content: " (" attr(href) ")"; font-weight: 400; font-size: 10px; color: #555; }
   .links a, .pubs a, .contacts a { color: var(--ink); }
-  .foot p:first-child { display: none; }
+  /* 인쇄 '고아 줄' 방지 임시 조치 (2026-08-22):
+     footer(© 줄)만 페이지 경계를 넘겨 몇 줄짜리 4페이지가 생기던 문제 → 인쇄 시 footer 숨김.
+     원인은 분량이 아니라 '카드 통째 유지(break-inside:avoid)'가 만드는 페이지 하단 빈 공간 누적.
+     헤더 h1에 이름이 있어 인쇄본에서 © 줄은 중복이므로 숨겨도 정보 손실 없음.
+     ※ 3페이지는 하드 상한이 아님 — 내용이 실질적으로 늘어 4페이지+가 정당해지면 허용.
+     ▶ 되돌리기: 내용이 늘어 footer가 더는 '고아'가 아니게 되면 이 규칙 원복(.foot p:first-child만 숨김).
+       그럼에도 페이지를 더 조이고 싶다면 (a) @page 18mm→15mm 또는 (b) #projects .card { break-inside: auto }. */
+  .foot { display: none; }
 }
