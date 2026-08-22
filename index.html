@@ -139,21 +139,19 @@
       </summary>
       <div class="card-body">
         <dl>
-          <dt>문제</dt>
-          <dd>NYC 택시 운행 로그에서 "언제·어디서 막히는가"를 탐색하는 대시보드. 데이터시각화 과제로 만든
-          정적 히트맵·경로도를, 실무 수준의 인터랙티브 제품으로 단독 재구축</dd>
+          <dt>개요</dt>
+          <dd>NYC 택시 운행 로그를 통해 교통 상황을 간접적으로 파악하기 위한 대시보드. 데이터시각화 강의 과제로 제작한
+          정적 히트맵·경로도를, 바이브 코딩을 통하여 실무 수준의 인터랙티브 제품으로 재구축</dd>
           <dt>접근</dt>
           <dd>순수 정적 스택(MapLibre GL + Plotly.js + 바닐라 JS)으로 서버 없이 GitHub Pages 배포. 정제된
           트립 14,446건을 브라우저에 싣고 요일·시간 필터를 클라이언트에서 실시간 재집계. 도로망 통행 플로우는
           osmnx 최단경로를 빌드 전 집계</dd>
           <dt>핵심 기능</dt>
           <dd>두 레이어 — ① 도로 플로우(두께=통행량, 색=세그먼트 평균 속도로 정체 인코딩) ② 헥스빈 히트맵
-          (요일 멀티선택 × 시간대). 선택에 연동되는 KPI·히스토그램, 직선거리를 도로망 최단경로 거리로 대체해
-          현실화한 속력</dd>
+          (요일 멀티선택 × 시간대). 선택에 연동되는 KPI·히스토그램, 최단경로 거리 기반 속력 계산</dd>
           <dt>역할</dt>
-          <dd>데이터 파이프라인(정제·이상치 기준·osmnx 라우팅)부터 프론트 시각화까지 단독 설계·구현.
-          Claude Code와 페어 프로그래밍으로 빠르게 반복. 표본 부족 셀 반투명 처리, 속력의 하한 추정 성격 명시 등
-          통계적 정직성 반영</dd>
+          <dd>Claude Code와의 반복적인 페어 프로그래밍으로 데이터 파이프라인부터 프론트 시각화까지 구현.
+          표본 부족 셀 반투명 처리, 속력의 하한 추정 성격 명시 등 시각적 대비 요인 및 통계적 정직성 부여</dd>
         </dl>
         <p class="tags"><span>Claude Code</span><span>Plotly.js</span><span>pandas</span><span>JavaScript</span><span>GitHub Pages</span></p>
         <p class="links"><a href="https://github.com/HollyRiver/NYCTaxiDash" target="_blank" rel="noopener">GitHub</a> <a href="https://hollyriver.github.io/NYCTaxiDash/" target="_blank" rel="noopener">Live Demo</a></p>
