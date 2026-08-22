@@ -131,27 +131,32 @@
     <details class="card">
       <summary>
         <div class="card-head">
-          <span class="card-title">NYC 택시 인터랙티브 대시보드 <span class="repo">dash</span></span>
+          <span class="card-title">NYC 택시 트래픽 대시보드 <span class="repo">NYCTaxiDash</span></span>
           <span class="badge badge-live">라이브 데모</span>
         </div>
-        <p class="card-brief">택시 운행 데이터의 시공간 패턴을 Quarto + Plotly 대시보드로 구축해 GitHub Pages에 배포</p>
+        <p class="card-brief">택시 트래픽을 요일·시간·지역으로 탐색하는 인터랙티브 대시보드 — 도로망 플로우와 헥스빈 히트맵 2종 레이어, 서버 없는 정적 배포</p>
         <span class="hint" aria-hidden="true"></span>
       </summary>
       <div class="card-body">
         <dl>
           <dt>문제</dt>
-          <dd>수만 건의 NYC 택시 운행 로그에서 "언제, 어디서 택시가 빠르고 느린가"라는 교통 패턴 질문에 답하는
-          탐색형 대시보드를 만드는 과제 (데이터시각화 과목 기말 프로젝트)</dd>
+          <dd>NYC 택시 운행 로그에서 "언제·어디서 막히는가"를 탐색하는 대시보드. 데이터시각화 과제로 만든
+          정적 히트맵·경로도를, 실무 수준의 인터랙티브 제품으로 단독 재구축</dd>
           <dt>접근</dt>
-          <dd>pandas 메서드 체이닝으로 속력·이동거리·요일·시간대 파생변수를 설계하고 속력을 4분위 구간화.
-          요일×시간대 히트맵 2종과, 승하차 경로를 속력 구간별 색상으로 그린 지도(승객 수를 마커 크기로 인코딩)를
-          구성</dd>
-          <dt>성과</dt>
-          <dd>서버 없이 hover·zoom·범례 필터가 동작하는 정적 대시보드를 Quarto로 렌더링하고 GitHub Pages에
-          실배포</dd>
+          <dd>순수 정적 스택(MapLibre GL + Plotly.js + 바닐라 JS)으로 서버 없이 GitHub Pages 배포. 정제된
+          트립 14,446건을 브라우저에 싣고 요일·시간 필터를 클라이언트에서 실시간 재집계. 도로망 통행 플로우는
+          osmnx 최단경로를 빌드 타임에 사전 집계</dd>
+          <dt>핵심 기능</dt>
+          <dd>두 레이어 — ① 도로 플로우(두께=통행량, 색=세그먼트 평균 속도로 정체 인코딩) ② 헥스빈 히트맵
+          (요일 멀티선택 × 시간대). 선택에 연동되는 KPI·히스토그램, 직선거리를 도로망 최단경로 거리로 대체해
+          현실화한 속력</dd>
+          <dt>역할</dt>
+          <dd>데이터 파이프라인(정제·이상치 기준·osmnx 라우팅)부터 프론트 시각화까지 단독 설계·구현.
+          Claude Code와 페어 프로그래밍으로 빠르게 반복. 표본 부족 셀 반투명 처리, 속력의 하한 추정 성격 명시 등
+          통계적 정직성 반영</dd>
         </dl>
-        <p class="tags"><span>Python</span><span>pandas</span><span>Plotly</span><span>Quarto</span><span>GitHub Pages</span></p>
-        <p class="links"><a href="https://github.com/HollyRiver/dash" target="_blank" rel="noopener">GitHub</a> <a href="https://hollyriver.github.io/dash/NYCTaxi.html" target="_blank" rel="noopener">Live Demo</a></p>
+        <p class="tags"><span>MapLibre GL</span><span>Plotly.js</span><span>osmnx</span><span>pandas</span><span>JavaScript</span><span>GitHub Pages</span></p>
+        <p class="links"><a href="https://github.com/HollyRiver/NYCTaxiDash" target="_blank" rel="noopener">GitHub</a> <a href="https://hollyriver.github.io/NYCTaxiDash/" target="_blank" rel="noopener">Live Demo</a></p>
       </div>
     </details>
   </section>
