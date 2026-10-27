@@ -25,7 +25,7 @@
   <!-- ===== About ===== -->
   <section class="section" id="about">
     <h2>About</h2>
-    <p>전북대학교 통계학 학사 졸업 예정(2027.02). 학부 과정 중 LLM 사후학습 및 생성 텍스트 판별, 
+    <p>&nbsp;전북대학교 통계학 학사 졸업 예정(2027.02). 학부 과정 중 LLM 사후학습 및 생성 텍스트 판별, 
     시계열 전이학습 관련 연구에 참여하여 실험 및 논문 작성을 수행해왔습니다. 실험에 필요한 Ubuntu 기반 Docker 컨테이너 구축, 
     패키지 종속성 관리에 능숙합니다.
     R을 이용한 고전적인 데이터 분석부터, PyTorch·vLLM 기반의 모델 학습·서빙까지 폭넓게 처리할 수 있습니다.</p>
@@ -41,27 +41,32 @@
           <span class="card-title">MIMIC-IV 임상 텍스트 LLM 정렬 파이프라인 <span class="repo">SurvLLM</span></span>
           <span class="badge badge-wip">연구 진행중</span>
         </div>
-        <p class="card-brief">퇴원요약지에서 생존분석용 임상 변수를 추출하는 Llama-3.1-8B 사후 학습 파이프라인 단독 구축</p>
+        <p class="card-brief">퇴원요약지를 생존분석용 임상 변수로 바꾸는 LLM 사후학습 파이프라인 — 텍스트 규격화 단계 단독 구축</p>
         <span class="hint" aria-hidden="true"></span>
       </summary>
       <div class="card-body">
+        <figure class="fig">
+          <a href="figure/SurvLLM.png" target="_blank" rel="noopener">
+            <img src="figure/SurvLLM.png" width="1063" height="265"
+                 alt="퇴원요약지를 규격화 문장으로 바꾼 뒤 생존함수를 추정하는 2단계 파이프라인 도식">
+          </a>
+          <figcaption>퇴원요약지 → 규격화 문장 → 생존함수</figcaption>
+        </figure>
         <dl>
-          <dt>문제</dt>
-          <dd>생존분석의 핵심 입력(활력징후, 입원 검사 수치)이 최대 16,384 토큰의 비정형 퇴원요약지에 묻혀 있는 상황에서 
-          할루시네이션 없이 약속된 포맷으로 임상 변수를 추출하는 신뢰 가능한 자동화 프로세스가 필요</dd>
-          <dt>접근</dt>
-          <dd>MIMIC-IV(Hosp/Patients·Admissions, Note/Discharge) 기반으로 Llama-3.1-8B-Instruct를 QLoRA(4-bit)로
-          SFT한 뒤, 후보 응답 5개 생성 → 선호도 레이블링 → DPO와 RM+PPO 두 가지 Alignment 경로를 모두 구현. 
-          인간 레이블(200건 중 130건 직접 레이블링)과 Qwen3-30B-A3B 기반 레이블을 동일 조건에서 통제 비교</dd>
-          <dt>엔지니어링</dt>
-          <dd>H200 단일 GPU 환경에서 긴 컨텍스트를 가지는 데이터셋으로 사후 학습을 수행하기 위해 4-bit QLoRA 세팅을 적용.
-          4-bit 모델에 LoRA를 병합하면 SFT 가중치가 왜곡되는 문제를 규명하고, DPO 프로세스에서 어댑터 병합 없이 policy/reference 
-          어댑터를 이중 로드하는 방식으로 해결. FSDP-QLoRA 멀티 GPU 학습, RLAIF 레이블링 전용 시스템/유저 프롬프트 구조, 
-          생성 텍스트 평가를 위한 6단계 규칙과 JSON 순위 검증·재시도 로직을 설계</dd>
-          <dt>역할 · 현황</dt>
-          <dd>Two-Track(LLM 추출 + SurvLIFT 생존모형) 연구 중 LLM 트랙 전체를 담당.
-          (시스템 프롬프트·SFT 레이블 포맷은 참여 연구원이 지원) 추출 결과를 15개 임상 공변량으로 파싱하여 생존모형 트랙에 전달. 
-          현재 성능 평가(c-index) 단계 진행 중</dd>
+          <dt>개요</dt>
+          <dd>비정형 퇴원요약지에서 생존분석용 임상 변수를 추출하는 2단계 파이프라인.
+          한 건이 최대 3만 토큰에 달해 수작업 정리가 불가능</dd>
+        </dl>
+        <div class="phase"><span class="pnum">1</span>
+          <p><b>텍스트 규격화</b> — Llama-3.1-8B를 QLoRA로 SFT하고 DPO·PPO로 정렬,
+          제각각인 퇴원요약지를 고정된 문장 틀로 변환</p></div>
+        <div class="phase"><span class="pnum">2</span>
+          <p><b>생존분석</b> — 규격화 문장을 SurvLIFT(Llama-3.2-1B)에 입력하여 생존함수 Ŝ(t) 추정</p></div>
+        <dl>
+          <dt>기여</dt>
+          <dd>Phase 1 전면 담당. 데이터 구축, SFT, 선호도 레이블링(200건 중 130건 직접),
+          DPO와 RM+PPO 두 경로 구현을 단독 수행. 규격화 문장을 15개 임상 피쳐로 파싱해 Phase 2에 전달.
+          현재 c-index 평가 진행 중</dd>
         </dl>
         <p class="tags"><span>PyTorch</span><span>Transformers</span><span>TRL</span><span>PEFT · QLoRA</span><span>vLLM</span><span>DPO · PPO</span><span>FSDP</span><span>Docker</span><span>wandb</span></p>
         <p class="links"><a href="https://github.com/HollyRiver/SurvLLM" target="_blank" rel="noopener">GitHub</a></p>
