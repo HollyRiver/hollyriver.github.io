@@ -54,17 +54,18 @@
         </figure>
         <dl>
           <dt>개요</dt>
-          <dd>의무기록지 텍스트를 기반으로 생존분석을 수행하는 2단계 파이프라인</dd>
+          <dd>&nbsp;의무기록지 텍스트를 기반으로 생존분석을 수행하는 2단계 파이프라인</dd>
         </dl>
         <div class="phase"><span class="pnum">1</span>
           <p><b>텍스트 규격화</b> — 오픈소스 LLM에 QLoRA를 이용하여 SFT와 선호도 조정(DPO/PPO)을 적용, 
           규격화되지 않은 의무기록지 텍스트를 약속된 문장 형태로 변환</p></div>
         <div class="phase"><span class="pnum">2</span>
-          <p><b>생존분석</b> — 규격화된 문장을 파인튜닝된 LLM을 기반으로 하는 SurvLIFT에 입력하여 생존함수 Ŝ(t)를 추정</p></div>
+          <p><b>생존분석</b> — 규격화된 문장을 파인튜닝된 LLM 기반의 SurvLIFT에 입력하여 생존함수 Ŝ(t)를 추정</p></div>
         <dl>
           <dt>기여</dt>
-          <dd>Phase 1 전면 담당. 데이터 구축, SFT, 선호도 레이블링(200건 중 130건 직접),
-          DPO와 RM+PPO 두 경로 구현을 단독 수행. 규격화 문장을 15개 임상 피쳐로 파싱해 Phase 2에 전달</dd>
+          <dd>&nbsp;Phase 1 전면 담당. 데이터 구축, SFT, 선호도 레이블링(200건 중 130건 직접), 
+          DPO 및 RM+PPO로 구분되는 선호도 조정 프로세스 직접 설계 및 학습. 
+          생성된 규격화 문장을 15개 임상 피쳐로 파싱해 Phase 2에 전달</dd>
         </dl>
         <p class="tags"><span>PyTorch</span><span>Transformers</span><span>TRL</span><span>PEFT · QLoRA</span><span>vLLM</span><span>DPO · PPO</span><span>FSDP</span><span>Docker</span><span>wandb</span></p>
         <p class="links"><a href="https://github.com/HollyRiver/SurvLLM" target="_blank" rel="noopener">GitHub</a></p>
