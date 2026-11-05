@@ -41,7 +41,7 @@
           <span class="card-title">LLM 기반 생존분석 연구 <span class="repo">SurvLLM</span></span>
           <span class="badge badge-wip">연구 진행중</span>
         </div>
-        <p class="card-brief">MIMIC-IV-Note 의무기록지 텍스트를 입력으로 생존분석을 수행하는 2단계 파이프라인</p>
+        <p class="card-brief">의무기록지 텍스트를 입력으로 생존분석을 수행하는 2단계 파이프라인</p>
         <span class="hint" aria-hidden="true"></span>
       </summary>
       <div class="card-body">
@@ -54,7 +54,9 @@
         </figure>
         <dl>
           <dt>개요</dt>
-          <dd>&nbsp;고전적인 태뷸러 데이터를 넘어, 의무기록지 텍스트를 사용하여 생존함수까지 계산해내는 2단계 파이프라인</dd>
+          <dd>&nbsp;고전적인 태뷸러 데이터를 넘어, MIMIC-IV-Note 데이터셋 의무기록지 텍스트를 사용하여 생존함수까지 계산해내는 2단계 파이프라인.
+            해당 과정에서 LLM의 생존분석 태스크에 대한 추론 능력과 적합성을 파악.
+          </dd>
         </dl>
         <div class="phase"><span class="pnum">1</span>
           <p><b>텍스트 규격화</b> — 오픈소스 LLM에 QLoRA를 이용하여 SFT와 선호도 조정(DPO/PPO)을 적용, 
@@ -77,24 +79,26 @@
           <span class="card-title">인간/LLM 생성 텍스트 판별 연구 <span class="repo">LLMdetector</span></span>
           <span class="badge badge-pub">KCI 등재 · 공동 1저자</span>
         </div>
-        <p class="card-brief">해석 가능한 통계 피처로 인간 vs LLM 텍스트를 판별 — 이진 정확도 97.8%, 생성 모델 식별 86.0%</p>
+        <p class="card-brief">인간 작성 텍스트와 LLM 생성 텍스트를 피처 기반으로 판별</p>
         <span class="hint" aria-hidden="true"></span>
       </summary>
       <div class="card-body">
         <dl>
-          <dt>문제</dt>
-          <dd>LLM 생성 텍스트를 블랙박스 분류기가 아닌 해석 가능한 통계적 근거로 판별하고, 나아가
-          GPT·Gemini·Claude·DeepSeek 중 어느 모델이 생성했는지까지 식별하는 문제</dd>
-          <dt>접근</dt>
-          <dd>Quora 질문(데이터 오염 방지를 위해 3년 이전 게시글 한정)에 대한 인간·4개 LLM 답변 14,833건의
-          코퍼스를 사용해, 문체 통계(어휘 밀도·가독성 지수 등) + Llama-3.1-8B perplexity + 계층적 LDA 토픽 분포
-          피처를 결합하고 PyTorch DNN으로 분류. Ablation 3종으로 피처별 기여도를 정량화</dd>
+          <dt>개요</dt>
+          <dd>&nbsp;Quora에서 수집된 질의응답 텍스트 데이터와, 해당 질의에 대한 LLM 생성 텍스트 데이터를 해석 가능한 통계적 피처로 판별.
+            그룹 별 통계적 피처의 분포 차이를 분석.
+          </dd>
+        </dl>
+        <div class="phase bullet">
+          <p>어휘 밀도·가독성 지수 등 문체적 통계량과, LDA 토픽 분포, Perplexity를 피처로 사용한 MLP로 분류 모델 구성</p></div>
+        <div class="phase bullet">
+          <p>인간 vs LLM의 이진 분류 및 Human·GPT·Gemini·Claude·DeepSeek의 다중 분류 태스크를 각각 진행</p></div>
+        <dl>
           <dt>성과</dt>
-          <dd>이진(human vs LLM) 정확도 <b>97.8%</b>, 5-way 생성 주체 식별 <b>86.0%</b> — 원시 토큰 임베딩
-          베이스라인(55.6%) 대비 30%p 이상 향상. 인간 텍스트의 perplexity가 LLM 대비 약 2배 높음을 정량 확인</dd>
-          <dt>역할</dt>
-          <dd>Perplexity 계산·피처 주입 구현, 시각화, LDA·DNN·평가 지표 코드 오류 검토와 버전 관리,
-          해당 파트 논문 집필 및 관련 연구 조사 수행</dd>
+          <dd>&nbsp;이진 분류 정확도 0.9778, 다중 분류 정확도 0.8598 달성.
+            인간 perplexity가 LLM 대비 평균적으로 약 2배 높음을 식별</dd>
+          <dt>기여</dt>
+          <dd>&nbsp;Perplexity 제안 및 구현, 결과 시각화, LDA·MLP·평가 지표 코드 오류 검토와 버전 관리, 담당 파트 논문 집필 및 관련 연구 조사</dd>
         </dl>
         <p class="tags"><span>PyTorch</span><span>Transformers</span><span>gensim</span><span>NLTK</span><span>textstat</span><span>scikit-learn</span></p>
         <p class="links"><a href="https://github.com/HollyRiver/LLMdetector" target="_blank" rel="noopener">GitHub</a> <a href="https://doi.org/10.5351/KJAS.2026.39.3.235" target="_blank" rel="noopener">Paper</a></p>

@@ -83,6 +83,12 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   display: flex; align-items: center; justify-content: center; margin-top: 3px;
 }
 .phase p { margin: 0; font-size: 13.5px; color: #333; }
+/* 순서가 없는 세부 항목 — 마커 폭을 번호칩과 똑같이 잡아 들여쓰기를 맞춘다.
+   순서가 생기면 .bullet을 떼고 <span class="pnum">n</span>을 넣으면 된다 */
+.phase.bullet::before {
+  content: "·"; flex: 0 0 17px; text-align: right;
+  color: var(--muted); font-size: 15px; font-weight: 700;
+}
 .tags { margin: 12px 0 6px; display: flex; flex-wrap: wrap; gap: 6px; }
 .tags span { font-size: 11px; border: 1px solid #d8dce4; color: var(--accent); padding: 1px 9px; border-radius: 10px; }
 .links { margin: 6px 0 0; font-size: 13px; }
