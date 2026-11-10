@@ -40,6 +40,8 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
 .section { margin-top: 36px; }
 /* 섹션 사이 옅은 구분선 — About은 헤더 굵은 선 바로 아래라 제외. 간격은 선 위아래로 나눠 기존(36px)보다 조금만 넓힘 */
 .section + .section { margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }
+/* Featured Projects 위에는 선을 두지 않음 — 바로 아래 프로젝트 블록 구분선과 겹쳐 과해 보임 (간격만 유지) */
+#projects { border-top: none; padding-top: 0; margin-top: 40px; }
 .section h2 {
   font-size: 13px; font-weight: 700; text-transform: uppercase;
   letter-spacing: 1.5px; color: var(--accent); margin: 0 0 14px;
