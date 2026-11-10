@@ -7,6 +7,7 @@
   --line: #e3e3e6;
   --line-soft: #f0f0f2;
   --bg-soft: #f7f8fa;
+  --rule: #d4d4d9; /* 프로젝트 구분선 — 테두리 없이 이것만으로 경계를 잡으므로 --line보다 진하게 */
 }
 
 * { box-sizing: border-box; }
@@ -18,6 +19,9 @@ body {
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", "Malgun Gothic", sans-serif;
   line-height: 1.65;
   font-size: 15px;
+  /* 한글을 글자 단위가 아닌 단어(어절) 단위로 줄바꿈. 띄어쓰기 없는 긴 토큰(URL 등)은 넘치지 않게 끊는다 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 .page { max-width: 760px; margin: 0 auto; padding: 48px 24px 64px; }
 a { color: var(--accent); text-decoration: none; }
@@ -38,42 +42,106 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   font-size: 13px; font-weight: 700; text-transform: uppercase;
   letter-spacing: 1.5px; color: var(--accent); margin: 0 0 14px;
 }
+/* 소제목 아래 본문을 살짝 들여써 제목이 왼쪽으로 돌출되게 — 섹션 경계를 분명히 */
+.section > :not(h2) { margin-left: 14px; }
+/* About도 다른 섹션처럼 크기를 명시 — 상속에 맡기면 인쇄 시 body 11.5px를 받아 About만 작아진다 */
+#about p { margin-block: 0; font-size: 14px; }
 
-/* ===== Project cards ===== */
-.card { border: 1px solid var(--line); border-radius: 8px; margin-bottom: 10px; background: #fff; }
-.card summary {
-  cursor: pointer; padding: 14px 16px; list-style: none; position: relative;
-  border-radius: 8px; transition: background 0.15s;
+/* ===== Projects — 테두리 없는 막대형 블록. 프로젝트 사이에 가로 구분선만 둔다 ===== */
+.project { border-top: 1px solid var(--rule); }
+.project:last-of-type { border-bottom: 1px solid var(--rule); }
+.project summary {
+  cursor: pointer; padding: 16px 10px; list-style: none; position: relative;
+  transition: background 0.15s;
 }
-.card summary::-webkit-details-marker { display: none; }
-.card summary:hover { background: var(--bg-soft); }
-.card[open] summary { border-bottom: 1px solid var(--line-soft); border-radius: 8px 8px 0 0; }
-.card-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; padding-right: 54px; }
-.card-title { font-size: 15.5px; font-weight: 650; }
-.card-title .repo { font-size: 12px; font-weight: 500; color: var(--faint); font-family: Consolas, monospace; margin-left: 2px; }
-.card-brief { font-size: 13px; color: var(--muted); margin: 4px 0 0; padding-right: 54px; }
+.project summary::-webkit-details-marker { display: none; }
+.project summary:hover { background: var(--bg-soft); }
+.project-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; padding-right: 54px; }
+.project-title { font-size: 15.5px; font-weight: 650; }
+.project-title .repo { font-size: 12px; font-weight: 500; color: var(--faint); font-family: Consolas, monospace; margin-left: 2px; }
+.project-brief { font-size: 13px; color: var(--muted); margin: 4px 0 0; padding-right: 54px; }
 .badge { font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 10px; white-space: nowrap; }
 .badge-wip  { background: #fff7e6; color: #915907; border: 1px solid #f5dfb2; }
 .badge-pub  { background: #eef2fb; color: var(--accent); border: 1px solid #d4ddf0; }
 .badge-live { background: #e9f7ef; color: #1e7a45; border: 1px solid #c4e8d2; }
 
 /* 확장 affordance: 화살표 + 텍스트 힌트 */
-.hint { position: absolute; right: 16px; top: 15px; font-size: 11.5px; color: var(--accent); }
+.hint { position: absolute; right: 10px; top: 17px; font-size: 11.5px; color: var(--accent); }
 .hint::before { content: "자세히 "; }
 .hint::after { content: "▾"; display: inline-block; transition: transform 0.2s; }
-.card[open] .hint::before { content: "접기 "; }
-.card[open] .hint::after { transform: rotate(180deg); }
+.project[open] .hint::before { content: "접기 "; }
+.project[open] .hint::after { transform: rotate(180deg); }
 
-.card-body { padding: 4px 16px 14px; }
-.card-body dl { margin: 8px 0; }
-.card-body dt { font-size: 12px; font-weight: 700; color: var(--accent); margin-top: 10px; }
-.card-body dd { margin: 3px 0 0; font-size: 13.5px; color: #333; }
+.project-body { padding: 6px 10px 26px; }
+.project-body dl { margin: 8px 0; }
+.project-body dt { font-size: 12px; font-weight: 700; color: var(--accent); margin-top: 10px; }
+.project-body dd { margin: 3px 0 0; font-size: 13.5px; color: #333; }
 
-/* 프로젝트 다이어그램 — 본문 최상단 전폭 이미지 + 캡션 */
-.card-body .fig { margin: 14px 0 2px; }
-.card-body .fig a { display: block; }
-.card-body .fig img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 6px; }
-.card-body .fig figcaption { font-size: 11.5px; color: var(--faint); margin-top: 6px; text-align: center; }
+/* 프로젝트 다이어그램 — 전폭 이미지 + 캡션 */
+.project-body .fig { margin: 14px 0 2px; }
+.project-body .fig a { display: block; }
+.project-body .fig img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 6px; }
+.project-body .fig figcaption { font-size: 11.5px; color: var(--faint); margin-top: 6px; text-align: center; }
+/* 그림 나란히 — 각 그림의 flex 비율을 가로세로비(--ar)로 주면 높이가 같아진다 */
+.fig-row { display: flex; gap: 16px; align-items: flex-start; margin: 14px 0 2px; }
+.fig-row .fig { flex: var(--ar, 1) 1 0; min-width: 0; margin: 0; }
+
+/* --- STAR 구성 (SurvLLM부터 적용) --- */
+/* 개요: 기간 · 소속 / 역할 · 데이터 — 2×2 격자로 라벨 열을 세로로 맞춘다.
+   div는 display: contents로 풀어 dt·dd가 바로 격자 칸이 되게 한다 */
+.project-body .meta {
+  display: grid; grid-template-columns: auto auto auto 1fr; gap: 3px 9px;
+  align-items: baseline; margin: 0;
+}
+.project-body .meta div { display: contents; }
+.project-body .meta div:nth-child(even) dt { padding-left: 22px; }
+.project-body .meta dt { margin: 0; font-size: 12px; font-weight: 600; color: var(--muted); }
+.project-body .meta dd { margin: 0; font-size: 13px; color: var(--ink); }
+/* 핵심 수치 타일 — 값은 본문 잉크색, 왼쪽 막대만 강조색. 인쇄에서는 배경이 빠지고 막대만 남는다 */
+.kpis {
+  list-style: none; padding: 0; margin: 14px 0 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+.kpis li {
+  display: flex; flex-direction: column; padding: 8px 12px;
+  border-left: 3px solid var(--accent); background: var(--bg-soft);
+}
+.kpis span { font-size: 12px; font-weight: 600; color: #333; }
+.kpis b { font-size: 19px; font-weight: 650; line-height: 1.35; font-variant-numeric: tabular-nums; }
+.kpis small { font-size: 11px; color: var(--muted); line-height: 1.45; }
+/* 가운데가 넓은 3칸 — 가운데 타일은 짝을 이루는 두 지표(FID · LPIPS)를 두 칸에 나란히 두고 캡션을 공유 */
+.kpis.k3w { grid-template-columns: 1fr 1.6fr 1fr; }
+.kpis li.pair { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: 24px; }
+.kpis li.pair div { display: flex; flex-direction: column; }
+.kpis li.pair small { grid-column: 1 / -1; }
+/* S·T·A·R 소제목 — 한글 제목 + 흐린 영문 표지 */
+.star-h { margin: 20px 0 2px; font-size: 13px; font-weight: 700; color: var(--accent); }
+.star-h span {
+  margin-left: 5px; font-size: 10.5px; font-weight: 600; color: var(--faint);
+  letter-spacing: 0.8px; text-transform: uppercase;
+}
+.sub-h { margin: 12px 0 0; font-size: 12.5px; font-weight: 700; color: var(--ink); }
+/* 항목 목록 — 마커 칸 17px + 간격 8px = 텍스트 25px 들여쓰기 (.exp-list, .phase와 동일 규격) */
+.pts { list-style: none; padding: 0; margin: 2px 0 0; }
+.pts li { position: relative; padding-left: 25px; margin-top: 4px; font-size: 13.5px; color: #333; }
+.pts li::before {
+  content: "·"; position: absolute; left: 0; width: 17px; text-align: right;
+  color: var(--muted); font-size: 15px; font-weight: 700; line-height: 1.5;
+}
+/* 순서가 있는 단계 — 점 대신 흐린 숫자. 다이어그램의 검은 번호칩(Phase)과 헷갈리지 않게 칩을 쓰지 않는다 */
+.pts.steps { counter-reset: step; }
+.pts.steps li { counter-increment: step; }
+.pts.steps li::before {
+  content: counter(step); top: 3px; font-size: 11.5px; font-weight: 700;
+  font-variant-numeric: tabular-nums; color: var(--faint);
+}
+/* 하위 항목 — 상위 항목의 텍스트 시작선에서 한 단계 들여쓰고, 마커는 짧은 대시 */
+.pts .pts.sub { margin-top: 2px; }
+.pts.sub li { padding-left: 16px; margin-top: 3px; font-size: 13px; color: #444; }
+.pts.sub li::before { content: "–"; width: 10px; text-align: left; font-size: 12px; font-weight: 400; line-height: 1.65; }
+.pts.sub b { font-weight: 600; }
+/* 아래 첨자(₅C₂)가 줄 높이를 밀어내지 않게 */
+.pts sub { font-size: 9px; line-height: 0; position: relative; bottom: -0.25em; vertical-align: baseline; }
 
 /* 단계 설명 — 번호칩은 다이어그램 안의 번호와 일치시킨다 */
 .phase { display: flex; gap: 8px; margin-top: 7px; }
@@ -89,9 +157,14 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   content: "·"; flex: 0 0 17px; text-align: right;
   color: var(--muted); font-size: 15px; font-weight: 700;
 }
-.tags { margin: 12px 0 6px; display: flex; flex-wrap: wrap; gap: 6px; }
-.tags span { font-size: 11px; border: 1px solid #d8dce4; color: var(--accent); padding: 1px 9px; border-radius: 10px; }
-.links { margin: 6px 0 0; font-size: 13px; }
+/* 기술 스택 — 요약 줄(summary) 안에 두어 접힌 상태에서도 보인다.
+   상태 배지(둥근 알약)와 헷갈리지 않게 Skills 칩처럼 각진 회색 칩으로 */
+.tags { margin: 9px 0 0; padding-right: 54px; display: flex; flex-wrap: wrap; gap: 5px; }
+.tags span {
+  font-size: 11px; line-height: 1.6; color: #555; background: #fff;
+  border: 1px solid var(--line); padding: 0 7px; border-radius: 4px;
+}
+.links { margin: 16px 0 0; font-size: 13px; }
 .links a { margin-right: 12px; font-weight: 600; }
 
 /* ===== Publications ===== */
@@ -100,14 +173,47 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
 .pubs .pub-note { display: inline-block; font-size: 12px; color: var(--muted); margin: 0 8px 0 4px; }
 .pubs sup { font-size: 10px; }
 
-/* ===== Skills ===== */
-.skills { display: grid; grid-template-columns: 130px 1fr; gap: 8px 16px; margin: 0; }
-.skills dt { font-size: 13px; font-weight: 700; }
-.skills dd { margin: 0; font-size: 13.5px; color: #333; }
+/* ===== 이력 · Skills — 왼쪽 130px 열을 공유해 섹션 간 세로 줄을 맞춘다 ===== */
+.skills, .history { display: grid; grid-template-columns: 130px 1fr; gap: 8px 16px; margin: 0; }
+/* 칩의 기준선은 아이콘 하단이 잡으므로 baseline 정렬 대신 상단 정렬 + 2px 보정 */
+.skills { gap: 10px 16px; align-items: start; }
+.skills dt { font-size: 13px; font-weight: 700; padding-top: 2px; }
+.history dt { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.skills dd, .history dd { margin: 0; font-size: 13.5px; color: #333; }
+/* 기술 칩 — 로고 + 이름. 아이콘이 없는 항목(FSDP)은 글자만. 출처는 icons/SOURCES.md */
+.stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.stack span {
+  display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+  padding: 2px 9px; border: 1px solid var(--line); border-radius: 6px;
+  font-size: 12.5px; line-height: 1.5; color: #333; background: #fff;
+}
+.stack img { width: 16px; height: 16px; flex: 0 0 auto; }
 
-/* ===== Education ===== */
-.edu { list-style: none; padding: 0; margin: 0; font-size: 14px; }
-.edu li { margin-bottom: 6px; }
+/* ===== Experience — 기관·역할·기간 머리줄 + 활동 목록 ===== */
+.exp + .exp { margin-top: 18px; }
+.exp-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.exp-org { font-size: 14px; font-weight: 700; }
+.exp-role { font-size: 13px; color: var(--muted); }
+.exp-date { margin-left: auto; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+/* 목록 마커는 .phase.bullet과 같은 규격(17px 칸 + 8px 간격 = 텍스트 25px 들여쓰기) */
+.exp-list { list-style: none; padding: 0; margin: 6px 0 0; }
+.exp-list li { position: relative; padding-left: 25px; margin-top: 4px; font-size: 13.5px; color: #333; }
+.exp-list li::before {
+  content: "·"; position: absolute; left: 0; width: 17px; text-align: right;
+  color: var(--muted); font-size: 15px; font-weight: 700; line-height: 1.5;
+}
+/* 해당 프로젝트 카드로 가는 교차 링크 */
+.xref { font-size: 12px; font-weight: 600; white-space: nowrap; margin-left: 2px; }
+
+/* ===== Certificates ===== */
+.certs { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+.certs li { margin-bottom: 6px; }
+
+/* ===== 상단 안내 (화면 전용) ===== */
+.print-note {
+  margin: 0 0 24px; padding: 7px 12px; font-size: 12.5px; color: var(--muted);
+  background: var(--bg-soft); border: 1px solid var(--line-soft); border-radius: 6px;
+}
 
 /* ===== Footer ===== */
 .foot { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 16px; font-size: 12px; }
@@ -115,10 +221,26 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
 /* ===== Mobile ===== */
 @media (max-width: 560px) {
   .page { padding: 32px 16px 48px; }
-  .skills { grid-template-columns: 1fr; gap: 2px 0; }
+  .section > :not(h2) { margin-left: 8px; }
+  .skills { grid-template-columns: 1fr; gap: 6px 0; }
   .skills dd { margin-bottom: 8px; }
-  .card-head, .card-brief { padding-right: 0; }
+  /* 기간 표기(YYYY.MM - YYYY.MM)가 좁은 열에서 꺾이므로 날짜를 위 줄로 쌓는다 */
+  .history { grid-template-columns: 1fr; gap: 0; }
+  .history dt { font-size: 12px; }
+  .history dd { margin-bottom: 8px; }
+  /* 좁은 화면에서 기간이 줄바꿈되면 오른쪽에 홀로 붙으므로 왼쪽 정렬로 한 줄 차지 */
+  .exp-date { margin-left: 0; flex-basis: 100%; font-size: 12px; }
+  .project-head, .project-brief, .tags { padding-right: 0; }
+  .project-body .meta { grid-template-columns: auto 1fr; }
+  .project-body .meta div:nth-child(even) dt { padding-left: 0; }
   .hint { position: static; display: block; margin-top: 6px; }
+  .project summary { padding: 14px 6px; }
+  .project-body { padding: 4px 6px 22px; }
+  .kpis { grid-template-columns: 1fr; gap: 6px; }
+  .kpis.k3w { grid-template-columns: 1fr; }
+  /* 나란한 그림은 세로로 쌓고, 세로형 그림은 화면을 다 채우지 않게 가로세로비만큼 줄인다 */
+  .fig-row { flex-direction: column; align-items: center; gap: 12px; }
+  .fig-row .fig { flex: none; width: min(100%, calc(var(--ar, 1) * 90%)); }
 }
 
 /* ===== Print (A4 세로, PDF 제출용) ===== */
@@ -129,34 +251,38 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   .hint { display: none; }
   /* 인쇄에서 무의미한 웹 전용 링크(Scholar·velog·source)는 숨김 — 메일·GitHub만 유지 */
   .web-only { display: none; }
-  /* 닫힌 카드도 인쇄 시 내용 노출 (DOM 변이 없이 CSS로 — 미리보기 재생성에도 안전) */
-  details.card::details-content { content-visibility: visible !important; display: block !important; }
-  .card { border-color: #bbb; }
-  /* 첫 카드(SurvLLM)는 한 페이지를 넘겨 분할을 허용하고, 나머지 카드는 통째로 유지.
-     단, 페이지보다 큰 카드에 avoid를 걸면 클리핑/공백이 생기므로 첫 카드에는 걸지 않는다 */
-  #projects .card { break-inside: avoid; }
-  #projects .card:first-of-type { break-inside: auto; }
-  .card summary { cursor: default; break-inside: avoid; break-after: avoid; }
-  .card summary:hover { background: none; }
-  .card-body dt { break-after: avoid; }
-  .card-body dd, .tags, .links { break-inside: avoid; }
-  .card-body .fig, .phase { break-inside: avoid; }
-  .card-body .fig img { border-color: #bbb; }
+  /* 닫힌 프로젝트도 인쇄 시 내용 노출 (DOM 변이 없이 CSS로 — 미리보기 재생성에도 안전) */
+  details.project::details-content { content-visibility: visible !important; display: block !important; }
+  /* 프로젝트마다 새 페이지에서 시작(첫 프로젝트는 'Featured Projects' 제목과 같은 페이지).
+     한 프로젝트가 최대 2페이지까지 이어질 수 있으므로 블록 통째 유지(break-inside: avoid)는 걸지 않는다.
+     페이지 단위로 떨어지므로 위아래 구분선을 모두 그어 블록을 닫는다 */
+  .project + .project { break-before: page; }
+  .project { border-top-color: #aaa; border-bottom: 1px solid #aaa; }
+  .project summary { cursor: default; padding: 10px 0; break-inside: avoid; break-after: avoid; }
+  .project summary:hover { background: none; }
+  .project-body { padding: 0 0 14px; }
+  .project-body dt, .star-h, .sub-h { break-after: avoid; }
+  .project-body dd, .tags, .links, .pts li, .kpis { break-inside: avoid; }
+  .project-body .fig, .phase { break-inside: avoid; }
+  .project-body .fig img { border-color: #bbb; }
+  .kpis li { border-left-color: var(--ink); }
   .section { margin-top: 22px; }
+  .section h2 { break-after: avoid; }
+  /* 이력(About~Publications)과 프로젝트를 페이지로 구분 — 이력이 1~2페이지를 쓰고 프로젝트는 새 페이지에서 시작.
+     강제 나눔 직후의 위쪽 여백은 남으므로 0으로 */
+  #projects { break-before: page; margin-top: 0; }
   .badge-wip, .badge-pub, .badge-live { background: none; border-color: #999; color: #333; }
-  .tags span { border-color: #999; color: #333; }
+  .tags span { border-color: #bbb; color: #333; }
+  .stack span { border-color: #ccc; }
+  .exp-head { break-after: avoid; }
+  .exp-list li { break-inside: avoid; }
+  .xref { color: var(--ink); }
   /* 프로젝트·논문 링크는 URL 병기 */
   .links a::after, .pubs a::after { content: " (" attr(href) ")"; font-weight: 400; font-size: 10px; color: #555; }
   .links a, .pubs a, .contacts a { color: var(--ink); }
-  /* 인쇄 '고아 줄' 방지 (2026-08-22 도입, 2026-10-27 재측정으로 유지 확정):
-     footer(© 줄)만 페이지 경계를 넘겨 몇 줄짜리 4페이지가 생기는 문제 → 인쇄 시 footer 숨김.
-     원인은 분량이 아니라 '카드 통째 유지(break-inside:avoid)'가 만드는 페이지 하단 빈 공간 누적.
-     헤더 h1에 이름이 있어 인쇄본에서 © 줄은 중복이므로 숨겨도 정보 손실 없음.
-     2026-10-27 실측(.debug/measure-print.mjs): SurvLLM 카드를 2항목+다이어그램으로 재구성한 뒤
-     footer 숨김 3페이지(본문 2836px / 3페이지 경계 2959px) vs 원복 시 4페이지. 선형 추정으로는
-     2932px로 들어오지만 실제 페이지 나눔에서 밀린다 — 여백 누적이 원인이라는 진단과 일치.
-     ※ 3페이지는 하드 상한이 아님 — 내용이 실질적으로 늘어 4페이지+가 정당해지면 허용.
-     ▶ 되돌리기: 내용이 늘어 footer가 더는 '고아'가 아니게 되면 이 규칙 원복(.foot p:first-child만 숨김).
-       그럼에도 페이지를 더 조이고 싶다면 (a) @page 18mm→15mm 또는 (b) #projects .card { break-inside: auto }. */
-  .foot { display: none; }
+  /* footer(©): 2026-08-22~11-09에는 '고아 줄' 방지로 인쇄에서 숨겼다가, 이력/프로젝트 페이지 구분 후 복원.
+     참고(마지막 페이지 조정 때): 2026-10-27 실측 당시 꼬리가 새 페이지로 밀린 원인은
+     '카드 통째 유지(break-inside: avoid)'가 만든 페이지 하단 빈 공간 누적이었다.
+     11-09부터는 프로젝트별 페이지 시작이라 ©는 마지막 프로젝트 끝에 붙는다 */
+  .foot { margin-top: 24px; padding-top: 10px; break-inside: avoid; }
 }

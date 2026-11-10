@@ -10,10 +10,13 @@
 <body>
 <main class="page">
 
+  <!-- 화면 전용 안내 — 인쇄본에서는 .web-only로 숨김 -->
+  <p class="print-note web-only">브라우저 인쇄(PDF 저장) 시 모든 프로젝트를 펼친 A4 문서 형태로 변환되어 출력됩니다.</p>
+
   <!-- ===== Header ===== -->
   <header class="hero">
     <h1>강신성 <span class="latin">Shinsung Kang</span></h1>
-    <p class="tagline">LLM 파인튜닝·선호도 최적화(RLHF/RLAIF), 시계열 자료분석, 통계분석 및 시각화 수행 가능</p>
+    <p class="tagline">연구 활동을 바탕으로 LLM과 딥러닝 프로세스에 익숙한 데이터 사이언티스트</p>
     <ul class="contacts">
       <li><a href="mailto:hcssk2800@gmail.com">hcssk2800@gmail.com</a></li>
       <li><a href="https://github.com/HollyRiver" target="_blank" rel="noopener">github.com/HollyRiver</a></li>
@@ -25,145 +28,100 @@
   <!-- ===== About ===== -->
   <section class="section" id="about">
     <h2>About</h2>
-    <p>&nbsp;전북대학교 통계학 학사 졸업 예정(2027.02). 학부 과정 중 LLM 사후학습 및 생성 텍스트 판별, 
-    시계열 전이학습 관련 연구에 참여하여 실험 및 논문 작성을 수행해왔습니다. 실험에 필요한 Ubuntu 기반 Docker 컨테이너 구축, 
-    패키지 종속성 관리에 능숙합니다.
-    R을 이용한 고전적인 데이터 분석부터, PyTorch·vLLM 기반의 모델 학습·서빙까지 폭넓게 처리할 수 있습니다.</p>
+    <p>&nbsp;학부연구생 활동을 통해 다양한 기계학습 연구에 참여하여 실험 및 논문 작성을 수행해왔습니다.
+      실험에 필요한 Linux 기반 Docker 컨테이너 구축, 패키지 종속성 관리에 능숙합니다.
+      R, SAS를 이용한 고전적인 데이터 분석부터, Pytorch, Transformers, vLLM 기반의 모델 학습·서빙까지 폭넓게 다룰 수 있습니다.</p>
   </section>
 
-  <!-- ===== Featured Projects ===== -->
-  <section class="section" id="projects">
-    <h2>Featured Projects</h2>
+  <!-- ===== Education ===== -->
+  <section class="section" id="education">
+    <h2>Education</h2>
+    <dl class="history">
+      <dt>2020.02</dt><dd>진안제일고등학교 졸업</dd>
+      <dt>2020.03</dt><dd>전북대학교 상경대학 경제학부 입학</dd>
+      <dt>2024.03</dt><dd>전북대학교 자연과학대학 통계학과로 전과 (학부 3학년)</dd>
+      <dt>2027.02</dt><dd>전북대학교 자연과학대학 통계학과 졸업 예정</dd>
+    </dl>
+  </section>
 
-    <details class="card" open>
-      <summary>
-        <div class="card-head">
-          <span class="card-title">LLM 기반 생존분석 연구 <span class="repo">SurvLLM</span></span>
-          <span class="badge badge-wip">연구 진행중</span>
-        </div>
-        <p class="card-brief">의무기록지 텍스트를 입력으로 생존분석을 수행하는 2단계 파이프라인</p>
-        <span class="hint" aria-hidden="true"></span>
-      </summary>
-      <div class="card-body">
-        <figure class="fig">
-          <a href="figure/SurvLLM.png" target="_blank" rel="noopener">
-            <img src="figure/SurvLLM.png" width="1063" height="265"
-                 alt="의무기록지 텍스트를 규격화 문장으로 바꾼 뒤 생존함수를 추정하는 2단계 파이프라인 도식">
-          </a>
-          <figcaption>의무기록지 → 규격화 문장 → 생존함수</figcaption>
-        </figure>
-        <dl>
-          <dt>개요</dt>
-          <dd>&nbsp;고전적인 태뷸러 데이터를 넘어, MIMIC-IV-Note 데이터셋 의무기록지 텍스트를 사용하여 생존함수까지 계산해내는 2단계 파이프라인.
-            해당 과정에서 LLM의 생존분석 태스크에 대한 추론 능력과 적합성을 파악.
-          </dd>
-        </dl>
-        <div class="phase"><span class="pnum">1</span>
-          <p><b>텍스트 규격화</b> — 오픈소스 LLM에 QLoRA를 이용하여 SFT와 선호도 조정(DPO/PPO)을 적용, 
-          규격화되지 않은 의무기록지 텍스트를 약속된 문장 형태로 변환</p></div>
-        <div class="phase"><span class="pnum">2</span>
-          <p><b>생존분석</b> — 규격화된 문장을 파인튜닝된 LLM 기반의 SurvLIFT에 입력하여 생존함수 Ŝ(t)를 추정</p></div>
-        <dl>
-          <dt>기여</dt>
-          <dd>&nbsp;Phase 1 전면 담당. 데이터 구축, SFT, 선호도 조정에 필요한 데이터 레이블링(200건 중 130건 직접 수행), 
-          DPO 및 RM+PPO로 구분되는 선호도 조정 프로세스 직접 설계 및 학습. 생성된 규격화 문장을 15개 임상 피쳐로 파싱해 Phase 2에 전달</dd>
-        </dl>
-        <p class="tags"><span>PyTorch</span><span>Transformers</span><span>TRL</span><span>PEFT · QLoRA</span><span>vLLM</span><span>DPO · PPO</span><span>FSDP</span><span>Docker</span><span>wandb</span></p>
-        <p class="links"><a href="https://github.com/HollyRiver/SurvLLM" target="_blank" rel="noopener">GitHub</a></p>
+  <!-- ===== Experience ===== -->
+  <section class="section" id="experience">
+    <h2>Experience</h2>
+    <div class="exp">
+      <div class="exp-head">
+        <span class="exp-org">전북대학교 입학처</span>
+        <span class="exp-role">정책연구과제 연구보조원</span>
+        <span class="exp-date">2025.04 - 2025.06</span>
       </div>
-    </details>
+      <ul class="exp-list">
+        <li><b>개요</b> — 광역모집단위 학사과정 입학생의 전공 배정을 위한 적절한 입학점수 정규화 방안을 탐색하는 과제</li>
+        <li><b>기여</b> — 샘플 데이터에 대하여 표준화·min-max 스케일링·분위수 정렬 방식으로 정규화 및 통합 순위 산정, 시각화 수행,
+          정규화 방식별 특징을 문서화하여 연구 담당 교수에게 인계</li>
+      </ul>
+    </div>
+    <div class="exp">
+      <div class="exp-head">
+        <span class="exp-org">전북대학교 통계학과 지도교수 연구실</span>
+        <span class="exp-role">학부연구생</span>
+        <span class="exp-date">2025.07 - 현재</span>
+      </div>
+      <ul class="exp-list">
+        <li><b>로컬 LLM 기반 Two-Phase 생존분석 연구 참여</b> — 첫 단계인 의무기록지 텍스트 규격화를 위해 SFT, DPO, PPO, 선호도 레이블링 등 수행</li>
+        <li><b>인간 작성/LLM 생성 텍스트 판별 연구 참여</b> — 퍼플렉시티 계산 및 예측 변수로 추가, 연구에 활용된 코드 오류 검토 및 아카이빙 등 수행</li>
+        <li><b>디퓨전 기반 한반도 일사량 예측 연구 참여</b> — 연구 중간 단계에 합류하여, Base 디퓨전 모델 예측 개선을 위한 보정 프로세스를 추가 구축</li>
+        <li><b>시계열 전이학습 베이스라인 실험 지원</b> — 리비전 단계 연구에 합류하여, 프론티어 베이스라인 PatchTST 기반 전이학습 코드 구축 및 베이스라인 실험 수행</li>
+        <li><b>서버자원 관리</b> — 연구실 내 H200, A6000, L40S 장착 서버의 도커 컨테이너 구축 및 기술 지원</li>
+        <li><b>세미나 활동</b> — 기계학습을 위한 수학, 강화학습, 생존분석, MCP, Agentic AI 관련 세미나 참여 및 담당 파트 준비</li>
+      </ul>
+    </div>
+  </section>
 
-    <details class="card">
-      <summary>
-        <div class="card-head">
-          <span class="card-title">인간/LLM 생성 텍스트 판별 연구 <span class="repo">LLMdetector</span></span>
-          <span class="badge badge-pub">KCI 등재 · 공동 1저자</span>
-        </div>
-        <p class="card-brief">인간 작성 텍스트와 LLM 생성 텍스트를 피처 기반으로 판별</p>
-        <span class="hint" aria-hidden="true"></span>
-      </summary>
-      <div class="card-body">
-        <dl>
-          <dt>개요</dt>
-          <dd>&nbsp;Quora에서 수집된 질의응답 텍스트 데이터와, 해당 질의에 대한 LLM 생성 텍스트 데이터를 해석 가능한 통계적 피처로 판별.
-            그룹 별 통계적 피처의 분포 차이를 분석.
-          </dd>
-        </dl>
-        <div class="phase bullet">
-          <p>어휘 밀도·가독성 지수 등 문체적 통계량과, LDA 토픽 분포, Perplexity를 피처로 사용한 MLP로 분류 모델 구성</p></div>
-        <div class="phase bullet">
-          <p>인간 vs LLM의 이진 분류 및 Human·GPT·Gemini·Claude·DeepSeek의 다중 분류 태스크를 각각 진행</p></div>
-        <dl>
-          <dt>성과</dt>
-          <dd>&nbsp;이진 분류 정확도 0.9778, 다중 분류 정확도 0.8598 달성.
-            인간 perplexity가 LLM 대비 평균적으로 약 2배 높음을 식별</dd>
-          <dt>기여</dt>
-          <dd>&nbsp;Perplexity 제안 및 구현, 결과 시각화, LDA·MLP·평가 지표 코드 오류 검토와 버전 관리, 담당 파트 논문 집필 및 관련 연구 조사</dd>
-        </dl>
-        <p class="tags"><span>PyTorch</span><span>Transformers</span><span>gensim</span><span>NLTK</span><span>textstat</span><span>scikit-learn</span></p>
-        <p class="links"><a href="https://github.com/HollyRiver/LLMdetector" target="_blank" rel="noopener">GitHub</a> <a href="https://doi.org/10.5351/KJAS.2026.39.3.235" target="_blank" rel="noopener">Paper</a></p>
-      </div>
-    </details>
+  <!-- ===== Certificates ===== -->
+  <section class="section" id="certificates">
+    <h2>Certificates</h2>
+    <ul class="certs">
+      <li>빅데이터분석기사 <span class="muted">(BAE)</span></li>
+      <li>SQLD <span class="muted">(SQL Developer)</span></li>
+      <li>TOEIC 830 <span class="muted">(2025.04 취득)</span></li>
+    </ul>
+  </section>
 
-    <details class="card">
-      <summary>
-        <div class="card-head">
-          <span class="card-title">시계열 전이학습 베이스라인 실험 인프라 <span class="repo">TSTF</span></span>
-          <span class="badge badge-pub">IEEE Access 논문 기여</span>
-        </div>
-        <p class="card-brief">레거시 Keras 실험을 PyTorch로 단독 재구현하고, 데이터셋당 500개 모델 앙상블 실험을 멀티 GPU로 자동화</p>
-        <span class="hint" aria-hidden="true"></span>
-      </summary>
-      <div class="card-body">
-        <dl>
-          <dt>문제</dt>
-          <dd>N-BEATS 전이학습 논문(IEEE Access)의 비교 실험에 필요한 PatchTST 베이스라인이 레거시 Keras 코드로는
-          재현·확장이 어려운 상황. 타겟 데이터셋 7종 × 손실함수 5종 × 모델 100개의 실험 매트릭스를 감당할 인프라가 필요</dd>
-          <dt>접근</dt>
-          <dd>HuggingFace PatchTST 백본을 M4 데이터로 부트스트랩 사전학습한 뒤 head를 교체(Transformer/LSTM/MLP)해
-          파인튜닝하는 전이학습 파이프라인을 PyTorch로 구축하고, median·지수 가중 앙상블로 최종 예측을 산출.
-          21개 실험 태스크를 multiprocessing 큐와 GPU 라운드로빈으로 자동화 — 결과 존재 시 스킵하는
-          재시작 안전 설계로 L40S 2-GPU 활용률 98%를 달성</dd>
-          <dt>품질 기여</dt>
-          <dd>원본 실험 코드의 결함(MASE 손실 오구현, MAPE의 0값 발산, 데이터 분할 분포 불일치)을 발견·문서화하고
-          방어 로직을 반영. 베이스라인 실험 결과는 논문 최종본에 수록</dd>
-          <dt>역할</dt>
-          <dd><code>torch/</code> 디렉토리 100% 단독 구현 및 결과 집계·보고 (논문 Acknowledgement 기재)</dd>
-        </dl>
-        <p class="tags"><span>PyTorch</span><span>Transformers · PatchTST</span><span>multiprocessing</span><span>pandas</span></p>
-        <p class="links"><a href="https://github.com/HollyRiver/TSTF" target="_blank" rel="noopener">GitHub</a> <a href="https://ieeexplore.ieee.org/abstract/document/11443264" target="_blank" rel="noopener">Paper</a></p>
-      </div>
-    </details>
-
-    <details class="card">
-      <summary>
-        <div class="card-head">
-          <span class="card-title">NYC 택시 트래픽 대시보드 <span class="repo">NYCTaxiDash</span></span>
-          <span class="badge badge-live">라이브 데모</span>
-        </div>
-        <p class="card-brief">택시 트래픽을 요일·시간·지역으로 탐색하는 인터랙티브 대시보드 — 클로드 코드 기반 기존 프로젝트 개선</p>
-        <span class="hint" aria-hidden="true"></span>
-      </summary>
-      <div class="card-body">
-        <dl>
-          <dt>개요</dt>
-          <dd>NYC 택시 운행 로그를 통해 교통 상황을 간접적으로 파악하기 위한 대시보드. 데이터시각화 강의 과제로 제작한
-          정적 히트맵·경로도를, 바이브 코딩을 통하여 실무 수준의 인터랙티브 제품으로 재구축</dd>
-          <dt>접근</dt>
-          <dd>순수 정적 스택(MapLibre GL + Plotly.js + 바닐라 JS)으로 서버 없이 GitHub Pages 배포. 정제된
-          트립 14,446건을 브라우저에 싣고 요일·시간 필터를 클라이언트에서 실시간 재집계. 도로망 통행 플로우는
-          osmnx 최단경로를 빌드 전 집계</dd>
-          <dt>핵심 기능</dt>
-          <dd>두 레이어 — ① 도로 플로우(두께=통행량, 색=세그먼트 평균 속도로 정체 인코딩) ② 헥스빈 히트맵
-          (요일 멀티선택 × 시간대). 선택에 연동되는 KPI·히스토그램, 최단경로 거리 기반 속력 계산</dd>
-          <dt>역할</dt>
-          <dd>Claude Code와의 반복적인 페어 프로그래밍으로 데이터 파이프라인부터 프론트 시각화까지 구현.
-          표본 부족 셀 반투명 처리, 속력의 하한 추정 성격 명시 등 시각적 대비 요인 및 통계적 정직성 부여</dd>
-        </dl>
-        <p class="tags"><span>Claude Code</span><span>Plotly.js</span><span>pandas</span><span>JavaScript</span><span>GitHub Pages</span></p>
-        <p class="links"><a href="https://github.com/HollyRiver/NYCTaxiDash" target="_blank" rel="noopener">GitHub</a> <a href="https://hollyriver.github.io/NYCTaxiDash/" target="_blank" rel="noopener">Live Demo</a></p>
-      </div>
-    </details>
+  <!-- ===== Skills ===== -->
+  <section class="section" id="skills">
+    <h2>Skills</h2>
+    <dl class="skills">
+      <dt>언어</dt>
+      <dd class="stack">
+        <span><img src="icons/python.svg" width="16" height="16" alt="">Python</span>
+        <span><img src="icons/r.svg" width="16" height="16" alt="">R</span>
+        <span><img src="icons/julia.svg" width="16" height="16" alt="">Julia</span>
+        <span><img src="icons/sas.svg" width="16" height="16" alt="">SAS</span>
+        <span><img src="icons/csharp.svg" width="16" height="16" alt="">C#</span>
+      </dd>
+      <dt>ML · DL</dt>
+      <dd class="stack">
+        <span><img src="icons/pytorch.svg" width="16" height="16" alt="">PyTorch</span>
+        <span><img src="icons/huggingface.svg" width="16" height="16" alt="">HuggingFace</span>
+        <span><img src="icons/vllm.svg" width="16" height="16" alt="">vLLM</span>
+        <span><img src="icons/scikitlearn.svg" width="16" height="16" alt="">scikit-learn</span>
+      </dd>
+      <dt>데이터 · 시각화</dt>
+      <dd class="stack">
+        <span><img src="icons/sqldeveloper.svg" width="16" height="16" alt="">SQL(ANSI·Oracle)</span>
+        <span><img src="icons/pandas.svg" width="16" height="16" alt="">pandas</span>
+        <span><img src="icons/numpy.svg" width="16" height="16" alt="">NumPy</span>
+        <span><img src="icons/plotly.svg" width="16" height="16" alt="">Plotly</span>
+        <span><img src="icons/matplotlib.svg" width="16" height="16" alt="">matplotlib</span>
+      </dd>
+      <dt>인프라 · 도구</dt>
+      <dd class="stack">
+        <span><img src="icons/linux.svg" width="16" height="16" alt="">Linux</span>
+        <span><img src="icons/docker.svg" width="16" height="16" alt="">Docker</span>
+        <span><img src="icons/git.svg" width="16" height="16" alt=""><img src="icons/github.svg" width="16" height="16" alt="">git/GitHub</span>
+        <span><img src="icons/claude.svg" width="16" height="16" alt="">Claude Code</span>
+        <span><img src="icons/wandb.svg" width="16" height="16" alt="">wandb</span>
+      </dd>
+    </dl>
   </section>
 
   <!-- ===== Publications ===== -->
@@ -179,34 +137,317 @@
       Transfer Learning Based on N-BEATS in Forecasting Univariate Time Series.
       <i>IEEE Access</i>, <b>14</b>, 45191–45212.
       <span class="pub-note">베이스라인 실험 기여 (Acknowledgement)</span>
-      <a href="https://ieeexplore.ieee.org/abstract/document/11443264" target="_blank" rel="noopener">Link</a></li>
+      <a href="https://ieeexplore.ieee.org/abstract/document/11443264" target="_blank" rel="noopener">Link</a>
+      <a href="https://github.com/HollyRiver/TSTF" target="_blank" rel="noopener">GitHub</a></li>
     </ol>
   </section>
 
-  <!-- ===== Skills ===== -->
-  <section class="section" id="skills">
-    <h2>Skills</h2>
-    <dl class="skills">
-      <dt>언어</dt><dd>Python, R, Julia, SAS, C#</dd>
-      <dt>ML · DL</dt><dd>PyTorch, HuggingFace(Transformers·PEFT·TRL), vLLM, scikit-learn</dd>
-      <dt>데이터 · 시각화</dt><dd>SQL(ANSI·Oracle), pandas, numpy, Plotly, matplotlib, seaborn</dd>
-      <dt>인프라 · 도구</dt><dd>Linux, Docker, git/GitHub, Claude Code, wandb, FSDP</dd>
-    </dl>
-  </section>
+  <!-- ===== Featured Projects ===== -->
+  <section class="section" id="projects">
+    <h2>Featured Projects</h2>
 
-  <!-- ===== Education & Certificates ===== -->
-  <section class="section" id="education">
-    <h2>Education &amp; Certificates</h2>
-    <ul class="edu">
-      <li>전북대학교 통계학 학사 <span class="muted">(2027.02 졸업 예정)</span></li>
-      <li>빅데이터분석기사 (BAE)</li>
-      <li>SQLD (SQL Developer)</li>
-      <li>TOEIC 830 <span class="muted">(2025.04 취득)</span></li>
-    </ul>
+    <details class="project" id="survllm" open>
+      <summary>
+        <div class="project-head">
+          <span class="project-title">LLM 기반 생존분석 연구</span>
+          <span class="badge badge-wip">연구 진행중</span>
+        </div>
+        <p class="project-brief">의무기록지 텍스트를 입력으로 생존분석을 수행하는 2단계 파이프라인</p>
+        <p class="tags"><span>PyTorch</span><span>Transformers</span><span>TRL</span><span>PEFT · QLoRA</span><span>vLLM</span><span>DPO · PPO</span><span>FSDP</span><span>Docker</span><span>wandb</span></p>
+        <span class="hint" aria-hidden="true"></span>
+      </summary>
+      <div class="project-body">
+        <dl class="meta">
+          <div><dt>기간</dt><dd>2025.10 - 현재 진행중</dd></div>
+          <div><dt>소속</dt><dd>전북대학교 통계학과 지도교수 연구실</dd></div>
+          <div><dt>역할</dt><dd>4인 팀에서 Phase 1(의무기록지 텍스트 규격화) 전담</dd></div>
+          <div><dt>데이터</dt><dd>MIMIC-IV v3.1, MIMIC-IV-Note v2.2</dd></div>
+        </dl>
+
+        <!-- 핵심 수치 요약 — 맥락은 아래 '성과'에 서술 -->
+        <ul class="kpis">
+          <li><span>Harrell's C-index</span><b>+10% 이상</b><small>Cox·DeepHit 대비, 파이프라인 최종 결과</small></li>
+          <li><span>AI·인간 선호도 일치율</span><b>0.5 → 0.7</b><small>무작위 응답 쌍의 순위 일치 확률</small></li>
+          <li><span>출력 규격 준수</span><b>100%</b><small>최종 모델의 전체 출력 기준</small></li>
+        </ul>
+
+        <figure class="fig">
+          <a href="figure/SurvLLM.png" target="_blank" rel="noopener">
+            <img src="figure/SurvLLM.png" width="1594" height="392"
+                 alt="의무기록지 텍스트를 규격화 문장으로 바꾼 뒤 생존함수를 추정하는 2단계 파이프라인 도식">
+          </a>
+          <figcaption>[추론 파이프라인] 의무기록지 → 규격화 문장 → 생존함수</figcaption>
+        </figure>
+
+        <h3 class="star-h">배경 <span>Situation</span></h3>
+        <ul class="pts">
+          <li>LLM을 생존분석에 활용하여, 기존 생존분석에 필요한 태뷸러 데이터 이외에도, 분석 환자에 대한 중요한 정보를 포함하는 텍스트 데이터를 활용하려는 연구</li>
+          <li>의무기록지 텍스트는 작성 형식 및 분량이 통일되지 않아, 원문을 그대로 사용할 경우 생존함수를 안정적으로 도출하기 어려움</li>
+          <li>텍스트를 약속된 문장 형태로 규격화하고, 이를 기반으로 생존함수를 추정하는 2단계 구조를 이용</li>
+        </ul>
+
+        <h3 class="star-h">역할 <span>Task</span></h3>
+        <ul class="pts">
+          <li>원본 의무기록지 텍스트를 규격화하는 Phase 1 전면 담당</li>
+          <li>동료 연구자 이탈로 인해 소스 데이터 가공부터 학습, 결과 데이터 처리, 레이블링 일부까지 위임받아 수행</li>
+          <li>위임받은 업무 중 오픈소스 LLM 기반 선호도 레이블링에서 무작위에 가깝던 퍼포먼스를 개선</li>
+        </ul>
+
+        <h3 class="star-h">수행 <span>Action</span></h3>
+        <figure class="fig">
+          <a href="figure/SurvLLM%20First%20Phase%20Branches.png" target="_blank" rel="noopener">
+            <img src="figure/SurvLLM%20First%20Phase%20Branches.png" width="1842" height="598"
+                 alt="공통 SFT 모델에서 인간·AI 피드백과 DPO·PPO 조합으로 네 가지 LoRA가 분기되는 학습 구조도">
+          </a>
+          <figcaption>[모델 세팅] 공통의 SFT 모델에서 선호도 레이블링 방법(인간/AI) × 선호도 조정 알고리즘(DPO/PPO)으로 4종 분기</figcaption>
+        </figure>
+        <h4 class="sub-h">학습 파이프라인</h4>
+        <ol class="pts steps">
+          <li><b>데이터 구축</b>: MIMIC-IV v3.1의 Admissions·Patients 테이블과 MIMIC-IV-Note v2.2의 Discharge 테이블을 활용하여 훈련·검증·테스트 데이터 구성</li>
+          <li><b>SFT</b>: 원본 의무기록지에 대하여 의료 도메인 지식을 가진 연구원이 레이블링한 규격화 문장 100개 쌍의 메시지 데이터셋으로 Llama-3.1-8B-Instruct 모델에 SFT 적용</li>
+          <li><b>선호도 레이블링</b>: SFT 모델이 의무기록지당 5개 응답을 확률적으로 생성하고, 인간 주석자 또는 오픈소스 LLM이 순위 평가. 인간 레이블링 대상 200건 중 130건 직접 수행</li>
+          <li><b>선호도 조정</b>: 의무기록지당 <sub>5</sub>C<sub>2</sub> = 10쌍, 총 2,000쌍의 선호도 데이터셋으로 SFT 모델을 이어서 학습. 퍼포먼스 비교를 위해 선호도 레이블링 방법(인간/AI) × 선호도 조정 알고리즘(DPO / Reward Model + PPO)의 4가지 조합 비교</li>
+          <li><b>결과 전달</b>: 사후학습을 마친 모델에 vLLM의 연속형 배치를 사용하여 추론을 수행. 의무기록지 테스트 데이터를 규격화한 뒤, Phase 2인 SurvLIFT에 전달</li>
+        </ol>
+        <h4 class="sub-h">세부 사항</h4>
+        <ul class="pts">
+          <li><b>기존 라이브러리 활용</b>: TRL, PEFT, datasets 등 HuggingFace 제공 라이브러리와 vLLM을 적절하게 활용하여 구현 및 추론에 필요한 시간을 최소화</li>
+          <li><b>사후학습 세부 설정</b>: 매우 긴 토큰의 텍스트를 적절하게 학습시키기 위해 QLoRA(NF4, r=64), Assistant Only Loss를 공통으로 사용. 선호도 조정에는 병합 후 재양자화 대신, LoRA를 policy와 reference로 두 번 로드하여 양자화 오차 해소</li>
+          <li><b>학습 모니터링</b>: wandb를 사용하여 훈련 로그 및 지표 곡선을 추적하여 적절한 하이퍼파라미터를 세팅하고, 검증 데이터셋을 기반으로 최적의 체크포인트 선택</li>
+          <li><b>AI 레이블링 개선</b>: 오픈소스 LLM 기반 선호도 레이블링의 기존 성능을 개선하기 위해 프롬프트 구체화 및 구조화, 퓨샷 예시 주입, 추론 활성화 등의 테크닉을 활용</li>
+          <li><b>강화학습 기반 알고리즘의 체크포인트 선택</b>: 검증 손실이 제공되지 않는 PPO의 경우, 체크포인트별로 생성한 검증 텍스트들의 품질을 정량·정성적으로 비교하여 인간 피드백 기반으로 직접 선택</li>
+        </ul>
+
+        <h3 class="star-h">성과 <span>Result</span></h3>
+        <ul class="pts">
+          <li>학습된 모델의 모든 출력이 약속된 규격을 준수함을 확인. 학습 데이터의 양적 결여로 인해, 문장형 묘사 자체의 품질 문제 식별됨</li>
+          <li>최종 생존함수 추정에서 베이스라인 모델인 Cox, DeepHit 대비 Harrell's C-index 10% 이상 개선</li>
+          <li>인간·AI 선호도 레이블 간 순위 일치 확률을 무작위 수준인 0.5에서 약 0.7로 개선</li>
+        </ul>
+
+        <p class="links"><a href="https://github.com/HollyRiver/SurvLLM" target="_blank" rel="noopener">GitHub</a></p>
+      </div>
+    </details>
+
+    <details class="project" id="diffusionrefiner">
+      <summary>
+        <div class="project-head">
+          <span class="project-title">디퓨전 기반 한반도 일대 일사량 예측 연구</span>
+          <span class="badge badge-wip">논문 투고 중 · 제2저자</span>
+        </div>
+        <p class="project-brief">과거 위성 일사량 이미지 시계열로 미래 일사량을 예측하는 디퓨전 기반 2단계 예측-보정 파이프라인</p>
+        <p class="tags"><span>PyTorch</span><span>Diffusion</span><span>Claude Code</span></p>
+        <span class="hint" aria-hidden="true"></span>
+      </summary>
+      <div class="project-body">
+        <dl class="meta">
+          <div><dt>기간</dt><dd>2026.06 - 2026.11</dd></div>
+          <div><dt>소속</dt><dd>전북대학교 통계학과 지도교수 연구실</dd></div>
+          <div><dt>역할</dt><dd>4인 팀에서 Refiner(예측 보정 모듈) 전담</dd></div>
+          <div><dt>데이터</dt><dd>한반도 정지궤도위성 천리안 2A호 이미지 기반 일사량 맵 2021–2023</dd></div>
+        </dl>
+
+        <!-- 핵심 수치 요약 — 투고 논문 Table II·IV 기준, 맥락은 아래 '성과'에 서술 -->
+        <ul class="kpis k3w">
+          <li><span>MSE · MAE</span><b>3개 예측 시점 1위</b><small>30·60·120분 최저 · 90분 2위</small></li>
+          <li class="pair"><div><span>FID (지각적 사실성)</span><b>−26 ~ 54%</b></div><div><span>LPIPS (지각적 유사도)</span><b>−24 ~ 28%</b></div><small>직전 연구(AC U-Net) 대비 · 낮을수록 우수</small></li>
+          <li><span>CRPS (확률 예측 오차)</span><b>−5 ~ 16%</b><small>Refiner 적용 전후 개선 · 전 지평선</small></li>
+        </ul>
+
+        <figure class="fig">
+          <a href="figure/Diff_Solar.png" target="_blank" rel="noopener">
+            <img src="figure/Diff_Solar.png" width="3433" height="680"
+                 alt="과거 일사량 맵 5장으로 Base U-Net이 예측한 맵에 소형 U-Net Refiner가 추정한 잔차를 더하고, 8개 결과를 평균하는 모델 구조도">
+          </a>
+          <figcaption>[추론 파이프라인] Base Diffusion Model 예측 8개 → 경량 Diffusion Refiner 잔차 예측 8개 → Base 예측과 잔차합 8개 멤버를 평균 앙상블</figcaption>
+        </figure>
+
+        <h3 class="star-h">배경 <span>Situation</span></h3>
+        <ul class="pts">
+          <li>과거 2시간 이전부터 현재까지 30분 간격으로 관측된 위성 일사량 이미지 5장으로, 30·60·90·120분 후의 일사량 이미지를 예측. 선행 연구 모델인 AC U-Net의 후속 연구</li>
+          <li>기존 LSTM·U-Net 등의 Regression 계열 모델은 우수한 픽셀 단위 예측 성능을 보이나, 이미지의 국지적 정보를 흐릿하게 뭉개는 한계가 존재</li>
+          <li>예측의 픽셀 단위 정확성과 함께, 지구과학 분야에서 중요한 이미지의 지각적 사실성을 동시에 확보하기 위해 디퓨전 모델 채택</li>
+          <li>연구에 참여한 석사과정 학생의 졸업 및 취업으로 인한 이탈 이후 실험과 성능 개선이 정체된 상황에서, 지원 역할로 참여</li>
+        </ul>
+
+        <h3 class="star-h">역할 <span>Task</span></h3>
+        <ul class="pts">
+          <li>Base 디퓨전 모델의 예측을 보정하는 후처리 모듈(Refiner) 설계 및 학습</li>
+          <li>결과에 대한 정량적·정성적 분석 수행</li>
+        </ul>
+
+        <h3 class="star-h">수행 <span>Action</span></h3>
+        <h4 class="sub-h">학습 파이프라인</h4>
+        <ol class="pts steps">
+          <li><b>데이터</b>: 한반도 정지궤도위성 천리안 2A호의 이미지에 검증된 물리 모델을 적용하여, 픽셀 단위로 태양 에너지를 계산. 계산된 일사량 맵(512×512, 30분 간격)을 훈련·검증·테스트에 활용. 동료 연구원에게서 제공받음</li>
+          <li><b>Base 모델</b>: 전반부 담당 연구원에게 Base 디퓨전 모델로 훈련·검증·테스트 전 구간에서 각 시간별로 생성된 확률적 예측 8개 수령</li>
+          <li><b>잔차 계산</b>: 훈련·검증·테스트 전 구간에서 서로 다른 8개의 Base 예측과 실제 맵의 차이인 잔차를 계산</li>
+          <li><b>Refiner</b>: 훈련 데이터의 과거 일사량 맵 5장과, Base 예측을 조건으로, 노이즈에서 잔차를 직접 복원하는 x0-prediction 기반 소형 U-Net 훈련. 검증 오차 기반 최적 체크포인트 선택. 예측 시간(30-120분)마다 별도로 모델 훈련</li>
+          <li><b>앙상블</b>: 테스트 데이터에 대해서 Base 예측 8개 각각에 Refiner가 추정한 잔차를 더한 뒤 평균 앙상블로 최종 예측 산출</li>
+        </ol>
+        <h4 class="sub-h">세부 사항</h4>
+        <ul class="pts">
+          <li><b>코드베이스 인수</b>: Claude Code CLI를 사용하여 기존 소스코드를 분석함으로써, 신속하게 실험 구조를 파악하고, 후속 작업의 기반을 마련</li>
+          <li><b>잔차 분포 학습</b>: 특정 시각 하나에 대해 서로 다른 8개의 잔차를 학습시켜, Base 모델 잔차의 확률 구조를 최대한 반영</li>
+          <li><b>오차 지도 분석</b>: 테스트 전체의 픽셀 단위 MSE를 10개 구간의 k-means로 군집화하고, 오차 지도를 실제 지도와 대조하여, 고오차 지대의 구조를 두 가지로 설명
+            <ul class="pts sub">
+              <li><b>남서쪽 경계</b>: 편서풍 및 하계 몬순 제트 기류를 따라 남서쪽에서 이미지 외부에서 유입되는 구름을, 모델이 사전 정보 없이 예측해야 함</li>
+              <li><b>내륙 산지</b>: 내륙의 경우 태백산맥과 같은 구조가 상승기류와 구름을 생성</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3 class="star-h">성과 <span>Result</span></h3>
+        <div class="fig-row">
+          <figure class="fig" style="--ar: 1.583">
+            <!-- 표시용은 1600px JPEG 축소본, 클릭하면 원본 PNG. 원본(4271px)을 src로 쓰면 Chrome 인쇄(PDF 변환)가 멈춤 -->
+            <a href="figure/Diff_Solar_fig3a.png" target="_blank" rel="noopener">
+              <img src="figure/Diff_Solar_fig3a_web.jpg" width="1600" height="1011"
+                   alt="30분·90분 예측 사례에서 실제 맵과 AC U-Net, 단일 예측 SM-Diff*, 앙상블 SM-Diff의 표준화 일사량 맵 비교">
+            </a>
+            <figcaption>30·90분 예측 사례. SM-Diff*는 단일 예측, SM-Diff는 K=8 앙상블 예측</figcaption>
+          </figure>
+          <figure class="fig" style="--ar: 0.818">
+            <a href="figure/Diff_Solar_fig3b.png" target="_blank" rel="noopener">
+              <img src="figure/Diff_Solar_fig3b.png" width="669" height="818"
+                   alt="테스트 전체 픽셀 단위 MSE를 10개 군집으로 나눈 오차 지도. 내륙과 남서쪽 경계가 밝게 표시됨">
+            </a>
+            <figcaption>픽셀 단위 MSE 군집화, 밝을수록 높은 오차</figcaption>
+          </figure>
+        </div>
+        <ul class="pts">
+          <li>픽셀 단위 정확성과 지각적 사실성을 종합적으로 충족</li>
+          <li>30·60·120분 예측에서 모든 베이스라인 대비 가장 낮은 MSE와 MAE 달성, 90분에서는 선행 연구 모델인 AC U-Net에 이어 두 번째로 우수</li>
+          <li>최종 모델은 AC U-Net 대비 FID 26~54%, LPIPS 24~28% 감소. 앙상블 없는 단일 예측은 모든 예측 시점에서 학습 기반 모델 중 가장 낮은 FID 기록</li>
+          <li>Refiner가 예측의 선명도를 높여, Base 모델 멤버 간 산포를 교정함으로써 예측 정확도를 향상시킴을 식별. CRPS(Continuous Ranked Probability Score)의 커널을 분해하여 분석했을 때, 산포 증가가 앙상블 평균의 정확도 개선으로 이어짐을 식별</li>
+        </ul>
+
+        <p class="links"><a href="https://github.com/HollyRiver/DiffusionRefiner" target="_blank" rel="noopener">GitHub (Refiner 모듈)</a></p>
+      </div>
+    </details>
+
+    <details class="project" id="llmdetector">
+      <summary>
+        <div class="project-head">
+          <span class="project-title">인간/LLM 생성 텍스트 판별 연구 <span class="repo">LLMdetector</span></span>
+          <span class="badge badge-pub">KCI 등재 · 공동 1저자</span>
+        </div>
+        <p class="project-brief">텍스트에서 추출한 해석 가능한 통계적 피처로 인간 작성 텍스트와 LLM 생성 텍스트를 판별하는 연구</p>
+        <p class="tags"><span>PyTorch</span><span>Transformers</span><span>gensim</span><span>NLTK</span><span>textstat</span><span>scikit-learn</span></p>
+        <span class="hint" aria-hidden="true"></span>
+      </summary>
+      <div class="project-body">
+        <dl class="meta">
+          <div><dt>기간</dt><dd>2025.07 - 2025.11</dd></div>
+          <div><dt>소속</dt><dd>전북대학교 통계학과 지도교수 연구실</dd></div>
+          <div><dt>역할</dt><dd>3인 팀에서 Perplexity 구현 및 시각화 해석 담당</dd></div>
+          <div><dt>데이터</dt><dd>질의응답 웹사이트 Quora 기반 자체 구축 벤치마크</dd></div>
+        </dl>
+
+        <!-- 핵심 수치 요약 — 논문 Table 2 기준, 맥락은 아래 '성과'에 서술 -->
+        <ul class="kpis">
+          <li><span>이진 분류 정확도 · F1-Score</span><b>0.9778 · 0.9864</b><small>인간 vs LLM</small></li>
+          <li><span>다중 분류 정확도 · F1-Score</span><b>0.8598 · 0.8607</b><small>인간 + LLM 4종의 5개 출처 · Macro 평균</small></li>
+          <li><span>Perplexity 추가 효과</span><b>오분류율 −44.64%</b><small>이진 분류 · 다른 피처만 쓴 모델 대비</small></li>
+        </ul>
+
+        <figure class="fig">
+          <a href="figure/LLMC_Pipeline.png" target="_blank" rel="noopener">
+            <img src="figure/LLMC_Pipeline.png" width="1611" height="368"
+                 alt="Quora 질문에 대한 인간과 LLM 4종의 답변에서 문체 피처, 주제 피처, Perplexity를 추출해 37차원 입력의 MLP로 5개 범주 확률을 출력하는 구조도">
+          </a>
+          <figcaption>[추론 파이프라인] 텍스트 → 피처 추출(문체 기반·주제 기반·Perplexity) → MLP 입력 → 5개 범주 확률</figcaption>
+        </figure>
+
+        <h3 class="star-h">배경 <span>Situation</span></h3>
+        <ul class="pts">
+          <li>텍스트의 인간 작성, LLM 생성 여부를 텍스트에서 추출한 피처를 기반으로 판별하는 연구</li>
+          <li>텍스트 자체를 분류 모델에 입력하지 않고, 추출된 통계적 특성을 비교함으로써 인간과 LLM 간의 설명 가능한 차이를 식별하는 것이 목표</li>
+          <li>학부연구생으로 참여한 첫 연구</li>
+        </ul>
+
+        <h3 class="star-h">역할 <span>Task</span></h3>
+        <ul class="pts">
+          <li>Perplexity 피처 제안 및 구현</li>
+          <li>코드 오류 검토와 버전 관리</li>
+          <li>피처 분포 시각화 및 해석</li>
+        </ul>
+
+        <h3 class="star-h">수행 <span>Action</span></h3>
+        <h4 class="sub-h">연구 흐름</h4>
+        <ol class="pts steps">
+          <li><b>데이터</b>: 질의응답 웹사이트 Quora에서 추출된 질문·답변과, 해당 질문에 대한 GPT-4o·Gemini 2.0 Flash·Claude 3.7 Sonnet·DeepSeek의 생성 답변으로 이루어진 더한 자체 구축 벤치마크 데이터. 클래스에 대한 80:20 층화 분할로 학습·평가에 활용. 동료 연구원에게서 제공받음</li>
+          <li><b>Perplexity</b>: Transformers 라이브러리를 활용하여 Llama-3.1-8B로 각 텍스트의 토큰별 조건부 확률을 계산</li>
+          <li><b>피처 통합</b>: 동료 연구자가 설계한 문체 분석 기반 피처(고전적 NLP 통계량), 내용 분석 기반(LDA 토픽) 피처와 Perplexity를 통합하여 총 37차원 피처 벡터 구성</li>
+          <li><b>분류 모델</b>: 표준화한 피처 벡터로 네개 레이어를 가지는 MLP를 학습하여, 다섯 범주에 대한 다중 분류 모델을 구성</li>
+          <li><b>이진 분류</b>: 평가 데이터에서 다섯 범주 확률을 그대로 다중 분류에 활용하거나, 네 개의 LLM 범주 확률을 합산하여 인간/LLM 이진 분류에 활용</li>
+          <li><b>결과 해석</b>: 문체 분석 기반 피처와 Perplexity의 범주별 분포를 시각화하여 인간과 LLM, 개별 LLM 간의 차이를 해석</li>
+        </ol>
+
+        <h3 class="star-h">성과 <span>Result</span></h3>
+        <!-- 정확도 자체(0.9778·0.8598)는 위 핵심 수치 타일에 있으므로 여기서는 Perplexity의 기여만 서술 -->
+        <h4 class="sub-h">우수한 분류 성능</h4>
+        <ul class="pts">
+          <!-- 오분류율 감소: Table 2 정확도 기준 이진 (0.0401→0.0222) 44.64%, 다중 (0.1783→0.1402) 21.37%.
+               논문 본문의 44.54%, 23.81%는 계산 오기 (사용자 확인) -->
+          <li>Perplexity 추가 시 정확도가 이진 분류 0.9599 → 0.9778, 다중 분류 0.8217 → 0.8598로 향상. 오분류율 기준 각각 44.64%, 21.37% 감소</li>
+          <li>Perplexity 단독 모델은 이진 분류 정확도 0.8864로 준수하나 다중 분류에서는 0.4732에 그쳐, 나머지 통계적 피처들이 Perplexity에 없는 LLM 식별 정보를 다수 포함함을 확인</li>
+        </ul>
+
+        <h4 class="sub-h">분포 차이 식별</h4>
+        <!-- 해석 문구는 논문 3.2.1·3.2.2절 기준.
+             그림은 논문 Figure 2(상자그림)·3(히스토그램)의 원본 노트북 코드로 두 그림을 한 장에 합쳐 다시 그린 것 —
+             .debug/make_llmc_fig.py <LLMdetector 리포> figure/LLMC_Distributions.png 로 재생성 (원본 대비 변경점은 스크립트 주석) -->
+        <figure class="fig">
+          <a href="figure/LLMC_Distributions.png" target="_blank" rel="noopener">
+            <img src="figure/LLMC_Distributions.png" width="2076" height="917"
+                 alt="왼쪽은 인간과 LLM 4종 텍스트의 글자 수, 단어 수, 문장 수, 평균 문장 길이, 평균 단어 길이, 고유 단어 수, 개인 대명사 비율, 어휘 밀도, 플레시-킨케이드 지수를 비교한 상자그림 9개로, 대부분의 피처에서 인간의 상자와 수염이 가장 넓음. 오른쪽은 Llama-3.1-8B로 계산한 출처별 Perplexity 히스토그램으로, LLM 4종은 5에서 12 부근에 몰려 있고 인간은 평균이 높고 오른쪽으로 길게 퍼짐">
+          </a>
+          <figcaption>[텍스트 원천별 피처 분포] 문체적 피처 9종과 Perplexity 분포</figcaption>
+        </figure>
+        <ul class="pts">
+          <li><b>인간</b>: 모든 문체 피처에서 분산이 가장 크고, Perplexity도 LLM보다 평균이 높고 분산이 커 뚜렷이 다른 분포</li>
+          <li><b>GPT</b>: 문장과 문서가 가장 길고 플레시-킨케이드 가독성 지수가 가장 높아, 읽기 어려운 문장을 구사하는 경향</li>
+          <li><b>Gemini</b>: 문장 수는 가장 많으나 문장 길이가 가장 짧아, GPT보다 전체 출력이 짧음</li>
+          <li><b>Claude · DeepSeek</b>: 출력이 짧고 길이가 일정하나 어휘 밀도가 가장 높아, 짧은 분량에 내용을 압축하는 경향</li>
+        </ul>
+
+        <p class="links"><a href="https://github.com/HollyRiver/LLMdetector" target="_blank" rel="noopener">GitHub</a> <a href="https://doi.org/10.5351/KJAS.2026.39.3.235" target="_blank" rel="noopener">Paper</a></p>
+      </div>
+    </details>
+
+    <details class="project" id="nyctaxidash">
+      <summary>
+        <div class="project-head">
+          <span class="project-title">NYC 택시 트래픽 대시보드 <span class="repo">NYCTaxiDash</span></span>
+          <span class="badge badge-live">라이브 데모</span>
+        </div>
+        <p class="project-brief">택시 트래픽을 요일·시간·지역으로 탐색하는 인터랙티브 대시보드 — 클로드 코드 기반 기존 프로젝트 개선</p>
+        <p class="tags"><span>Claude Code</span><span>Plotly.js</span><span>pandas</span><span>JavaScript</span><span>GitHub Pages</span></p>
+        <span class="hint" aria-hidden="true"></span>
+      </summary>
+      <div class="project-body">
+        <dl>
+          <dt>개요</dt>
+          <dd>NYC 택시 운행 로그를 통해 교통 상황을 간접적으로 파악하기 위한 대시보드. 데이터시각화 강의 과제로 제작한
+          정적 히트맵·경로도를, 바이브 코딩을 통하여 실무 수준의 인터랙티브 제품으로 재구축</dd>
+          <dt>접근</dt>
+          <dd>순수 정적 스택(MapLibre GL + Plotly.js + 바닐라 JS)으로 서버 없이 GitHub Pages 배포. 정제된
+          트립 14,446건을 브라우저에 싣고 요일·시간 필터를 클라이언트에서 실시간 재집계. 도로망 통행 플로우는
+          osmnx 최단경로를 빌드 전 집계</dd>
+          <dt>핵심 기능</dt>
+          <dd>두 레이어 — ① 도로 플로우(두께=통행량, 색=세그먼트 평균 속도로 정체 인코딩) ② 헥스빈 히트맵
+          (요일 멀티선택 × 시간대). 선택에 연동되는 KPI·히스토그램, 최단경로 거리 기반 속력 계산</dd>
+          <dt>역할</dt>
+          <dd>Claude Code와의 반복적인 페어 프로그래밍으로 데이터 파이프라인부터 프론트 시각화까지 구현.
+          표본 부족 셀 반투명 처리, 속력의 하한 추정 성격 명시 등 시각적 대비 요인 및 통계적 정직성 부여</dd>
+        </dl>
+        <p class="links"><a href="https://github.com/HollyRiver/NYCTaxiDash" target="_blank" rel="noopener">GitHub</a> <a href="https://hollyriver.github.io/NYCTaxiDash/" target="_blank" rel="noopener">Live Demo</a></p>
+      </div>
+    </details>
   </section>
 
   <footer class="foot">
-    <p class="muted">이 페이지는 브라우저 인쇄(PDF 저장) 시 모든 프로젝트가 펼쳐진 형태로 출력됩니다.</p>
     <p class="muted">© 2026 Shinsung Kang<span class="web-only"> · <a href="https://github.com/HollyRiver/hollyriver.github.io">source</a></span></p>
   </footer>
 
