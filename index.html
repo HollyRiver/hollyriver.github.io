@@ -406,10 +406,10 @@
           <figcaption>[텍스트 원천별 피처 분포] 문체적 피처 9종과 Perplexity 분포</figcaption>
         </figure>
         <ul class="pts">
-          <li><b>인간</b>: 모든 문체 피처에서 분산이 가장 크고, Perplexity도 LLM보다 평균이 높고 분산이 커 뚜렷이 다른 분포</li>
-          <li><b>GPT</b>: 문장과 문서가 가장 길고 플레시-킨케이드 가독성 지수가 가장 높아, 읽기 어려운 문장을 구사하는 경향</li>
-          <li><b>Gemini</b>: 문장 수는 가장 많으나 문장 길이가 가장 짧아, GPT보다 전체 출력이 짧음</li>
-          <li><b>Claude · DeepSeek</b>: 출력이 짧고 길이가 일정하나 어휘 밀도가 가장 높아, 짧은 분량에 내용을 압축하는 경향</li>
+          <li><b>인간</b>: 모든 피처에서 분산이 가장 크고, Perplexity의 경우 평균적으로 높아 LLM과 뚜렷이 다른 분포로 나타남</li>
+          <li><b>GPT</b>: 문서와 개별 문장이 가장 길고, 플레시-킨케이드 가독성 지수또한 높아, 읽기 어려운 문장을 구사하는 경향 존재</li>
+          <li><b>Gemini</b>: 평균적으로 문장 수는 가장 많으나 문장 길이가 가장 짧아, 문서 자체의 길이는 짧음</li>
+          <li><b>Claude · DeepSeek</b>: 출력이 짧고 길이가 일정하나 어휘 밀도가 가장 높아, 짧은 분량에 내용을 압축하는 경향 존재</li>
         </ul>
 
         <p class="links"><a href="https://github.com/HollyRiver/LLMdetector" target="_blank" rel="noopener">GitHub</a> <a href="https://doi.org/10.5351/KJAS.2026.39.3.235" target="_blank" rel="noopener">Paper</a></p>
@@ -422,26 +422,99 @@
           <span class="project-title">NYC 택시 트래픽 대시보드 <span class="repo">NYCTaxiDash</span></span>
           <span class="badge badge-live">라이브 데모</span>
         </div>
-        <p class="project-brief">택시 트래픽을 요일·시간·지역으로 탐색하는 인터랙티브 대시보드 — 클로드 코드 기반 기존 프로젝트 개선</p>
-        <p class="tags"><span>Claude Code</span><span>Plotly.js</span><span>pandas</span><span>JavaScript</span><span>GitHub Pages</span></p>
+        <p class="project-brief">2016년 NYC 택시 운행 기록으로 요일·시간대별 도로 정체를 탐색하는 인터랙티브 대시보드. 2023년 데이터시각화 기말 프로젝트를 Claude Code로 재구축</p>
+        <p class="tags"><span>Claude Code</span><span>pandas</span><span>OSMnx</span><span>MapLibre GL</span><span>Plotly.js</span><span>GitHub Pages</span></p>
         <span class="hint" aria-hidden="true"></span>
       </summary>
       <div class="project-body">
-        <dl>
-          <dt>개요</dt>
-          <dd>NYC 택시 운행 로그를 통해 교통 상황을 간접적으로 파악하기 위한 대시보드. 데이터시각화 강의 과제로 제작한
-          정적 히트맵·경로도를, 바이브 코딩을 통하여 실무 수준의 인터랙티브 제품으로 재구축</dd>
-          <dt>접근</dt>
-          <dd>순수 정적 스택(MapLibre GL + Plotly.js + 바닐라 JS)으로 서버 없이 GitHub Pages 배포. 정제된
-          트립 14,446건을 브라우저에 싣고 요일·시간 필터를 클라이언트에서 실시간 재집계. 도로망 통행 플로우는
-          osmnx 최단경로를 빌드 전 집계</dd>
-          <dt>핵심 기능</dt>
-          <dd>두 레이어 — ① 도로 플로우(두께=통행량, 색=세그먼트 평균 속도로 정체 인코딩) ② 헥스빈 히트맵
-          (요일 멀티선택 × 시간대). 선택에 연동되는 KPI·히스토그램, 최단경로 거리 기반 속력 계산</dd>
-          <dt>역할</dt>
-          <dd>Claude Code와의 반복적인 페어 프로그래밍으로 데이터 파이프라인부터 프론트 시각화까지 구현.
-          표본 부족 셀 반투명 처리, 속력의 하한 추정 성격 명시 등 시각적 대비 요인 및 통계적 정직성 부여</dd>
+        <dl class="meta">
+          <div><dt>기간</dt><dd>작업 4일 · 커밋 36회</dd></div>
+          <div><dt>소속</dt><dd>개인 프로젝트</dd></div>
+          <div><dt>데이터</dt><dd>NYC Taxi Trip Duration 표본 14,587건 (2016.01–2016.06)</dd></div>
         </dl>
+
+        <!-- 핵심 수치 — 원본(HollyRiver/dash NYCTaxi.qmd) 대비 개선분.
+             146건 = 원본의 df[::100](경로 지도에 쓴 1% 표본), 14,339건 = 도로망 경로 추정 성공 트립.
+             168 = 헥스빈 지도에서 요일 1개 × 시간 1개로 고를 수 있는 조합(7 × 24). 원본 경로 지도는 요일·시간 구분 없이 전 기간 1장.
+             2페이지 = 원본 Quarto 대시보드의 페이지 2개(히트맵 2종 / 경로 지도). 연동 대상은 main.js refresh()·updateKpis()·updateCharts() 기준 -->
+        <ul class="kpis">
+          <li><span>지도에 표현한 트립</span><b>146건 → 14,339건</b><small>소수 표본 직선 연결 → 실제 도로망 경로</small></li>
+          <li><span>요일·시간별 지도</span><b>1개 → 15개</b><small>전 기간 1장 → 요일 범위 3개 × 시간대 5개</small></li>
+          <li><span>화면 구성</span><b>2페이지 → 1화면</b><small>구성요소 컴팩트화</small></li>
+        </ul>
+
+        <!-- 표시용 JPEG — 지도 질감 PNG는 인쇄 변환이 멈출 수 있음. 캡처: NEW_URL=<라이브 주소>?maptest node .debug/shot-nyc.mjs
+             (2026-11-10 라이브 기준, NYCTaxiDash 최종 커밋 279e311) -->
+        <figure class="fig">
+          <a href="figure/NYC_Dashboard.jpg" target="_blank" rel="noopener">
+            <img src="figure/NYC_Dashboard.jpg" width="1600" height="865"
+                 alt="왼쪽은 맨해튼 도로가 검붉게, 퀸스 방면 간선이 초록으로 표시된 도로 플로우 지도와 KPI, 오른쪽은 요일·시간대 선택 버튼, 시간대별 트립 수 막대그래프, 요일×시간 평균 속력 히트맵으로 구성된 대시보드 화면">
+          </a>
+          <figcaption>[대시보드] 라이브 페이지 캡쳐</figcaption>
+        </figure>
+
+        <h3 class="star-h">배경 <span>Situation</span></h3>
+        <ul class="pts">
+          <li>2023년도 2학기, 통계학과 전공 과목인 데이터시각화 강의에서 기말 개인 프로젝트로 제작한 Quarto·Plotly 대시보드를 개선</li>
+          <li>직선 경로 지도와 히트맵으로만 구성된 기존 시각화는 가시성이 떨어지고, 요일·시간대·지역별 흐름 파악이 어렵다는 한계 존재</li>
+          <li>교통량을 직관적으로 가늠할 수 있는 대시보드를, 직접적인 코드 작성 없이 AI 에이전트만으로 제작하고자 시도</li>
+        </ul>
+
+        <h3 class="star-h">과업 <span>Task</span></h3>
+        <ul class="pts">
+          <li>대시보드 구성요소 및 레이아웃 설계</li>
+          <li>Claude Code 에이전트에게 디자인·시각화 중심의 피드백을 반복 제공하며 프로젝트 방향성 유지</li>
+        </ul>
+
+        <h3 class="star-h">수행 <span>Action</span></h3>
+        <h4 class="sub-h">구축 과정</h4>
+        <ol class="pts steps">
+          <li><b>데이터 정제</b>: 강의 제공 표본 14,587건에서 뉴욕시 범위 밖 좌표, 60초 미만 운행, 비정상적인 거리·속력 기록 141건 제거</li>
+          <li><b>도로망 경로 추정</b>: OSMnx 패키지로 승하차 지점 간 최단 경로를 계산하여, 경로 기준 평균 속력(km/h)과 이동거리 산출</li>
+          <li><b>통행량 집계</b>: 도로 구간별 통행량과 평균 속력을 주중·주말·전체 × 새벽·오전·오후·심야·전체의 15개 조합으로 사전 집계</li>
+          <li><b>시각화</b>: 지도에 속도와 통행량을 선의 색과 두께로 표시하고, 요일·시간대 선택에 따라 차트·수치를 즉시 재집계. 모든 플롯을 인터랙티브로 구성하여 필요 시 상세 정보 확인 가능</li>
+          <li><b>배포</b>: 서버 없이 정적 파일만으로 동작하도록 구성하여 GitHub Pages로 배포</li>
+        </ol>
+        <h4 class="sub-h">개선 과정</h4>
+        <!-- 직선거리 기준 14.4 km/h → 도로망 기준 17.5 km/h: NYCTaxiDash 커밋 8ad88ef의 meta.json 변경분 (정제 후 14,446건 평균) -->
+        <ul class="pts">
+          <li><b>속력 기준</b>: 승하차 지점 간 단순 직선거리 기준 평균 속력이 14.4 km/h로 지나치게 낮은 것을 확인하고, 실제 주행에 더 가까운 도로망 최단 경로 기준으로 전환 (평균 17.5 km/h)</li>
+          <li><b>지도 표현</b>: Charles Joseph Minard의 나폴레옹 러시아 원정 시각화 지도에서 착안하여, 선 두께로 통행량을, 색으로 평균 속력을 나타내 유동 차량과 정체 수준을 시공간적으로 함께 표현</li>
+          <li><b>한 화면 구성</b>: 스크롤로 내려야 하는 과도한 컨텐츠 대신, 보는 사람의 시선과 집중이 분산되지 않도록 한 화면에 시각화만 배치. 해석은 직접 유추하거나, 타인이 말로 설명하는 편이 적절하다고 판단하여 별도 문서로 분리</li>
+        </ul>
+
+        <h3 class="star-h">성과 <span>Result</span></h3>
+        <h4 class="sub-h">시각화 개선</h4>
+        <!-- 원본 그림: 원본 라이브 페이지(hollyriver.github.io/dash/NYCTaxi.html)는 지도 타일이 API 키를 요구하게 바뀌어 배경이 깨진 상태(2026-11 확인).
+             원본 NYCTaxi.qmd 코드로 다시 그림 — .debug/make_nyc_old.py (지원 중단된 *_mapbox → *_map 교체만) -->
+        <div class="fig-row">
+          <figure class="fig" style="--ar: 1.410">
+            <a href="figure/NYC_Before.jpg" target="_blank" rel="noopener">
+              <img src="figure/NYC_Before.jpg" width="1100" height="780"
+                   alt="원본 지도. 맨해튼에 몰린 승하차 지점들과 JFK 공항 방향으로 뻗은 직선들이 네 가지 색으로 겹쳐 있음">
+            </a>
+            <figcaption>[원본, 2023] 일부 표본의 승하차 지점을 단순 직선으로만 연결</figcaption>
+          </figure>
+          <figure class="fig" style="--ar: 1.410">
+            <a href="figure/NYC_After.jpg" target="_blank" rel="noopener">
+              <img src="figure/NYC_After.jpg" width="1101" height="781"
+                   alt="개선 지도. 맨해튼 도로는 굵고 검붉게, 공항 방면 고속도로는 초록으로 실제 도로를 따라 표시됨">
+            </a>
+            <figcaption>[개선, 2026] 전체 데이터를 실제 도로망 기반으로 집계</figcaption>
+          </figure>
+        </div>
+        <ul class="pts">
+          <li>단순 직선 경로와, 순서형 속도 범주를 실제 도로에서 통행량과 속도로 대체하여 정체 구간을 직관적으로 식별</li>
+          <li>요일·시간대별로 플롯을 확인할 수 있어, 시공간적 흐름을 직접 확인 가능</li>
+        </ul>
+
+        <h4 class="sub-h">주요 관찰</h4>
+        <ul class="pts">
+          <li><b>최저속 시간대</b>: 종합적으로 15시가 14.4 km/h의 평균 속도로 가장 느리며, 09시가 14.5 km/h로 뒤를 이음</li>
+          <li><b>주중·주말 차이</b>: 출근 시간대인 09시는 주중 13.2 km/h로 최저속이나, 주말이 20.1 km/h로 높아 전체 평균에서 상쇄</li>
+          <li><b>택시 이용 집중 시간대</b>: 05시가 150건으로 가장 적고, 18시와 19시가 그 6배 이상인 912건, 903건으로 가장 많음</li>
+        </ul>
+
         <p class="links"><a href="https://github.com/HollyRiver/NYCTaxiDash" target="_blank" rel="noopener">GitHub</a> <a href="https://hollyriver.github.io/NYCTaxiDash/" target="_blank" rel="noopener">Live Demo</a></p>
       </div>
     </details>

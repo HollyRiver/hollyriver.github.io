@@ -38,6 +38,8 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
 
 /* ===== Sections ===== */
 .section { margin-top: 36px; }
+/* 섹션 사이 옅은 구분선 — About은 헤더 굵은 선 바로 아래라 제외. 간격은 선 위아래로 나눠 기존(36px)보다 조금만 넓힘 */
+.section + .section { margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); }
 .section h2 {
   font-size: 13px; font-weight: 700; text-transform: uppercase;
   letter-spacing: 1.5px; color: var(--accent); margin: 0 0 14px;
@@ -81,6 +83,9 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
 .project-body .fig { margin: 14px 0 2px; }
 .project-body .fig a { display: block; }
 .project-body .fig img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 6px; }
+/* NYCTaxiDash 화면 캡처는 내용이 이미지 가장자리까지 차 있어 답답하므로, 이 프로젝트만 테두리 안쪽에 여백을 둔다 */
+#nyctaxidash .fig img { padding: 20px; background: #fff; }
+#nyctaxidash .fig-row .fig img { padding: 14px; }
 .project-body .fig figcaption { font-size: 11.5px; color: var(--faint); margin-top: 6px; text-align: center; }
 /* 그림 나란히 — 각 그림의 flex 비율을 가로세로비(--ar)로 주면 높이가 같아진다 */
 .fig-row { display: flex; gap: 16px; align-items: flex-start; margin: 14px 0 2px; }
@@ -216,12 +221,15 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
 }
 
 /* ===== Footer ===== */
-.foot { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 16px; font-size: 12px; }
+/* 마지막 프로젝트의 아래 구분선 바로 밑에 붙인다. 별도의 긴 구분선은 프로젝트 구분선과 이중선이 되므로 두지 않고,
+   왼쪽은 섹션 본문 들여쓰기(.section > :not(h2))에 맞춘다 */
+.foot { margin: 8px 0 0 14px; font-size: 12px; }
+.foot p { margin: 0; }
 
 /* ===== Mobile ===== */
 @media (max-width: 560px) {
   .page { padding: 32px 16px 48px; }
-  .section > :not(h2) { margin-left: 8px; }
+  .section > :not(h2), .foot { margin-left: 8px; }
   .skills { grid-template-columns: 1fr; gap: 6px 0; }
   .skills dd { margin-bottom: 8px; }
   /* 기간 표기(YYYY.MM - YYYY.MM)가 좁은 열에서 꺾이므로 날짜를 위 줄로 쌓는다 */
@@ -267,10 +275,17 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   .project-body .fig img { border-color: #bbb; }
   .kpis li { border-left-color: var(--ink); }
   .section { margin-top: 22px; }
+  .section + .section { margin-top: 14px; padding-top: 12px; border-top-color: #ddd; }
   .section h2 { break-after: avoid; }
   /* 이력(About~Publications)과 프로젝트를 페이지로 구분 — 이력이 1~2페이지를 쓰고 프로젝트는 새 페이지에서 시작.
      강제 나눔 직후의 위쪽 여백은 남으므로 0으로 */
-  #projects { break-before: page; margin-top: 0; }
+  #projects { break-before: page; margin-top: 0; padding-top: 0; border-top: none; }
+  /* Certificates가 1·2페이지에 걸쳐 나뉘지 않도록 2페이지 첫머리로 보냄 (1페이지는 About~Experience).
+     위 내용이 줄어 1페이지에 통째로 들어가게 되면 이 줄 대신 #certificates { break-inside: avoid }로 바꿀 것 */
+  #certificates { break-before: page; margin-top: 0; padding-top: 0; border-top: none; }
+  /* 1페이지 끝(Experience)·2페이지 끝(Publications)도 섹션 사이와 같은 옅은 선으로 닫음.
+     웹에서는 바로 아래 섹션의 위쪽 선이 이 역할을 하므로 인쇄 전용 */
+  #experience, #publications { padding-bottom: 12px; border-bottom: 1px solid #ddd; }
   .badge-wip, .badge-pub, .badge-live { background: none; border-color: #999; color: #333; }
   .tags span { border-color: #bbb; color: #333; }
   .stack span { border-color: #ccc; }
@@ -283,6 +298,7 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   /* footer(©): 2026-08-22~11-09에는 '고아 줄' 방지로 인쇄에서 숨겼다가, 이력/프로젝트 페이지 구분 후 복원.
      참고(마지막 페이지 조정 때): 2026-10-27 실측 당시 꼬리가 새 페이지로 밀린 원인은
      '카드 통째 유지(break-inside: avoid)'가 만든 페이지 하단 빈 공간 누적이었다.
-     11-09부터는 프로젝트별 페이지 시작이라 ©는 마지막 프로젝트 끝에 붙는다 */
-  .foot { margin-top: 24px; padding-top: 10px; break-inside: avoid; }
+     11-09부터는 프로젝트별 페이지 시작이라 ©는 마지막 프로젝트 끝에 붙는다.
+     11-10부터 긴 구분선 없이 마지막 프로젝트 구분선 바로 아래에 한 줄로 붙인다 */
+  .foot { margin-top: 6px; break-inside: avoid; }
 }
