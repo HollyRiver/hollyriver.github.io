@@ -1,3 +1,5 @@
 .debug/
 .superpowers/
 reference/
+.claude/worktrees/
+project_docs/
