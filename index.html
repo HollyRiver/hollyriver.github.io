@@ -347,9 +347,9 @@
         </dl>
 
         <ul class="kpis">
-          <li><span>이진 분류 정확도 · F1-Score</span><b>0.9778 · 0.9864</b><small>인간 vs LLM</small></li>
+          <li><span>이진 분류 정확도 · F1-Score</span><b>0.9778 · 0.9864</b><small>인간 vs LLM · 전부 LLM으로 찍을 때 0.809</small></li>
           <li><span>다중 분류 정확도 · F1-Score</span><b>0.8598 · 0.8607</b><small>인간 + LLM 4종의 5개 출처 · Macro 평균</small></li>
-          <li><span>Perplexity 추가 효과</span><b>오분류율 −44.64%</b><small>이진 분류 · 다른 피처만 쓴 모델 대비</small></li>
+          <li><span>Perplexity 추가 효과</span><b>오분류율 −45%</b><small>이진 분류 정확도 0.9599 → 0.9778</small></li>
         </ul>
 
         <figure class="fig">
@@ -388,8 +388,8 @@
         <h3 class="star-h">성과 <span>Result</span></h3>
         <h4 class="sub-h">우수한 분류 성능</h4>
         <ul class="pts">
-          <li>Perplexity 추가 시 정확도가 이진 분류 0.9599 → 0.9778, 다중 분류 0.8217 → 0.8598로 향상. 오분류율 기준 각각 44.64%, 21.37% 감소</li>
-          <li>Perplexity 단독 모델은 이진 분류 정확도 0.8864로 준수하나 다중 분류에서는 0.4732에 그쳐, 나머지 통계적 피처들이 Perplexity에 없는 LLM 식별 정보를 다수 포함함을 확인</li>
+          <li>Perplexity 추가 시 정확도가 이진 분류 0.9599 → 0.9778, 다중 분류 0.8217 → 0.8598로 향상. 오분류율 기준 각각 약 45%, 21% 감소</li>
+          <li>Perplexity 단독 모델은 이진 분류 정확도 0.8864로 다수 클래스 기준선(0.809)을 넘지만 다중 분류에서는 0.4732에 그쳐, 나머지 통계적 피처들이 Perplexity에 없는 LLM 식별 정보를 다수 포함함을 확인</li>
         </ul>
 
         <h4 class="sub-h">분포 차이 식별</h4>
