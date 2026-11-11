@@ -234,6 +234,7 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
 @media (max-width: 560px) {
   .page { padding: 32px 16px 48px; }
   .section > :not(h2), .foot { margin-left: 8px; }
+  .print-note { display: none; } /* 휴대폰에서는 인쇄 안내가 쓸모없음 */
   .skills { grid-template-columns: 1fr; gap: 6px 0; }
   .skills dd { margin-bottom: 8px; }
   /* 기간 표기(YYYY.MM - YYYY.MM)가 좁은 열에서 꺾이므로 날짜를 위 줄로 쌓는다 */

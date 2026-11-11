@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>강신성 — Data Scientist Portfolio</title>
 <meta name="description" content="통계적 엄밀함으로 LLM을 다루는 데이터 사이언티스트 강신성의 포트폴리오">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -27,7 +29,7 @@
     <h2>About</h2>
     <p>&nbsp;학부연구생 활동을 통해 다양한 기계학습 연구에 참여하여 LLM 사후학습(DPO·PPO), 시계열 자료 분석, 생존분석 등의 방법론을 익혔습니다.
       실험에 필요한 Linux 기반 Docker 컨테이너 구축, 패키지 종속성 관리에 능숙합니다.
-      R, SAS를 이용한 고전적인 데이터 분석부터, PyTorch, HuggingFace, vLLM 기반의 기계학습 모델 학습·서빙까지 폭넓게 다룰 수 있습니다.</p>
+      R, SAS를 이용한 고전적인 데이터 분석부터, PyTorch, HuggingFace, vLLM 기반의 기계학습 모델 학습·추론까지 폭넓게 다룰 수 있습니다.</p>
   </section>
 
   <!-- ===== Education ===== -->
@@ -62,7 +64,7 @@
         <span class="exp-date">2025.07 - 현재</span>
       </div>
       <ul class="exp-list">
-        <li><b>로컬 LLM 기반 Two-Phase 생존분석 연구 참여</b> — 첫 단계인 의무기록지(Discharge Summary) 텍스트 규격화를 위해 SFT, DPO, PPO, 선호도 레이블링 등 수행</li>
+        <li><b>로컬 LLM 기반 Two-Phase 생존분석 연구 참여</b> — 첫 단계인 퇴원요약지(Discharge Summary) 텍스트 규격화를 위해 SFT, DPO, PPO, 선호도 레이블링 등 수행</li>
         <li><b>인간 작성/LLM 생성 텍스트 판별 연구 참여</b> — 퍼플렉시티 계산 및 예측 변수로 추가, 연구에 활용된 코드 오류 검토 및 아카이빙 등 수행</li>
         <li><b>디퓨전 기반 한반도 일사량 예측 연구 참여</b> — 연구 중간 단계에 합류하여, Base 디퓨전 모델 예측 개선을 위한 보정 프로세스를 추가 구축</li>
         <li><b>시계열 전이학습 베이스라인 실험 지원</b> — 리비전 단계 연구에 합류하여, 레거시 Keras 베이스라인 실험을 PyTorch·PatchTST로 이식 및 개선</li>
@@ -153,7 +155,7 @@
           <span class="project-title">LLM 기반 생존분석 연구</span>
           <span class="badge badge-wip">연구 진행중</span>
         </div>
-        <p class="project-brief">의무기록지 텍스트를 입력으로 생존분석을 수행하는 2단계 파이프라인</p>
+        <p class="project-brief">퇴원요약지 텍스트를 입력으로 생존분석을 수행하는 2단계 파이프라인</p>
         <p class="tags"><span>PyTorch</span><span>HuggingFace</span><span>Post-Training</span><span>QLoRA</span><span>vLLM</span><span>FSDP</span><span>wandb</span></p>
         <span class="hint" aria-hidden="true"></span>
       </summary>
@@ -161,7 +163,7 @@
         <dl class="meta">
           <div><dt>기간</dt><dd>2025.10 - 현재 진행중</dd></div>
           <div><dt>소속</dt><dd>전북대학교 통계학과 지도교수 연구실</dd></div>
-          <div><dt>역할</dt><dd>4인 팀에서 Phase 1(의무기록지 텍스트 규격화) 전담</dd></div>
+          <div><dt>역할</dt><dd>4인 팀에서 Phase 1(퇴원요약지 텍스트 규격화) 전담</dd></div>
           <div><dt>데이터</dt><dd>MIMIC-IV v3.1, MIMIC-IV-Note v2.2</dd></div>
         </dl>
 
@@ -174,22 +176,22 @@
         <figure class="fig">
           <a href="figure/SurvLLM.png" target="_blank" rel="noopener">
             <img src="figure/SurvLLM.png" width="1594" height="392"
-                 alt="의무기록지 텍스트를 규격화 문장으로 바꾼 뒤 생존함수를 추정하는 2단계 파이프라인 도식">
+                 alt="퇴원요약지 텍스트를 규격화 문장으로 바꾼 뒤 생존함수를 추정하는 2단계 파이프라인 도식">
           </a>
-          <figcaption>[추론 파이프라인] 의무기록지 → 규격화 문장 → 생존함수 / ① Phase 1 규격화(본인 담당) ② Phase 2 SurvLIFT(팀원 담당)</figcaption>
+          <figcaption>[추론 파이프라인] 퇴원요약지 → 규격화 문장 → 생존함수 / ① Phase 1 규격화(본인 담당) ② Phase 2 SurvLIFT(팀원 담당)</figcaption>
         </figure>
 
         <h3 class="star-h">배경 <span>Situation</span></h3>
         <ul class="pts">
           <li>LLM을 생존분석에 활용하여, 태뷸러 데이터 외에 환자에 대한 중요한 정보를 담은 텍스트 데이터까지 활용하려는 연구</li>
-          <li>의무기록지 텍스트는 작성 형식·분량이 통일되지 않아, 원문을 그대로 쓰면 생존함수를 안정적으로 도출하기 어려움</li>
+          <li>퇴원요약지 텍스트는 작성 형식·분량이 통일되지 않아, 원문을 그대로 쓰면 생존함수를 안정적으로 도출하기 어려움</li>
           <li>텍스트를 약속된 문장 형태로 규격화하고, 이를 기반으로 생존함수를 추정하는 2단계 구조가 필요</li>
         </ul>
 
         <h3 class="star-h">역할 <span>Task</span></h3>
         <ul class="pts">
           <li>Phase 1 전면 담당. 동료 연구원 이탈로 소스 데이터 가공부터 학습, 결과 처리, 레이블링 일부까지 수행</li>
-          <li>위임받은 업무 중 오픈소스 LLM 기반 선호도 레이블링에서 무작위에 가깝던 퍼포먼스를 개선</li>
+          <li>위임받은 업무 중 오픈소스 LLM 기반 선호도 레이블링에서 무작위에 가깝던 성능을 개선</li>
         </ul>
 
         <h3 class="star-h">수행 <span>Action</span></h3>
@@ -203,10 +205,10 @@
         <h4 class="sub-h">학습 파이프라인</h4>
         <ol class="pts steps">
           <li><b>데이터 구축</b>: MIMIC-IV v3.1의 Admissions·Patients 테이블과 MIMIC-IV-Note v2.2의 Discharge 테이블을 활용하여 훈련·검증·테스트 데이터 구성</li>
-          <li><b>Supervised Fine-Tuning</b>: 원본 의무기록지에 대하여 의료 도메인 지식을 가진 연구원이 레이블링한 규격화 문장 100개 쌍의 메시지 데이터셋으로 Llama-3.1-8B-Instruct 모델에 SFT 적용</li>
-          <li><b>선호도 레이블링</b>: SFT 모델을 이용하여 의무기록지당 5개 응답을 확률적으로 생성하고, 인간 주석자 또는 오픈소스 LLM이 규칙 기반으로 순위 평가. 인간 레이블링 대상 200건 중 130건 직접 수행</li>
-          <li><b>선호도 조정</b>: 의무기록지당 <sub>5</sub>C<sub>2</sub> = 10쌍, 총 2,000쌍의 선호도 데이터셋으로 SFT 모델을 이어서 학습. 퍼포먼스 비교를 위해 선호도 레이블링 방법(인간 / AI) × 선호도 조정 알고리즘(DPO / Reward Model + PPO)의 4가지 조합 비교</li>
-          <li><b>결과 전달</b>: 사후학습을 마친 모델에 vLLM의 연속형 배치를 사용하여 추론을 수행. 의무기록지 테스트 데이터를 규격화한 뒤, Phase 2인 SurvLIFT에 전달</li>
+          <li><b>Supervised Fine-Tuning</b>: 원본 퇴원요약지에 대하여 의료 도메인 지식을 가진 연구원이 레이블링한 규격화 문장 100개 쌍의 메시지 데이터셋으로 Llama-3.1-8B-Instruct 모델에 SFT 적용</li>
+          <li><b>선호도 레이블링</b>: SFT 모델을 이용하여 퇴원요약지당 5개 응답을 확률적으로 생성하고, 인간 주석자 또는 오픈소스 LLM이 규칙 기반으로 순위 평가. 인간 레이블링 대상 200건 중 130건 직접 수행</li>
+          <li><b>선호도 조정</b>: 퇴원요약지당 <sub>5</sub>C<sub>2</sub> = 10쌍, 총 2,000쌍의 선호도 데이터셋으로 SFT 모델을 이어서 학습. 성능 비교를 위해 선호도 레이블링 방법(인간 / AI) × 선호도 조정 알고리즘(DPO / Reward Model + PPO)의 4가지 조합 비교</li>
+          <li><b>결과 전달</b>: 사후학습을 마친 모델에 vLLM의 연속 배치(continuous batching)를 사용하여 추론을 수행. 퇴원요약지 테스트 데이터를 규격화한 뒤, Phase 2인 SurvLIFT에 전달</li>
         </ol>
         <h4 class="sub-h">세부 사항</h4>
         <ul class="pts">
@@ -221,7 +223,7 @@
         <ul class="pts">
           <li>인간 레이블 × PPO 모델의 규격화 문장 중 97%가 공변량 15종의 이름을 정상적으로 출력. 학습 데이터의 양적 결여로 인해, 문장형 묘사 자체의 품질 문제 식별됨</li>
           <li>4개 분기 중 인간 피드백 × PPO 조합이 학습 환자 수 300·1,000명 설정의 C-index와 보정(Calibration) 지표 대부분에서 우세</li>
-          <li>Phase 2의 생존함수 추정에서, 베이스라인 모델인 Cox, DeepHit 대비 C-index 10% 가량 개선됨을 잠정적으로 확인 (10회 반복 실험 평균값 기준)</li>
+          <li>Phase 2의 생존함수 추정에서, 베이스라인 모델인 Cox, DeepHit 대비 C-index 10% 이상 개선됨을 잠정적으로 확인 (10회 반복 실험 평균값 기준)</li>
           <li>인간·AI 선호도 레이블의 선호 방향 일치율 0.661 달성 (공통 선호도 쌍 1,989개, 무작위 수준 0.5)</li>
         </ul>
 
@@ -248,8 +250,8 @@
         </dl>
 
         <ul class="kpis k3w">
-          <li><span>CRPS (확률 예측 오차)</span><b>−5 ~ 16%</b><small>Refiner 적용 전후 · 모든 예측 시점</small></li>
-          <li class="pair"><div><span>앙상블 MAE</span><b>−2 ~ 11%</b></div><div><span>MSE (90·120분)</span><b>−3.5 · −11%</b></div><small>Refiner 적용 전후 · 30·60분 MSE는 변화 없음</small></li>
+          <li><span>CRPS (확률 예측 오차)</span><b>−5 ~ −16%</b><small>Refiner 적용 전후 · 모든 예측 시점</small></li>
+          <li class="pair"><div><span>앙상블 MAE</span><b>−2 ~ −11%</b></div><div><span>MSE (90·120분)</span><b>−3.5 · −11%</b></div><small>Refiner 적용 전후 · 30·60분 MSE는 변화 없음</small></li>
           <li><span>최종 모델 MSE·MAE</span><b>3개 시점 1위</b><small>베이스라인 대비 · 90분 2위</small></li>
         </ul>
 
@@ -315,9 +317,9 @@
         </div>
         <h4 class="sub-h">Refiner 효과 (본인 담당)</h4>
         <ul class="pts">
-          <li><b>과소산포 교정</b>: Base 앙상블의 멤버 간 산포를 모든 예측 시점에서 키워 과소산포를 교정. CRPS(Continuous Ranked Probability Score) 커널 분해로, 산포가 커짐으로 인해 앙상블 MAE가 2~11% 감소함을 확인</li>
+          <li><b>과소산포 교정</b>: CRPS(Continuous Ranked Probability Score) 커널 분해 결과, Refiner가 모든 예측 시점에서 Base 앙상블의 멤버 간 산포를 키워 과소산포를 교정함을 확인. 산포가 커진 멤버들을 평균하면서 앙상블 예측의 MAE가 2~11% 감소</li>
           <li><b>장기 예측(90·120분)</b>: 교정 효과가 정확도로 이어져 MSE 3.5%·11%, CRPS 5%·16% 감소</li>
-          <li><b>단기 예측(30·60분)</b>: 과소산포는 교정되나, 훈련 오차 자체가 작은 상황에서 유의미한 개선 효과 없음</li>
+          <li><b>단기 예측(30·60분)</b>: CRPS는 6~7% 감소했으나 MSE는 변화 없음. 단일 예측에는 Base 모델만으로 충분</li>
         </ul>
         <h4 class="sub-h">최종 모델 (팀)</h4>
         <ul class="pts">
@@ -348,9 +350,9 @@
         </dl>
 
         <ul class="kpis">
-          <li><span>이진 분류 정확도 · F1-Score</span><b>0.9778 · 0.9864</b><small>전체 데이터 중 LLM 비중 80%</small></li>
+          <li><span>이진 분류 정확도 · F1-Score</span><b>0.9778 · 0.9864</b><small>전체 데이터 중 LLM 비중 약 81%</small></li>
           <li><span>다중 분류 정확도 · F1-Score</span><b>0.8598 · 0.8607</b><small>인간 및 LLM 4종의 5개 출처 · Macro 평균</small></li>
-          <li><span>Perplexity 추가 효과</span><b>오분류율 −21·−45%</b><small>다중 분류 · 이진 분류</small></li>
+          <li><span>Perplexity 추가 효과</span><b>오분류율 −45·−21%</b><small>이진 분류 · 다중 분류</small></li>
         </ul>
 
         <figure class="fig">
