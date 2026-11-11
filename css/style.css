@@ -85,13 +85,14 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
 .project-body .fig { margin: 14px 0 2px; }
 .project-body .fig a { display: block; }
 .project-body .fig img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 6px; }
-/* NYCTaxiDash 화면 캡처는 내용이 이미지 가장자리까지 차 있어 답답하므로, 이 프로젝트만 테두리 안쪽에 여백을 둔다 */
-#nyctaxidash .fig img { padding: 20px; background: #fff; }
-#nyctaxidash .fig-row .fig img { padding: 14px; }
+/* NYCTaxiDash 화면 캡처는 내용이 이미지 가장자리까지 차 있어 답답하므로, 이 프로젝트만 테두리 안쪽에 여백(--pad)을 둔다 */
+#nyctaxidash { --pad: 14px; }
+#nyctaxidash .fig img { padding: var(--pad); background: #fff; }
 .project-body .fig figcaption { font-size: 11.5px; color: var(--faint); margin-top: 6px; text-align: center; }
-/* 그림 나란히 — 각 그림의 flex 비율을 가로세로비(--ar)로 주면 높이가 같아진다 */
+/* 그림 나란히 — flex 비율을 가로세로비(--ar)로 주면 높이가 같아진다.
+   이미지 안쪽 여백(--pad)·테두리(1px)는 가로세로비와 무관하게 더해지므로 그만큼을 기준 폭으로 따로 떼어 둔다 */
 .fig-row { display: flex; gap: 16px; align-items: flex-start; margin: 14px 0 2px; }
-.fig-row .fig { flex: var(--ar, 1) 1 0; min-width: 0; margin: 0; }
+.fig-row .fig { flex: var(--ar, 1) 1 calc(2 * var(--pad, 0px) + 2px); min-width: 0; margin: 0; }
 
 /* --- STAR 구성 (SurvLLM부터 적용) --- */
 /* 개요: 기간 · 소속 / 역할 · 데이터 — 2×2 격자로 라벨 열을 세로로 맞춘다.
@@ -276,6 +277,7 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   .project-body dd, .tags, .links, .pts li, .kpis { break-inside: avoid; }
   .project-body .fig, .phase { break-inside: avoid; }
   .project-body .fig img { border-color: #bbb; }
+  #nyctaxidash { --pad: 8px; } /* 인쇄에서는 여백을 줄여 이 프로젝트를 1쪽에 맞춤 */
   .kpis li { border-left-color: var(--ink); }
   .section { margin-top: 22px; }
   .section + .section { margin-top: 14px; padding-top: 12px; border-top-color: #ddd; }
@@ -297,6 +299,8 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   .xref { color: var(--ink); }
   /* 프로젝트·논문 링크는 URL 병기 */
   .links a::after, .pubs a::after { content: " (" attr(href) ")"; font-weight: 400; font-size: 10px; color: #555; }
+  /* 논문 링크는 URL이 붙어 길어지므로 서지 정보 다음 줄에 따로 모음 */
+  .pubs .pub-links { display: block; }
   .links a, .pubs a, .contacts a { color: var(--ink); }
   /* footer(©): 2026-08-22~11-09에는 '고아 줄' 방지로 인쇄에서 숨겼다가, 이력/프로젝트 페이지 구분 후 복원.
      참고(마지막 페이지 조정 때): 2026-10-27 실측 당시 꼬리가 새 페이지로 밀린 원인은

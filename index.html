@@ -62,10 +62,10 @@
         <span class="exp-date">2025.07 - 현재</span>
       </div>
       <ul class="exp-list">
-        <li><b>로컬 LLM 기반 Two-Phase 생존분석 연구 참여</b> — 첫 단계인 의무기록지 텍스트 규격화를 위해 SFT, DPO, PPO, 선호도 레이블링 등 수행</li>
+        <li><b>로컬 LLM 기반 Two-Phase 생존분석 연구 참여</b> — 첫 단계인 의무기록지(Discharge Summary) 텍스트 규격화를 위해 SFT, DPO, PPO, 선호도 레이블링 등 수행</li>
         <li><b>인간 작성/LLM 생성 텍스트 판별 연구 참여</b> — 퍼플렉시티 계산 및 예측 변수로 추가, 연구에 활용된 코드 오류 검토 및 아카이빙 등 수행</li>
         <li><b>디퓨전 기반 한반도 일사량 예측 연구 참여</b> — 연구 중간 단계에 합류하여, Base 디퓨전 모델 예측 개선을 위한 보정 프로세스를 추가 구축</li>
-        <li><b>시계열 전이학습 베이스라인 실험 지원</b> — 리비전 단계 연구에 합류하여, 레거시 Keras 실험을 PyTorch·PatchTST로 재구현하고 21개 태스크 × 500개 모델 실험을 자동화. 원본 코드 결함 3건(MASE 손실 오구현 등) 발견</li>
+        <li><b>시계열 전이학습 베이스라인 실험 지원</b> — 리비전 단계 연구에 합류하여, 레거시 Keras 베이스라인 실험을 PyTorch·PatchTST로 이식 및 개선</li>
         <li><b>서버자원 관리</b> — 연구실 내 H200, A6000, L40S 장착 서버의 도커 컨테이너 구축 및 기술 지원</li>
         <li><b>세미나 활동</b> — 기계학습을 위한 수학, 강화학습, 생존분석, MCP, Agentic AI 관련 세미나 참여 및 담당 파트 준비</li>
       </ul>
@@ -128,17 +128,18 @@
       Study on comparative and discriminatory methodology of human and machine-generated languages.
       <i>Korean Journal of Applied Statistics</i>, <b>39</b>(3), 235–255.
       <span class="pub-note">† 공동 1저자</span>
-      <a href="https://doi.org/10.5351/KJAS.2026.39.3.235" target="_blank" rel="noopener">DOI</a></li>
+      <span class="pub-links"><a href="https://doi.org/10.5351/KJAS.2026.39.3.235" target="_blank" rel="noopener">Link</a>
+      <a href="https://github.com/HollyRiver/LLMdetector" target="_blank" rel="noopener">GitHub</a></span></li>
       <li>Junhan Jeon, <b>Shinsung Kang</b>, Hanwool Kim, Jongmin Yeom, Gwangsu Kim. (Under review).
       Spatially-adapted Diffusion Models for Solar Irradiance Prediction.
       <span class="pub-note">제2저자 · 심사 중</span>
-      <a href="https://github.com/HollyRiver/DiffusionRefiner" target="_blank" rel="noopener">GitHub</a></li>
+      <span class="pub-links"><a href="https://github.com/HollyRiver/DiffusionRefiner" target="_blank" rel="noopener">GitHub</a></span></li>
       <li>Minwoo Lee, Youngmi Lee, Gwangsu Kim. (2026).
       Transfer Learning Based on N-BEATS in Forecasting Univariate Time Series.
       <i>IEEE Access</i>, <b>14</b>, 45191–45212.
       <span class="pub-note">베이스라인 실험 기여 (Acknowledgement)</span>
-      <a href="https://ieeexplore.ieee.org/abstract/document/11443264" target="_blank" rel="noopener">Link</a>
-      <a href="https://github.com/HollyRiver/TSTF" target="_blank" rel="noopener">GitHub</a></li>
+      <span class="pub-links"><a href="https://ieeexplore.ieee.org/abstract/document/11443264" target="_blank" rel="noopener">Link</a>
+      <a href="https://github.com/HollyRiver/TSTF" target="_blank" rel="noopener">GitHub</a></span></li>
     </ol>
   </section>
 
@@ -153,7 +154,7 @@
           <span class="badge badge-wip">연구 진행중</span>
         </div>
         <p class="project-brief">의무기록지 텍스트를 입력으로 생존분석을 수행하는 2단계 파이프라인</p>
-        <p class="tags"><span>PyTorch</span><span>Transformers</span><span>TRL</span><span>PEFT · QLoRA</span><span>vLLM</span><span>DPO · PPO</span><span>FSDP</span><span>Docker</span><span>wandb</span></p>
+        <p class="tags"><span>PyTorch</span><span>HuggingFace</span><span>Post-Training</span><span>QLoRA</span><span>vLLM</span><span>FSDP</span><span>wandb</span></p>
         <span class="hint" aria-hidden="true"></span>
       </summary>
       <div class="project-body">
@@ -165,9 +166,9 @@
         </dl>
 
         <ul class="kpis">
-          <li><span>출력 규격 준수율 (최대)</span><b>97%</b><small>4개 분기 중 최고 · 출력 141,762건 기준</small></li>
-          <li><span>인간·AI 선호도 일치율</span><b>0.661</b><small>선호도 1,989쌍 기준 · 무작위 수준 0.5</small></li>
-          <li><span>Harrell's C-index (팀 파이프라인)</span><b>+10% 이상</b><small>Cox·DeepHit 대비 상대 개선 · 잠정 경향</small></li>
+          <li><span>출력 규격 준수율 (최대)</span><b>97%</b><small>4개 세팅 중 최대 · 출력 141,762건 기준</small></li>
+          <li><span>인간·AI 선호도 일치율</span><b>0.661</b><small>선호도 1,989쌍 기준 · 무작위는 0.5</small></li>
+          <li><span>Harrell's C-index (전체 파이프라인)</span><b>+10% 이상</b><small>Cox·DeepHit 대비 상대 개선 · 잠정 경향</small></li>
         </ul>
 
         <figure class="fig">
@@ -175,19 +176,19 @@
             <img src="figure/SurvLLM.png" width="1594" height="392"
                  alt="의무기록지 텍스트를 규격화 문장으로 바꾼 뒤 생존함수를 추정하는 2단계 파이프라인 도식">
           </a>
-          <figcaption>[추론 파이프라인] 의무기록지 → 규격화 문장 → 생존함수 · ① Phase 1 규격화(본인 담당) ② Phase 2 SurvLIFT(팀원 담당)</figcaption>
+          <figcaption>[추론 파이프라인] 의무기록지 → 규격화 문장 → 생존함수 / ① Phase 1 규격화(본인 담당) ② Phase 2 SurvLIFT(팀원 담당)</figcaption>
         </figure>
 
         <h3 class="star-h">배경 <span>Situation</span></h3>
         <ul class="pts">
           <li>LLM을 생존분석에 활용하여, 태뷸러 데이터 외에 환자에 대한 중요한 정보를 담은 텍스트 데이터까지 활용하려는 연구</li>
           <li>의무기록지 텍스트는 작성 형식·분량이 통일되지 않아, 원문을 그대로 쓰면 생존함수를 안정적으로 도출하기 어려움</li>
-          <li>텍스트를 약속된 문장 형태로 규격화하고, 이를 기반으로 생존함수를 추정하는 2단계 구조를 이용</li>
+          <li>텍스트를 약속된 문장 형태로 규격화하고, 이를 기반으로 생존함수를 추정하는 2단계 구조가 필요</li>
         </ul>
 
         <h3 class="star-h">역할 <span>Task</span></h3>
         <ul class="pts">
-          <li>Phase 1 전면 담당. 동료 연구자 이탈로 소스 데이터 가공부터 학습, 결과 처리, 레이블링 일부까지 수행</li>
+          <li>Phase 1 전면 담당. 동료 연구원 이탈로 소스 데이터 가공부터 학습, 결과 처리, 레이블링 일부까지 수행</li>
           <li>위임받은 업무 중 오픈소스 LLM 기반 선호도 레이블링에서 무작위에 가깝던 퍼포먼스를 개선</li>
         </ul>
 
@@ -202,29 +203,29 @@
         <h4 class="sub-h">학습 파이프라인</h4>
         <ol class="pts steps">
           <li><b>데이터 구축</b>: MIMIC-IV v3.1의 Admissions·Patients 테이블과 MIMIC-IV-Note v2.2의 Discharge 테이블을 활용하여 훈련·검증·테스트 데이터 구성</li>
-          <li><b>SFT</b>: 원본 의무기록지에 대하여 의료 도메인 지식을 가진 연구원이 레이블링한 규격화 문장 100개 쌍의 메시지 데이터셋으로 Llama-3.1-8B-Instruct 모델에 SFT 적용</li>
-          <li><b>선호도 레이블링</b>: SFT 모델이 의무기록지당 5개 응답을 확률적으로 생성하고, 인간 주석자 또는 오픈소스 LLM이 순위 평가. 인간 레이블링 대상 200건 중 130건 직접 수행</li>
-          <li><b>선호도 조정</b>: 의무기록지당 <sub>5</sub>C<sub>2</sub> = 10쌍, 총 2,000쌍의 선호도 데이터셋으로 SFT 모델을 이어서 학습. 퍼포먼스 비교를 위해 선호도 레이블링 방법(인간/AI) × 선호도 조정 알고리즘(DPO / Reward Model + PPO)의 4가지 조합 비교</li>
+          <li><b>Supervised Fine-Tuning</b>: 원본 의무기록지에 대하여 의료 도메인 지식을 가진 연구원이 레이블링한 규격화 문장 100개 쌍의 메시지 데이터셋으로 Llama-3.1-8B-Instruct 모델에 SFT 적용</li>
+          <li><b>선호도 레이블링</b>: SFT 모델을 이용하여 의무기록지당 5개 응답을 확률적으로 생성하고, 인간 주석자 또는 오픈소스 LLM이 규칙 기반으로 순위 평가. 인간 레이블링 대상 200건 중 130건 직접 수행</li>
+          <li><b>선호도 조정</b>: 의무기록지당 <sub>5</sub>C<sub>2</sub> = 10쌍, 총 2,000쌍의 선호도 데이터셋으로 SFT 모델을 이어서 학습. 퍼포먼스 비교를 위해 선호도 레이블링 방법(인간 / AI) × 선호도 조정 알고리즘(DPO / Reward Model + PPO)의 4가지 조합 비교</li>
           <li><b>결과 전달</b>: 사후학습을 마친 모델에 vLLM의 연속형 배치를 사용하여 추론을 수행. 의무기록지 테스트 데이터를 규격화한 뒤, Phase 2인 SurvLIFT에 전달</li>
         </ol>
         <h4 class="sub-h">세부 사항</h4>
         <ul class="pts">
           <li><b>기존 라이브러리 활용</b>: TRL, PEFT, datasets 등 HuggingFace 제공 라이브러리와 vLLM을 적절하게 활용하여 구현 및 추론에 필요한 시간을 최소화</li>
-          <li><b>사후학습 세부 설정</b>: 매우 긴 토큰의 텍스트를 적절하게 학습시키기 위해 QLoRA(NF4, r=64), Assistant Only Loss를 공통으로 사용. 선호도 조정에는 병합 후 재양자화 대신, LoRA를 policy와 reference로 두 번 로드하여 재양자화로 인한 SFT 모델 왜곡을 회피</li>
-          <li><b>학습 모니터링</b>: wandb를 사용하여 훈련 로그 및 지표 곡선을 추적하여 적절한 하이퍼파라미터를 세팅하고, 검증 데이터셋을 기반으로 최적의 체크포인트 선택</li>
-          <li><b>AI 레이블링 개선</b>: 오픈소스 LLM 기반 선호도 레이블링의 기존 성능을 개선하기 위해, 인간 레이블링 규칙을 프롬프트로 옮겨 구체화·구조화하고 퓨샷 예시 주입, 추론 활성화 등의 테크닉을 활용</li>
+          <li><b>사후학습 세부 설정</b>: 매우 긴 토큰의 텍스트를 적절하게 학습시키기 위해 QLoRA(NF4, r=64), Assistant Only Loss 세팅을 공통으로 사용. 선호도 조정에는 병합 후 재양자화 대신, LoRA를 policy와 reference로 두 번 로드하여 재양자화로 인한 SFT 모델 가중치의 왜곡을 회피</li>
+          <li><b>학습 모니터링</b>: wandb를 통해 훈련 로그 및 지표 곡선을 추적하여 적절한 하이퍼파라미터를 세팅하고, 검증 데이터셋을 기반으로 최적의 체크포인트 선택</li>
+          <li><b>AI 레이블링 개선</b>: 오픈소스 LLM 기반 선호도 레이블링의 기존 성능을 개선하기 위해, 인간 레이블링 규칙을 프롬프트로 옮겨 구체화·구조화하고 퓨샷 예시 주입, 모델 추론 활성화</li>
           <li><b>강화학습 기반 알고리즘의 체크포인트 선택</b>: 검증 손실이 제공되지 않는 PPO의 경우, 체크포인트별로 생성한 검증 텍스트들의 품질을 정량·정성적으로 비교하여 인간 피드백 기반으로 직접 선택</li>
         </ul>
 
         <h3 class="star-h">성과 <span>Result</span></h3>
         <ul class="pts">
-          <li>인간 레이블 × PPO 모델 출력의 97%가 약속된 규격(성별·PE·Labs 공변량 15종 포함)을 준수. 학습 데이터의 양적 결여로 인해, 문장형 묘사 자체의 품질 문제 식별됨</li>
+          <li>인간 레이블 × PPO 모델의 규격화 문장 중 97%가 공변량 15종의 이름을 정상적으로 출력. 학습 데이터의 양적 결여로 인해, 문장형 묘사 자체의 품질 문제 식별됨</li>
           <li>4개 분기 중 인간 피드백 × PPO 조합이 학습 환자 수 300·1,000명 설정의 C-index와 보정(Calibration) 지표 대부분에서 우세</li>
-          <li>Phase 2를 거친 최종 추정에서 Cox, DeepHit 대비 C-index가 상대적으로 10% 이상 개선되는 잠정 경향 (다중 시드·신뢰구간 산출)</li>
-          <li>인간·AI 선호도 레이블의 선호 방향 일치율 0.661 달성 (선호도 쌍 1,989개, 무작위 수준 0.5)</li>
+          <li>Phase 2의 생존함수 추정에서, 베이스라인 모델인 Cox, DeepHit 대비 C-index 10% 가량 개선됨을 잠정적으로 확인 (10회 반복 실험 평균값 기준)</li>
+          <li>인간·AI 선호도 레이블의 선호 방향 일치율 0.661 달성 (공통 선호도 쌍 1,989개, 무작위 수준 0.5)</li>
         </ul>
 
-        <p class="links"><a href="https://github.com/HollyRiver/SurvLLM" target="_blank" rel="noopener">GitHub</a></p>
+        <p class="links"><a href="https://github.com/HollyRiver/SurvLLM" target="_blank" rel="noopener">GitHub (Phase 1)</a></p>
       </div>
     </details>
 
@@ -232,7 +233,7 @@
       <summary>
         <div class="project-head">
           <span class="project-title">디퓨전 기반 한반도 일대 일사량 예측 연구</span>
-          <span class="badge badge-wip">논문 투고 중 · 제2저자</span>
+          <span class="badge badge-wip">논문 심사 중 · 제2저자</span>
         </div>
         <p class="project-brief">과거 위성 일사량 이미지 시계열로 미래 일사량을 예측하는 디퓨전 기반 2단계 예측-보정 파이프라인</p>
         <p class="tags"><span>PyTorch</span><span>Diffusion</span><span>Claude Code</span></p>
@@ -247,9 +248,9 @@
         </dl>
 
         <ul class="kpis k3w">
-          <li><span>CRPS (확률 예측 오차)</span><b>−5 ~ 16%</b><small>Refiner 적용 전후 · 4개 예측 시점 모두</small></li>
+          <li><span>CRPS (확률 예측 오차)</span><b>−5 ~ 16%</b><small>Refiner 적용 전후 · 모든 예측 시점</small></li>
           <li class="pair"><div><span>앙상블 MAE</span><b>−2 ~ 11%</b></div><div><span>MSE (90·120분)</span><b>−3.5 · −11%</b></div><small>Refiner 적용 전후 · 30·60분 MSE는 변화 없음</small></li>
-          <li><span>최종 모델 MSE·MAE (팀)</span><b>3개 시점 1위</b><small>30·60·120분 최저 · 90분 2위</small></li>
+          <li><span>최종 모델 MSE·MAE</span><b>3개 시점 1위</b><small>베이스라인 대비 · 90분 2위</small></li>
         </ul>
 
         <figure class="fig">
@@ -265,7 +266,7 @@
           <li>과거 2시간 이전부터 현재까지 30분 간격으로 관측된 위성 일사량 이미지 5장으로, 30·60·90·120분 후의 일사량 이미지를 예측. 선행 연구 모델인 AC U-Net의 후속 연구</li>
           <li>기존 LSTM·U-Net 등의 Regression 계열 모델은 우수한 픽셀 단위 예측 성능을 보이나, 이미지의 국지적 정보를 흐릿하게 뭉개는 한계가 존재</li>
           <li>예측의 픽셀 단위 정확성과 함께, 지구과학 분야에서 중요한 이미지의 지각적 사실성을 동시에 확보하기 위해 디퓨전 모델 채택</li>
-          <li>연구에 참여한 석사과정 학생의 졸업 및 취업으로 인한 이탈 이후 실험과 성능 개선이 정체된 상황에서, 지원 역할로 참여</li>
+          <li>연구 중반, 실험과 성능 개선이 정체된 상황에서, 기존 모델의 성능을 개선하기 위해 합류</li>
         </ul>
 
         <h3 class="star-h">역할 <span>Task</span></h3>
@@ -277,20 +278,20 @@
         <h3 class="star-h">수행 <span>Action</span></h3>
         <h4 class="sub-h">학습 파이프라인</h4>
         <ol class="pts steps">
-          <li><b>데이터</b>: 한반도 정지궤도위성 천리안 2A호의 이미지에 검증된 물리 모델을 적용하여, 픽셀 단위로 태양 에너지를 계산. 계산된 일사량 맵(512×512, 30분 간격)을 훈련·검증·테스트에 활용. 동료 연구원에게서 제공받음</li>
+          <li><b>데이터</b>: 동료 연구원에게서 제공받음. 한반도 정지궤도위성 천리안 2A호의 이미지에 검증된 물리 모델을 적용하여, 픽셀 단위로 태양 에너지를 계산. 계산된 일사량 맵(512×512, 30분 간격)을 훈련·검증·테스트에 활용</li>
           <li><b>Base 모델</b>: 전반부 담당 연구원에게 Base 디퓨전 모델로 훈련·검증·테스트 전 구간에서 각 시간별로 생성된 확률적 예측 8개 수령</li>
           <li><b>잔차 계산</b>: 훈련·검증·테스트 전 구간에서 서로 다른 8개의 Base 예측과 실제 맵의 차이인 잔차를 계산</li>
-          <li><b>Refiner</b>: 훈련 데이터의 과거 일사량 맵 5장과, Base 예측을 조건으로, 노이즈에서 잔차를 직접 복원하는 x0-prediction 기반 소형 U-Net 훈련. 검증 오차 기반 최적 체크포인트 선택. 예측 시간(30-120분)마다 별도로 모델 훈련</li>
-          <li><b>앙상블</b>: 테스트 데이터에 대해서 Base 예측 8개 각각에 Refiner가 추정한 잔차를 더한 뒤 평균 앙상블로 최종 예측 산출</li>
+          <li><b>Refiner</b>: 훈련 데이터의 과거 일사량 맵 5장과, Base 예측을 조건으로, 노이즈에서 잔차를 직접 복원하는 x0-prediction 기반 소형 U-Net 훈련. 검증 오차 기반 최적 체크포인트 선택. 총 네 개의 예측 시점에 대하여 별도로 모델 훈련</li>
+          <li><b>앙상블</b>: 테스트 데이터 Base 예측 8개 각각에 Refiner가 추정한 잔차를 더한 뒤, 8개 평균값으로 최종 예측 수행</li>
         </ol>
         <h4 class="sub-h">세부 사항</h4>
         <ul class="pts">
-          <li><b>보정 적용 시점 선택</b>: Base 모델 예측 앙상블을 한 번 보정하는 대신, 멤버 단위로 보정 후 평균하는 방식을 채택. 앙상블 이후 보정의 경우 Base 예측보다 성능이 떨어짐을 확인</li>
+          <li><b>보정 적용 시점 선택</b>: 앙상블된 Base 모델 예측을 한 번 보정하는 대신, 멤버 단위로 보정 후 앙상블하는 방식을 채택. 전자는 오히려 Base 예측보다 성능이 감소하였음</li>
           <li><b>잔차 분포 학습</b>: 특정 시각 하나에 대해 서로 다른 8개의 잔차를 학습시켜, Base 모델 잔차의 확률 구조를 최대한 반영</li>
-          <li><b>오차 지도 분석</b>: 테스트 전체의 픽셀 단위 MSE를 10개 구간의 k-means로 군집화하고, 오차 지도를 실제 지도와 대조하여, 고오차 지대의 구조를 두 가지로 설명
+          <li><b>오차 지도 분석</b>: 테스트 전체의 픽셀 단위 MSE를 10개 구간으로 군집화하고, 오차 군집 지도를 실제 지도와 대조하여, 고오차 지대의 구조를 두 가지로 설명
             <ul class="pts sub">
               <li><b>남서쪽 경계</b>: 편서풍 및 하계 몬순 제트 기류를 따라 남서쪽에서 이미지 외부에서 유입되는 구름을, 모델이 사전 정보 없이 예측해야 함</li>
-              <li><b>내륙 산지</b>: 내륙의 경우 태백산맥과 같은 구조가 상승기류와 구름을 생성</li>
+              <li><b>내륙 산지</b>: 태백산맥과 같은 산악 구조가 상승기류와 구름을 생성하여 예측이 어려움</li>
             </ul>
           </li>
         </ul>
@@ -302,21 +303,21 @@
               <img src="figure/Diff_Solar_fig3a_web.jpg" width="1600" height="1011"
                    alt="30분·90분 예측 사례에서 실제 맵과 AC U-Net, 단일 예측 SM-Diff*, 앙상블 SM-Diff의 표준화 일사량 맵 비교">
             </a>
-            <figcaption>30·90분 예측 사례. SM-Diff*는 단일 예측, SM-Diff는 K=8 앙상블 예측</figcaption>
+            <figcaption>[예측 사례] AC U-Net: 이전 연구 모델 예측 / SM-Diff*: 단일 예측 / SM-Diff: 앙상블 예측</figcaption>
           </figure>
           <figure class="fig" style="--ar: 0.818">
             <a href="figure/Diff_Solar_fig3b.png" target="_blank" rel="noopener">
               <img src="figure/Diff_Solar_fig3b.png" width="669" height="818"
                    alt="테스트 전체 픽셀 단위 MSE를 10개 군집으로 나눈 오차 지도. 내륙과 남서쪽 경계가 밝게 표시됨">
             </a>
-            <figcaption>픽셀 단위 MSE 군집화, 밝을수록 높은 오차</figcaption>
+            <figcaption>[오차 군집 지도] 밝은 영역의 MSE가 더 높음</figcaption>
           </figure>
         </div>
         <h4 class="sub-h">Refiner 효과 (본인 담당)</h4>
         <ul class="pts">
-          <li><b>과소산포 교정</b>: Base 앙상블의 멤버 간 산포를 모든 예측 시점에서 키워 과소산포를 교정. CRPS(Continuous Ranked Probability Score) 커널 분해로, 산포가 커졌음에도 앙상블 MAE가 2~11% 감소함을 확인</li>
+          <li><b>과소산포 교정</b>: Base 앙상블의 멤버 간 산포를 모든 예측 시점에서 키워 과소산포를 교정. CRPS(Continuous Ranked Probability Score) 커널 분해로, 산포가 커짐으로 인해 앙상블 MAE가 2~11% 감소함을 확인</li>
           <li><b>장기 예측(90·120분)</b>: 교정 효과가 정확도로 이어져 MSE 3.5%·11%, CRPS 5%·16% 감소</li>
-          <li><b>단기 예측(30·60분)</b>: CRPS는 6~7% 감소하지만 MSE는 변화가 없고 앙상블 평균의 FID가 높아져(30분 43.0 → 51.7), 단일 예측에는 Base 모델로 충분</li>
+          <li><b>단기 예측(30·60분)</b>: 과소산포는 교정되나, 훈련 오차 자체가 작은 상황에서 유의미한 개선 효과 없음</li>
         </ul>
         <h4 class="sub-h">최종 모델 (팀)</h4>
         <ul class="pts">
@@ -324,7 +325,7 @@
           <li>AC U-Net 대비 FID 26~54%, LPIPS 24~28% 감소. 앙상블 없는 단일 예측은 모든 예측 시점에서 학습 기반 모델 중 가장 낮은 FID 기록</li>
         </ul>
 
-        <p class="links"><a href="https://github.com/HollyRiver/DiffusionRefiner" target="_blank" rel="noopener">GitHub (Refiner 모듈)</a></p>
+        <p class="links"><a href="https://github.com/HollyRiver/DiffusionRefiner" target="_blank" rel="noopener">GitHub (Refiner)</a></p>
       </div>
     </details>
 
@@ -335,7 +336,7 @@
           <span class="badge badge-pub">KCI 등재 · 공동 1저자</span>
         </div>
         <p class="project-brief">텍스트에서 추출한 해석 가능한 통계적 피처로 인간 작성 텍스트와 LLM 생성 텍스트를 판별하는 연구</p>
-        <p class="tags"><span>PyTorch</span><span>Transformers</span><span>gensim</span><span>NLTK</span><span>textstat</span><span>scikit-learn</span></p>
+        <p class="tags"><span>PyTorch</span><span>HuggingFace</span><span>gensim</span><span>NLTK</span><span>textstat</span><span>scikit-learn</span></p>
         <span class="hint" aria-hidden="true"></span>
       </summary>
       <div class="project-body">
@@ -347,9 +348,9 @@
         </dl>
 
         <ul class="kpis">
-          <li><span>이진 분류 정확도 · F1-Score</span><b>0.9778 · 0.9864</b><small>인간 vs LLM · 전부 LLM으로 찍을 때 0.809</small></li>
-          <li><span>다중 분류 정확도 · F1-Score</span><b>0.8598 · 0.8607</b><small>인간 + LLM 4종의 5개 출처 · Macro 평균</small></li>
-          <li><span>Perplexity 추가 효과</span><b>오분류율 −45%</b><small>이진 분류 정확도 0.9599 → 0.9778</small></li>
+          <li><span>이진 분류 정확도 · F1-Score</span><b>0.9778 · 0.9864</b><small>전체 데이터 중 LLM 비중 80%</small></li>
+          <li><span>다중 분류 정확도 · F1-Score</span><b>0.8598 · 0.8607</b><small>인간 및 LLM 4종의 5개 출처 · Macro 평균</small></li>
+          <li><span>Perplexity 추가 효과</span><b>오분류율 −21·−45%</b><small>다중 분류 · 이진 분류</small></li>
         </ul>
 
         <figure class="fig">
@@ -377,19 +378,19 @@
         <h3 class="star-h">수행 <span>Action</span></h3>
         <h4 class="sub-h">연구 흐름</h4>
         <ol class="pts steps">
-          <li><b>데이터</b>: 질의응답 웹사이트 Quora에서 추출된 질문·답변과, 해당 질문에 대한 GPT-4o·Gemini 2.0 Flash·Claude 3.7 Sonnet·DeepSeek의 생성 답변으로 이루어진 자체 구축 벤치마크 데이터. 클래스에 대한 80:20 층화 분할로 학습·평가에 활용. 동료 연구원에게서 제공받음</li>
+          <li><b>데이터</b>: 동료 연구원에게서 제공받음. 질의응답 웹사이트 Quora에서 추출된 질문·답변과, 해당 질문에 대한 GPT-4o·Gemini 2.0 Flash·Claude 3.7 Sonnet·DeepSeek의 생성 답변으로 이루어진 자체 구축 벤치마크 데이터. 클래스에 대한 80:20 층화 분할로 학습·평가에 활용</li>
           <li><b>Perplexity</b>: Transformers 라이브러리를 활용하여 Llama-3.1-8B로 각 텍스트의 토큰별 조건부 확률을 계산</li>
-          <li><b>피처 통합</b>: 동료 연구자가 설계한 문체 분석 기반 피처(고전적 NLP 통계량), 내용 분석 기반(LDA 토픽) 피처와 Perplexity를 통합하여 총 37차원 피처 벡터 구성</li>
+          <li><b>피처 통합</b>: 동료 연구원이 설계한 문체 분석 기반 피처(고전적 NLP 통계량), 내용 분석 기반(LDA 토픽) 피처와 Perplexity를 통합하여 총 37차원 피처 벡터 구성</li>
           <li><b>분류 모델</b>: 표준화한 피처 벡터로 네 개 레이어를 가지는 MLP를 학습하여, 다섯 범주에 대한 다중 분류 모델을 구성</li>
           <li><b>이진 분류</b>: 평가 데이터에서 다섯 범주 확률을 그대로 다중 분류에 활용하거나, 네 개의 LLM 범주 확률을 합산하여 인간/LLM 이진 분류에 활용</li>
-          <li><b>결과 해석</b>: 문체 분석 기반 피처와 Perplexity의 범주별 분포를 시각화하여 인간과 LLM, 개별 LLM 간의 차이를 해석</li>
+          <li><b>결과 해석</b>: 문체 분석 기반 피처와 Perplexity의 범주별 분포를 시각화하여 인간과 LLM 또는 개별 LLM 간의 차이를 해석</li>
         </ol>
 
         <h3 class="star-h">성과 <span>Result</span></h3>
         <h4 class="sub-h">우수한 분류 성능</h4>
         <ul class="pts">
           <li>Perplexity 추가 시 정확도가 이진 분류 0.9599 → 0.9778, 다중 분류 0.8217 → 0.8598로 향상. 오분류율 기준 각각 약 45%, 21% 감소</li>
-          <li>Perplexity 단독 모델은 이진 분류 정확도 0.8864로 다수 클래스 기준선(0.809)을 넘지만 다중 분류에서는 0.4732에 그쳐, 나머지 통계적 피처들이 Perplexity에 없는 LLM 식별 정보를 다수 포함함을 확인</li>
+          <li>Perplexity 단독 모델은 이진 분류 정확도 0.8864로 다수 클래스 기준선(0.809)을 넘지만 다중 분류에서는 0.4732에 그쳐, 나머지 통계적 피처들이 Perplexity에 없는 LLM 텍스트 식별 정보를 다수 포함함을 확인</li>
         </ul>
 
         <h4 class="sub-h">분포 차이 식별</h4>
@@ -417,88 +418,61 @@
           <span class="project-title">NYC 택시 트래픽 대시보드 <span class="repo">NYCTaxiDash</span></span>
           <span class="badge badge-live">라이브 데모</span>
         </div>
-        <p class="project-brief">2016년 NYC 택시 운행 기록으로 요일·시간대별 도로 정체를 탐색하는 인터랙티브 대시보드. 2023년 데이터시각화 기말 프로젝트를 Claude Code로 재구축</p>
-        <p class="tags"><span>Claude Code</span><span>pandas</span><span>OSMnx</span><span>MapLibre GL</span><span>Plotly.js</span><span>GitHub Pages</span></p>
+        <p class="project-brief">2016년 NYC 택시 운행 기록으로 요일·시간대별 도로 정체를 탐색하는 인터랙티브 대시보드</p>
+        <p class="tags"><span>Claude Code</span><span>OSMnx</span><span>MapLibre GL</span><span>Plotly.js</span><span>pandas</span><span>GitHub Pages</span></p>
         <span class="hint" aria-hidden="true"></span>
       </summary>
       <div class="project-body">
         <dl class="meta">
           <div><dt>기간</dt><dd>작업 4일 · 커밋 36회</dd></div>
-          <div><dt>소속</dt><dd>개인 프로젝트</dd></div>
           <div><dt>데이터</dt><dd>NYC Taxi Trip Duration 표본 14,587건 (2016.01–2016.06)</dd></div>
         </dl>
 
-        <ul class="kpis">
-          <li><span>지도에 표현한 트립</span><b>146건 → 14,339건</b><small>소수 표본 직선 연결 → 실제 도로망 경로</small></li>
-          <li><span>요일·시간별 지도</span><b>1개 → 15개</b><small>전 기간 1장 → 요일 범위 3개 × 시간대 5개</small></li>
-          <li><span>화면 구성</span><b>2페이지 → 1화면</b><small>구성요소 컴팩트화</small></li>
-        </ul>
-
-        <figure class="fig">
-          <a href="figure/NYC_Dashboard.jpg" target="_blank" rel="noopener">
-            <img src="figure/NYC_Dashboard.jpg" width="1600" height="865"
-                 alt="왼쪽은 맨해튼 도로가 검붉게, 퀸스 방면 간선이 초록으로 표시된 도로 플로우 지도와 KPI, 오른쪽은 요일·시간대 선택 버튼, 시간대별 트립 수 막대그래프, 요일×시간 평균 속력 히트맵으로 구성된 대시보드 화면">
-          </a>
-          <figcaption>[대시보드] 라이브 페이지 캡처</figcaption>
-        </figure>
+        <div class="fig-row">
+          <figure class="fig" style="--ar: 0.8772">
+            <a href="figure/NYC_Before_Pages.jpg" target="_blank" rel="noopener">
+              <img src="figure/NYC_Before_Pages.jpg" width="1100" height="1254"
+                   alt="원본 대시보드의 두 페이지. 위는 요일·시간별 평균 속력과 평균 이동거리 히트맵 페이지, 아래는 일부 표본의 승하차 지점을 직선으로 이은 속력별 경로 지도 페이지">
+            </a>
+            <figcaption>[원본, 2023] 2개 페이지 구성</figcaption>
+          </figure>
+          <figure class="fig" style="--ar: 1.8497">
+            <a href="figure/NYC_Dashboard.jpg" target="_blank" rel="noopener">
+              <img src="figure/NYC_Dashboard.jpg" width="1600" height="865"
+                   alt="개선 대시보드 한 화면. 왼쪽은 실제 도로를 따라 통행량을 두께, 평균 속력을 색으로 표시한 지도와 핵심 수치, 오른쪽은 요일·시간대 선택 버튼, 시간대별 트립 수 막대그래프, 요일×시간 평균 속력 히트맵">
+            </a>
+            <figcaption>[개선, 2026] 지도·차트·핵심 수치를 한 화면에 두고 선택에 연동</figcaption>
+          </figure>
+        </div>
 
         <h3 class="star-h">배경 <span>Situation</span></h3>
         <ul class="pts">
-          <li>2023년도 2학기, 통계학과 전공 과목인 데이터시각화 강의에서 기말 개인 프로젝트로 제작한 Quarto·Plotly 대시보드를 개선</li>
-          <li>직선 경로 지도와 히트맵으로만 구성된 기존 시각화는 가시성이 떨어지고, 요일·시간대·지역별 흐름 파악이 어렵다는 한계 존재</li>
-          <li>교통량을 직관적으로 가늠할 수 있는 대시보드를, 직접적인 코드 작성 없이 AI 에이전트만으로 제작하고자 시도</li>
+          <li>2023년 데이터시각화 기말 개인 프로젝트의 결과물을 개선</li>
+          <li>기존 대시보드는 한눈에 들어오지 않고, 데이터의 일부만 활용하며, 데이터의 시공간적 특성을 파악하기에 부족</li>
         </ul>
 
         <h3 class="star-h">과업 <span>Task</span></h3>
         <ul class="pts">
-          <li>대시보드 구성요소 및 레이아웃 설계</li>
-          <li>Claude Code 에이전트에게 디자인·시각화 중심의 피드백을 반복 제공하며 프로젝트 방향성 유지</li>
+          <li>대시보드 구성·레이아웃 설계. 코드를 직접 작성하지 않고 Claude Code 에이전트에게 디자인·시각화 피드백을 반복 제공</li>
         </ul>
 
         <h3 class="star-h">수행 <span>Action</span></h3>
         <h4 class="sub-h">구축 과정</h4>
         <ol class="pts steps">
-          <li><b>데이터 정제</b>: 강의 제공 표본 14,587건에서 뉴욕시 범위 밖 좌표, 60초 미만 운행, 비정상적인 거리·속력 기록 141건 제거</li>
-          <li><b>도로망 경로 추정</b>: OSMnx 패키지로 승하차 지점 간 최단 경로를 계산하여, 경로 기준 평균 속력(km/h)과 이동거리 산출</li>
-          <li><b>통행량 집계</b>: 도로 구간별 통행량과 평균 속력을 주중·주말·전체 × 새벽·오전·오후·저녁·전체의 15개 조합으로 사전 집계</li>
-          <li><b>시각화</b>: 지도에 속도와 통행량을 선의 색과 두께로 표시하고, 요일·시간대 선택에 따라 차트·수치를 즉시 재집계. 모든 플롯을 인터랙티브로 구성하여 필요 시 상세 정보 확인 가능</li>
-          <li><b>배포</b>: 서버 없이 정적 파일만으로 동작하도록 구성하여 GitHub Pages로 배포</li>
+          <li><b>데이터 정제·경로 추정</b>: 비정상 기록 141건 제거, OSMnx 최단 경로로 평균 속력(km/h)과 이동거리 산출</li>
+          <li><b>통행량 집계</b>: 도로 구간별 통행량과 평균 속력을 요일 범위 3종 × 시간대 5종의 15개 조합으로 사전 집계</li>
         </ol>
         <h4 class="sub-h">개선 과정</h4>
         <ul class="pts">
-          <li><b>속력 기준</b>: 승하차 지점 간 단순 직선거리 기준 전체 평균 속력이 14.4 km/h로 지나치게 낮은 것을 확인하고, 실제 주행에 더 가까운 도로망 최단 경로 기준으로 전환 (평균 17.5 km/h)</li>
-          <li><b>지도 표현</b>: Charles Joseph Minard의 나폴레옹 러시아 원정 시각화 지도에서 착안하여, 선 두께로 통행량을, 색으로 평균 속력을 나타내 유동 차량과 정체 수준을 시공간적으로 함께 표현</li>
-          <li><b>한 화면 구성</b>: 스크롤로 내려야 하는 과도한 콘텐츠 대신, 보는 사람의 시선과 집중이 분산되지 않도록 한 화면에 시각화만 배치. 해석은 직접 유추하거나, 타인이 말로 설명하는 편이 적절하다고 판단하여 별도 문서로 분리</li>
+          <li><b>속력 기준</b>: 직선거리 기준 평균 속력을 계산하는 대신, 더 현실적인 도로망 최단 경로를 기준으로 평균 속력 계산</li>
+          <li><b>지도 표현</b>: Minard의 나폴레옹 러시아 원정 지도에서 영감을 받아, 선 두께는 통행량, 색은 평균 속력으로 표현</li>
+          <li><b>한 화면 구성</b>: 시선이 분산되지 않도록 스크롤 없는 한 화면에 시각화만 배치하고, 해석은 별도 문서로 분리</li>
         </ul>
 
         <h3 class="star-h">성과 <span>Result</span></h3>
-        <h4 class="sub-h">시각화 개선</h4>
-        <div class="fig-row">
-          <figure class="fig" style="--ar: 1.410">
-            <a href="figure/NYC_Before.jpg" target="_blank" rel="noopener">
-              <img src="figure/NYC_Before.jpg" width="1100" height="780"
-                   alt="원본 지도. 맨해튼에 몰린 승하차 지점들과 JFK 공항 방향으로 뻗은 직선들이 네 가지 색으로 겹쳐 있음">
-            </a>
-            <figcaption>[원본, 2023] 일부 표본의 승하차 지점을 단순 직선으로만 연결</figcaption>
-          </figure>
-          <figure class="fig" style="--ar: 1.410">
-            <a href="figure/NYC_After.jpg" target="_blank" rel="noopener">
-              <img src="figure/NYC_After.jpg" width="1101" height="781"
-                   alt="개선 지도. 맨해튼 도로는 굵고 검붉게, 공항 방면 고속도로는 초록으로 실제 도로를 따라 표시됨">
-            </a>
-            <figcaption>[개선, 2026] 전체 데이터를 실제 도로망 기반으로 집계</figcaption>
-          </figure>
-        </div>
         <ul class="pts">
-          <li>단순 직선 경로와, 순서형 속도 범주를 실제 도로에서 통행량과 속도로 대체하여 정체 구간을 직관적으로 식별</li>
-          <li>요일·시간대별로 플롯을 확인할 수 있어, 시공간적 흐름을 직접 확인 가능</li>
-        </ul>
-
-        <h4 class="sub-h">주요 관찰</h4>
-        <ul class="pts">
-          <li><b>최저속 시간대</b>: 종합적으로 15시가 14.4 km/h의 평균 속도로 가장 느리며, 09시가 14.5 km/h로 뒤를 이음</li>
-          <li><b>주중·주말 차이</b>: 출근 시간대인 09시는 주중 13.2 km/h로 최저속이나, 주말이 20.1 km/h로 높아 전체 평균에서 상쇄</li>
-          <li><b>택시 이용 집중 시간대</b>: 05시가 150건으로 가장 적고, 18시와 19시가 그 6배 이상인 912건, 903건으로 가장 많음</li>
+          <li><b>지도 표시 트립</b>: 1% 표본 146건만 직선으로 표시 → 전처리 후 경로 추정에 성공한 14,339건 전부를 도로망 경로로 표시</li>
+          <li><b>화면 구성</b>: 2개 페이지 → 1개 화면. 요일·시간대 15개 조합 선택 시 지도·차트·핵심 수치 동시 갱신</li>
         </ul>
 
         <p class="links"><a href="https://github.com/HollyRiver/NYCTaxiDash" target="_blank" rel="noopener">GitHub</a> <a href="https://hollyriver.github.io/NYCTaxiDash/" target="_blank" rel="noopener">Live Demo</a></p>
