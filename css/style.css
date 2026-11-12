@@ -148,6 +148,18 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
 .pts.sub li { padding-left: 16px; margin-top: 3px; font-size: 13px; color: #444; }
 .pts.sub li::before { content: "–"; width: 10px; text-align: left; font-size: 12px; font-weight: 400; line-height: 1.65; }
 .pts.sub b { font-weight: 600; }
+/* 성과 비교표 — 행: 레이블링 방법, 열: 조정 알고리즘. SFT는 네 분기의 공통 출발점이라 두 행을 합치고 세로선으로 구분.
+   표 안의 caption은 표 너비에 갇혀 줄바꿈되므로, 표와 설명을 figure로 묶고 설명은 항목 본문 폭을 쓰는 figcaption으로 */
+.rtab-fig { margin: 6px 0 2px; }
+.rtab-fig figcaption { text-align: center; font-size: 11px; color: var(--faint); padding-top: 3px; }
+.rtab { border-collapse: collapse; margin: 0 auto; font-size: 12.5px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.rtab th, .rtab td { padding: 2px 14px; border-bottom: 1px solid var(--line); text-align: center; }
+.rtab thead th { font-size: 11.5px; font-weight: 600; color: var(--muted); border-bottom-color: #bbb; }
+/* 행 머리(레이블링 방법)는 오른쪽 정렬 — 바로 옆 SFT 칸과 붙어 읽히게 */
+.rtab tbody th, .rtab thead th:first-child { text-align: right; }
+.rtab tbody th { font-weight: 600; color: #333; border-right: 1px solid var(--line); }
+.rtab td[rowspan] { color: var(--muted); border-right: 1px solid var(--line); }
+.rtab b { font-weight: 700; }
 /* 아래 첨자(₅C₂)가 줄 높이를 밀어내지 않게 */
 .pts sub { font-size: 9px; line-height: 0; position: relative; bottom: -0.25em; vertical-align: baseline; }
 
@@ -251,6 +263,7 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   .project-body { padding: 4px 6px 22px; }
   .kpis { grid-template-columns: 1fr; gap: 6px; }
   .kpis.k3w { grid-template-columns: 1fr; }
+  .rtab th, .rtab td { padding: 2px 9px; }
   /* 나란한 그림은 세로로 쌓고, 세로형 그림은 화면을 다 채우지 않게 가로세로비만큼 줄인다 */
   .fig-row { flex-direction: column; align-items: center; gap: 12px; }
   .fig-row .fig { flex: none; width: min(100%, calc(var(--ar, 1) * 90%)); }
@@ -280,6 +293,10 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   .project-body .fig img { border-color: #bbb; }
   #nyctaxidash { --pad: 8px; } /* 인쇄에서는 여백을 줄여 이 프로젝트를 1쪽에 맞춤 */
   .kpis li { border-left-color: var(--ink); }
+  .rtab th, .rtab td, .rtab td[rowspan] { border-color: #ccc; }
+  .rtab thead th { border-bottom-color: #888; }
+  .rtab th, .rtab td { padding-block: 1px; }
+  .links { margin-top: 10px; } /* SurvLLM 2쪽째 끝이 빠듯해 링크 줄이 3쪽으로 밀리지 않게 여유 확보 */
   .section { margin-top: 22px; }
   .section + .section { margin-top: 14px; padding-top: 12px; border-top-color: #ddd; }
   .section h2 { break-after: avoid; }

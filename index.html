@@ -168,7 +168,7 @@
         </dl>
 
         <ul class="kpis">
-          <li><span>출력 규격 준수율 (최대)</span><b>97%</b><small>4개 세팅 중 최대 · 출력 141,762건 기준</small></li>
+          <li><span>출력 규격 준수율</span><b>70.3 ~ 92.9%</b><small>4개 분기 · 공변량 15종 형식 기준</small></li>
           <li><span>인간·AI 선호도 일치율</span><b>0.661</b><small>선호도 1,989쌍 기준 · 무작위는 0.5</small></li>
           <li><span>Harrell's C-index (전체 파이프라인)</span><b>+10% 이상</b><small>Cox·DeepHit 대비 상대 개선 · 잠정 경향</small></li>
         </ul>
@@ -213,7 +213,7 @@
         <h4 class="sub-h">세부 사항</h4>
         <ul class="pts">
           <li><b>기존 라이브러리 활용</b>: TRL, PEFT, datasets 등 HuggingFace 제공 라이브러리와 vLLM을 적절하게 활용하여 구현 및 추론에 필요한 시간을 최소화</li>
-          <li><b>사후학습 세부 설정</b>: 매우 긴 토큰의 텍스트를 적절하게 학습시키기 위해 QLoRA(NF4, r=64), Assistant Only Loss 세팅을 공통으로 사용. 선호도 조정에는 병합 후 재양자화 대신, LoRA를 policy와 reference로 두 번 로드하여 재양자화로 인한 SFT 모델 가중치의 왜곡을 회피</li>
+          <li><b>사후학습 세부 설정</b>: 매우 긴 토큰의 텍스트를 적절하게 학습시키기 위해 QLoRA(NF4, r=64), Assistant Only Loss 세팅을 공통으로 사용. SFT는 지식 주입보다 형식 준수가 목적이라 낮은 학습률·다수 에폭 적용. 선호도 조정에는 병합 후 재양자화 대신, LoRA를 policy와 reference로 두 번 로드하여 재양자화로 인한 SFT 모델 가중치의 왜곡을 회피</li>
           <li><b>학습 모니터링</b>: wandb를 통해 훈련 로그 및 지표 곡선을 추적하여 적절한 하이퍼파라미터를 세팅하고, 검증 데이터셋을 기반으로 최적의 체크포인트 선택</li>
           <li><b>AI 레이블링 개선</b>: 오픈소스 LLM 기반 선호도 레이블링의 기존 성능을 개선하기 위해, 인간 레이블링 규칙을 프롬프트로 옮겨 구체화·구조화하고 퓨샷 예시 주입, 모델 추론 활성화</li>
           <li><b>강화학습 기반 알고리즘의 체크포인트 선택</b>: 검증 손실이 제공되지 않는 PPO의 경우, 체크포인트별로 생성한 검증 텍스트들의 품질을 정량·정성적으로 비교하여 인간 피드백 기반으로 직접 선택</li>
@@ -221,8 +221,25 @@
 
         <h3 class="star-h">성과 <span>Result</span></h3>
         <ul class="pts">
-          <li>인간 레이블 × PPO 모델의 규격화 문장 중 97%가 공변량 15종의 이름을 정상적으로 출력. 학습 데이터의 양적 결여로 인해, 문장형 묘사 자체의 품질 문제 식별됨</li>
-          <li>4개 분기 중 인간 피드백 × PPO 조합이 학습 환자 수 300·1,000명 설정의 C-index와 보정(Calibration) 지표 대부분에서 우세</li>
+          <li><b>출력 규격 준수율</b>: 규격화 문장 141,762건 중 공변량 15종이 모두 "변수명 + 수치(또는 NA)" 형식을 갖춘 비율
+            <figure class="rtab-fig">
+              <table class="rtab">
+                <thead><tr><th scope="col">레이블링</th><th scope="col">SFT (기준)</th><th scope="col">DPO</th><th scope="col">PPO</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">인간</th><td rowspan="2">85.4%</td><td>70.3%</td><td><b>92.9%</b></td></tr>
+                  <tr><th scope="row">AI</th><td>79.1%</td><td>89.6%</td></tr>
+                </tbody>
+              </table>
+              <figcaption>기계적 형식 검사 기준 · 퇴원요약지 원문 수치값 및 서술 내용 일치 여부는 미검증</figcaption>
+            </figure>
+            <ul class="pts sub">
+              <li><b>결과</b>: PPO의 준수율은 두 레이블링 방법 모두에서 SFT보다 상승. DPO의 준수율은 오히려 SFT보다 하락</li>
+              <li><b>해석</b>: SFT 학습용 90개(전체 100개 중 검증용 제외)는 모두 엄격한 형식과 유사한 구조를 가짐. 형식 준수를 위해 다수 에폭으로 학습된 SFT 모델을 유사한 형식의 선호 쌍으로 다시 학습하면서 likelihood displacement가 발생한 것으로 추정. PPO 계열은 매 학습 단계에서 직접 생성한 응답을 Reward Model로 평가함으로써 해당 문제에서 비교적 자유로움</li>
+              <li><b>결론</b>: 엄격한 형식 준수가 필요하고, 레이블링 자원이 한정된 상황에서는 상대적으로 PPO가 적합. 단, Phase 2 최종 결과 기준으로 DPO 모델의 성능이 SFT 모델보다 높아, 형식 준수율만으로 DPO의 부적합 정도를 단정할 수 없음</li>
+            </ul>
+          </li>
+          <li>학습 데이터의 양적 결여로 인해, 문장형 묘사 자체의 품질 문제 식별됨</li>
+          <li>4개 분기 중 인간 피드백 × PPO가 학습 환자 수 300·1,000명 설정의 C-index·보정 지표 대부분에서 우세</li>
           <li>Phase 2의 생존함수 추정에서, 베이스라인 모델인 Cox, DeepHit 대비 C-index 10% 이상 개선됨을 잠정적으로 확인 (10회 반복 실험 평균값 기준)</li>
           <li>인간·AI 선호도 레이블의 선호 방향 일치율 0.661 달성 (공통 선호도 쌍 1,989개, 무작위 수준 0.5)</li>
         </ul>
