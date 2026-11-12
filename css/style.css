@@ -129,7 +129,7 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   letter-spacing: 0.8px; text-transform: uppercase;
 }
 .sub-h { margin: 12px 0 0; font-size: 12.5px; font-weight: 700; color: var(--ink); }
-/* 항목 목록 — 마커 칸 17px + 간격 8px = 텍스트 25px 들여쓰기 (.exp-list, .phase와 동일 규격) */
+/* 항목 목록 — 마커 칸 17px + 간격 8px = 텍스트 25px 들여쓰기 (.exp-list와 동일 규격) */
 .pts { list-style: none; padding: 0; margin: 2px 0 0; }
 .pts li { position: relative; padding-left: 25px; margin-top: 4px; font-size: 13.5px; color: #333; }
 .pts li::before {
@@ -163,20 +163,6 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
 /* 아래 첨자(₅C₂)가 줄 높이를 밀어내지 않게 */
 .pts sub { font-size: 9px; line-height: 0; position: relative; bottom: -0.25em; vertical-align: baseline; }
 
-/* 단계 설명 — 번호칩은 다이어그램 안의 번호와 일치시킨다 */
-.phase { display: flex; gap: 8px; margin-top: 7px; }
-.phase .pnum {
-  flex: 0 0 auto; width: 17px; height: 17px; border-radius: 3px;
-  background: var(--ink); color: #fff; font-size: 11px; font-weight: 700;
-  display: flex; align-items: center; justify-content: center; margin-top: 3px;
-}
-.phase p { margin: 0; font-size: 13.5px; color: #333; }
-/* 순서가 없는 세부 항목 — 마커 폭을 번호칩과 똑같이 잡아 들여쓰기를 맞춘다.
-   순서가 생기면 .bullet을 떼고 <span class="pnum">n</span>을 넣으면 된다 */
-.phase.bullet::before {
-  content: "·"; flex: 0 0 17px; text-align: right;
-  color: var(--muted); font-size: 15px; font-weight: 700;
-}
 /* 기술 스택 — 요약 줄(summary) 안에 두어 접힌 상태에서도 보인다.
    상태 배지(둥근 알약)와 헷갈리지 않게 Skills 칩처럼 각진 회색 칩으로 */
 .tags { margin: 9px 0 0; padding-right: 54px; display: flex; flex-wrap: wrap; gap: 5px; }
@@ -216,7 +202,7 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
 .exp-org { font-size: 14px; font-weight: 700; }
 .exp-role { font-size: 13px; color: var(--muted); }
 .exp-date { margin-left: auto; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
-/* 목록 마커는 .phase.bullet과 같은 규격(17px 칸 + 8px 간격 = 텍스트 25px 들여쓰기) */
+/* 목록 마커는 .pts와 같은 규격(17px 칸 + 8px 간격 = 텍스트 25px 들여쓰기) */
 .exp-list { list-style: none; padding: 0; margin: 6px 0 0; }
 .exp-list li { position: relative; padding-left: 25px; margin-top: 4px; font-size: 13.5px; color: #333; }
 .exp-list li::before {
@@ -289,7 +275,7 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   .project-body { padding: 0 0 14px; }
   .project-body dt, .star-h, .sub-h { break-after: avoid; }
   .project-body dd, .tags, .links, .pts li, .kpis { break-inside: avoid; }
-  .project-body .fig, .phase { break-inside: avoid; }
+  .project-body .fig { break-inside: avoid; }
   .project-body .fig img { border-color: #bbb; }
   #nyctaxidash { --pad: 8px; } /* 인쇄에서는 여백을 줄여 이 프로젝트를 1쪽에 맞춤 */
   .kpis li { border-left-color: var(--ink); }
