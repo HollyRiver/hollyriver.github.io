@@ -289,14 +289,12 @@ code { background: var(--bg-soft); padding: 1px 5px; border-radius: 4px; font-si
   /* 이력(About~Publications)과 프로젝트를 페이지로 구분 — 이력이 1~2페이지를 쓰고 프로젝트는 새 페이지에서 시작.
      강제 나눔 직후의 위쪽 여백은 남으므로 0으로 */
   #projects { break-before: page; margin-top: 0; padding-top: 0; border-top: none; }
-  /* 1페이지는 About~Certificates, 2페이지는 Skills~Publications.
-     2026-11-13 Experience 축약으로 Certificates가 1페이지에 들어가게 되어 나눔 위치를 Certificates 앞 → Skills 앞으로 옮김.
-     Skills는 1페이지 남은 칸에 다 들어가지 않아 그냥 두면 두 페이지에 걸쳐 나뉘므로 2페이지 첫머리로 보낸다 */
-  #certificates { break-inside: avoid; }
-  #skills { break-before: page; margin-top: 0; padding-top: 0; border-top: none; }
-  /* 1페이지 끝(Certificates)·2페이지 끝(Publications)도 섹션 사이와 같은 옅은 선으로 닫음.
+  /* 1페이지는 About~Experience, 2페이지는 Certificates~Publications (사용자 결정, 2026-11-13).
+     Certificates는 1페이지에 들어갈 공간이 있어도 2페이지 첫머리에서 시작한다 */
+  #certificates { break-before: page; margin-top: 0; padding-top: 0; border-top: none; }
+  /* 1페이지 끝(Experience)·2페이지 끝(Publications)도 섹션 사이와 같은 옅은 선으로 닫음.
      웹에서는 바로 아래 섹션의 위쪽 선이 이 역할을 하므로 인쇄 전용 */
-  #certificates, #publications { padding-bottom: 12px; border-bottom: 1px solid #ddd; }
+  #experience, #publications { padding-bottom: 12px; border-bottom: 1px solid #ddd; }
   .badge-wip, .badge-pub, .badge-live { background: none; border-color: #999; color: #333; }
   .tags span { border-color: #bbb; color: #333; }
   .stack span { border-color: #ccc; }
