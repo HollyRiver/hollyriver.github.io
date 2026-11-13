@@ -64,12 +64,16 @@
         <span class="exp-date">2025.07 - 현재</span>
       </div>
       <ul class="exp-list">
-        <li><b>로컬 LLM 기반 Two-Phase 생존분석 연구 참여</b> — 첫 단계인 퇴원요약지(Discharge Summary) 텍스트 규격화를 위해 SFT, DPO, PPO, 선호도 레이블링 등 수행</li>
-        <li><b>인간 작성/LLM 생성 텍스트 판별 연구 참여</b> — 퍼플렉시티 계산 및 예측 변수로 추가, 연구에 활용된 코드 오류 검토 및 아카이빙 등 수행</li>
-        <li><b>디퓨전 기반 한반도 일사량 예측 연구 참여</b> — 연구 중간 단계에 합류하여, Base 디퓨전 모델 예측 개선을 위한 보정 프로세스를 추가 구축</li>
-        <li><b>시계열 전이학습 베이스라인 실험 지원</b> — 리비전 단계 연구에 합류하여, 레거시 Keras 베이스라인 실험을 PyTorch·PatchTST로 이식 및 개선</li>
-        <li><b>서버자원 관리</b> — 연구실 내 H200, A6000, L40S 장착 서버의 도커 컨테이너 구축 및 기술 지원</li>
-        <li><b>세미나 활동</b> — 기계학습을 위한 수학, 강화학습, 생존분석, MCP, Agentic AI 관련 세미나 참여 및 담당 파트 준비</li>
+        <li><b>개요</b> — 베이지안 통계 및 AI·데이터 사이언스 관련 연구실에서 지도교수 제안으로 학부연구생 활동 수행</li>
+        <li><b>연구</b> — 연구실 과제 4건 참여
+          <ul class="pts sub">
+            <li><b>LLM 기반 생존분석</b>: 2단계 파이프라인 중 Phase&nbsp;1(퇴원요약지 텍스트 규격화) 전담</li>
+            <li><b>디퓨전 기반 일사량 예측</b>: 연구 중간에 합류하여 Base 모델 예측의 보정 모듈 구축</li>
+            <li><b>LLM 생성 텍스트 판별</b>: 퍼플렉시티 계산·변수 추가, 연구 코드 오류 검토 및 아카이빙</li>
+            <li><b>시계열 전이학습 베이스라인 실험</b>: 리비전 단계에 합류하여 Keras 구현을 PyTorch로 이식하고 모델을 PatchTST로 교체</li>
+          </ul>
+        </li>
+        <li><b>운영</b> — H200·A6000·L40S 서버자원 관리 및 분배. 연구실 세미나 활동 참여 및 담당 파트 준비</li>
       </ul>
     </div>
   </section>
@@ -155,7 +159,7 @@
           <span class="project-title">LLM 기반 생존분석 연구</span>
           <span class="badge badge-wip">연구 진행중</span>
         </div>
-        <p class="project-brief">퇴원요약지 텍스트를 입력으로 생존분석을 수행하는 2단계 파이프라인</p>
+        <p class="project-brief">퇴원요약지(Discharge Summary) 텍스트를 입력으로 생존분석을 수행하는 2단계 파이프라인</p>
         <p class="tags"><span>PyTorch</span><span>HuggingFace</span><span>Post-Training</span><span>QLoRA</span><span>vLLM</span><span>FSDP</span><span>wandb</span></p>
         <span class="hint" aria-hidden="true"></span>
       </summary>
